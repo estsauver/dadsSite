@@ -1,0 +1,52 @@
+% Save file as: OVERHEAD2.TEX          Source: FILESERV@SHSU.BITNET  
+%%% overhead.tex:
+%%%   under the guise of showing how to create a typical overhead "slide",
+%%%   this little example actually slides in illustrating landscape mode,
+%%%   and use of PostScript fonts.  "God forgive me, I know not what I do."
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% rotate the overhead 90 degrees so the long axis is horizontal
+\special{landscape}
+%%%
+%%% cancel pagenumbers since this is just a single overhead we're doing
+\nopagenumbers
+%%%
+%%% adjust the default page size to something appropriate for landscape mode
+\hsize=9in
+\vsize=6.5in
+%%%
+%%% declare a couple of PostScript native fonts at overhead size dimensions
+\font\thtyhvbld=Helvetica-Bold at 30pt
+\font\thtyhv=Helvetica at 30pt
+%%%
+%%% make sure that our inter-line spacing is reasonable for those behemoths;
+%%% note that the values I set might look terrible to you -- pick your own!
+\normalbaselineskip=32pt
+\normalbaselines
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% okay, enough screwing around.  let's do it...
+%%%
+%%% our default font will be 30 pt Helvetica...
+\thtyhv
+%%% set up them tab stops...
+\settabs\+--\ &\hglue 8.0 truein\cr
+%%% set the title of the overhead, then let's set the body of the table
+\+{\thtyhvbld THE ECONOMIC ORDER QUANTITY MODEL}\cr
+\bigskip\bigskip
+\+--&EOQ minimizes total inventory costs\cr
+\+&by balancing carrying and ordering costs\cr
+\bigskip\bigskip
+\+--&EOQ represents the solutions to the first\cr
+\+&differential of the total cost function\cr
+\bigskip\bigskip
+\+--&EOQ assumes non-lumpy demand patterns,\cr
+\+&instantaneous deliveries, known and constant\cr
+\+&ordering and carrying costs, and no price\cr
+\+&breaks.\cr
+\bigskip\bigskip
+\+--&If these assumptions aren't met, consider\cr
+\+&using a more advanced technique such as\cr
+\+&MRP II or the Wagner-Whitin Algorithm.\cr
+\vfill\eject

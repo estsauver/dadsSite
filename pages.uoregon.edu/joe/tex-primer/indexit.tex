@@ -1,0 +1,279 @@
+% Save file as: INDEXIT.TEX            Source: FILESERV@SHSU.BITNET  
+% Macros for The TeXbook
+
+\catcode`@=11 % borrow the private macros of PLAIN (with care)
+
+\def\pt{\,{\rm pt}} % units of points, in math formulas
+\def\em{\,{\rm em}} % units of ems, in math formulas
+\def\<#1>{\leavevmode\hbox{$\langle$#1\/$\rangle$}} % syntactic quantity
+\def\oct#1{\hbox{\rm\'{}\kern-.2em\it#1\/\kern.05em}} % octal constant
+\def\hex#1{\hbox{\rm\H{}\tt#1}} % hexadecimal constant
+\def\cstok#1{\leavevmode\thinspace\hbox{\vrule\vtop{\vbox{\hrule\kern1pt
+        \hbox{\vphantom{\tt/}\thinspace{\tt#1}\thinspace}}
+      \kern1pt\hrule}\vrule}\thinspace} % control sequence token
+
+\chardef\other=12
+\def\ttverbatim{\begingroup
+  \catcode`\\=\other
+  \catcode`\{=\other
+  \catcode`\}=\other
+  \catcode`\$=\other
+  \catcode`\&=\other
+  \catcode`\#=\other
+  \catcode`\%=\other
+  \catcode`\~=\other
+  \catcode`\_=\other
+  \catcode`\^=\other
+  \obeyspaces \obeylines \tt}
+
+\outer\def\begintt{$$\let\par=\endgraf \ttverbatim \parskip=\z@
+  \catcode`\|=0 \rightskip-5pc \ttfinish}
+{\catcode`\|=0 |catcode`|\=\other % | is temporary escape character
+  |obeylines % end of line is active
+  |gdef|ttfinish#1^^M#2\endtt{#1|vbox{#2}|endgroup$$}}
+
+\catcode`\|=\active
+{\obeylines \gdef|{\ttverbatim \spaceskip\ttglue \let^^M=\  \let|=\endgroup}}
+
+% macros for syntax rules (again, not in Appendix E)
+\def\[#1]{\silenttrue\xref|#1|\thinspace{\tt#1}\thinspace} % keyword in syntax
+\def\beginsyntax{\endgraf\nobreak\medskip
+  \begingroup \catcode`<=13 \catcode`[=13
+  \let\par=\endsyntaxline \obeylines}
+\def\endsyntaxline{\futurelet\next\syntaxswitch}
+\def\syntaxswitch{\ifx\next\<\let\next=\syntaxrule
+  \else\ifx\next\endsyntax\let\next=\endgroup
+  \else\let\next=\continuerule\fi\fi \next}
+\def\continuerule{\hfil\break\indent\qquad}
+\def\endsyntax{\medbreak\noindent}
+{\catcode`<=13 \catcode`[=13
+  \global\let<=\< \global\let[=\[
+  \gdef\syntaxrule<#1>{\endgraf\indent\silentfalse\xref\<#1>}}
+\def\is{\ $\longrightarrow$ }
+\def\alt{\ $\vert$ }
+
+% macros to demarcate lines quoted from TeX source files
+\def\beginlines{\par\begingroup\nobreak\medskip\parindent\z@ \obeylines
+  \hrule\kern1pt\nobreak \everypar{\strut}}
+\def\endlines{\kern1pt\hrule\endgroup\medbreak\noindent}
+\def\weakendlines{\kern1pt\hrule\endgroup\medskip\noindent}
+\def\finalendlines{\kern1pt\hrule\endgroup\medbreak}
+
+\newwrite\ans
+\immediate\openout\ans=answers % file for answers to exercises
+\outer\def\answer{\par\medbreak
+  \immediate\write\ans{}
+  \immediate\write\ans{\string\ansno\chapno.\the\exno:}
+  \copytoblankline}
+\def\copytoblankline{\begingroup\setupcopy\copyans}
+\def\setupcopy{\def\do##1{\catcode`##1=\other}\dospecials
+  \catcode`\|=\other \obeylines}
+{\obeylines \gdef\copyans#1
+  {\def\next{#1}%
+  \ifx\next\empty\let\next=\endgroup %
+  \else\immediate\write\ans{\next} \let\next=\copyans\fi\next}}
+
+% Indexing macros
+\newif\ifproofmode
+\proofmodetrue % this should be false when making camera-ready copy
+\newwrite\inx
+\immediate\openout\inx=index % file for index reminders
+\newif\ifsilent
+\def\specialhat{\ifmmode\def\next{^}\else\let\next=\beginxref\fi\next}
+\def\beginxref{\futurelet\next\beginxrefswitch}
+\def\beginxrefswitch{\ifx\next\specialhat\let\next=\silentxref
+  \else\silentfalse\let\next=\xref\fi \next}
+\catcode`\^=\active \let ^=\specialhat
+\def\silentxref^{\silenttrue\xref}
+
+\def\marginstyle{\vrule height6pt depth2pt width\z@ \sevenrm}
+
+\newinsert\margin
+\dimen\margin=\maxdimen
+\count\margin=0 \skip\margin=0pt
+
+\chardef\bslash=`\\
+\def\xref{\futurelet\next\xrefswitch}
+\def\xrefswitch{\begingroup
+  \ifx\next|\aftergroup\vxref % case 1 or 2, |arg| or |\arg|
+  \else\ifx\next\<\aftergroup\anglexref % case 3, "\<arg>" means angle brackets
+    \else\aftergroup\normalxref \fi\fi\endgroup} % case 0, "{arg}"
+\def\vxref|{\catcode`\\=\active \futurelet\next\vxrefswitch}
+\def\vxrefswitch#1|{\catcode`\\=0
+  \ifx\next\empty\def\xreftype{2}%
+    \def\next{{\tt\bslash\text}}% type 2, |\arg|
+  \else\def\xreftype{1}\def\next{{\tt\text}}\fi % type 1, |arg|
+  \edef\text{#1}\makexref}
+{\catcode`\|=0 \catcode`\\=\active |gdef\{}}
+\def\anglexref\<#1>{\def\xreftype{3}\def\text{#1}%
+  \def\next{\<\text>}\makexref}
+\def\normalxref#1{\def\xreftype{0}\def\text{#1}\let\next=\text\makexref}
+\def\makexref{\ifproofmode\insert\margin{\hbox{\marginstyle\text}}%
+   \xdef\writeit{\write\inx{\text\space!\xreftype\space
+     \noexpand\number\pageno.}}\writeit
+   \else\ifhmode\kern\z@\fi\fi
+  \ifsilent\ignorespaces\else\next\fi}
+% the \insert (which is done in proofmode only) suppresses hyphenation,
+% so the \kern\z@ is put in to give the same effect in non-proofmode.
+
+% Internal cross references that may change
+\def\sesame{61} % page number for Sesame Street quote
+\def\bmiexno{20} % exercise number for bold math italic
+\def\punishexno{1} % exercise number for `punishment'
+\def\fracexno{6} % exercise number for `\frac'
+\def\vshippage{31} % error message from `\vship'
+\def\storypage{24} % listing of story.tex
+\def\metaT{4} % exercise number for T of METAFONT
+\def\xwhat{2} % exercise number for x3:=whatever
+\def\Xwhat{2} % exercise number for whatever itself
+
+\def\checkequals#1#2{\ifnum#1=#2\else
+  \errmessage{Redefine \string#1 to be \the#2}\fi}
+
+% Things for The METAFONTbook only
+\ifx\MFmanual\!\else\endinput\fi
+
+\def\!{\kern-.03em\relax}
+
+\def\frac#1/#2{\leavevmode\kern.1em
+  \raise.5ex\hbox{\the\scriptfont0 #1}\kern-.1em
+  /\kern-.15em\lower.25ex\hbox{\the\scriptfont0 #2}}
+
+\outer\def\displayfig #1 (#2){$$\advance\abovedisplayskip by 3pt
+  \leftline{\indent\figbox{#1}{3in}{#2}\vbox}$$}
+\def\rightfig #1 (#2 x #3) ^#4 {% #2 wide and #3 deep, raised #4
+  \strut\vadjust{\setbox0=\vbox to 0pt{\vss
+      \hbox to\pagewidth{\hfil
+        \raise #4\figbox{#1}{#2}{#3}\vtop \quad}}
+    \dp0=0pt \box0}}
+\def\figbox#1#2#3#4{#4to#3{ % makes a box #2 wide and #3 deep
+    \ifproofmode\kern0pt\hrule\vfill
+    \hsize=#2 \baselineskip 6pt \fiverm\noindent\raggedright
+    (Figure #1 will be inserted here; too bad you can't see it now.)
+    \endgraf\vfill\hrule
+    \else\vfill\hbox to#2{}\fi}}
+
+\def\endsyntax{\begingroup\let\par=\endgraf\medbreak\endgroup\noindent}
+
+\let\BEGINCHAPTER=\beginchapter
+\def\beginchapter{\titlelsl=1pt \BEGINCHAPTER}
+\def\beginChapter{\titlelsl=2pt \BEGINCHAPTER}
+
+\def\decreasehsize #1 {\advance\hsize-#1}
+\def\restorehsize{\hsize=\pagewidth}
+
+\catcode`\@=\active
+\catcode`\"=\active
+\def\ttverbatim{\begingroup \catcode`\@=\other \catcode`\"=\other
+  \catcode`\\=\other
+  \catcode`\{=\other
+  \catcode`\}=\other
+  \catcode`\$=\other
+  \catcode`\&=\other
+  \catcode`\#=\other
+  \catcode`\%=\other
+  \catcode`\~=\other
+  \catcode`\_=\other
+  \catcode`\^=\other
+  \obeyspaces \obeylines \tt}
+\def\setupcopy{\def\do##1{\catcode`##1=\other}\dospecials
+  \catcode`\|=\other \catcode`\@=\other \catcode`\"=\other \obeylines}
+\def\_{\leavevmode \kern.06em \vbox{\hrule width.3em}}
+\def@#1@{\begingroup\def\_{\kern.04em
+    \vbox{\hrule width.3em height .6pt}\kern.08em}%
+  \ifmmode\mathop{\bf#1}\else\hbox{\bf#1\/}\fi\endgroup}
+\def"#1"{\hbox{\it#1\/\kern.05em}} % italic type for identifiers
+\def\xrefswitch{\begingroup
+  \ifx\next|\aftergroup\vxref % case 1, |arg| or |\arg|
+  \else\ifx\next@\aftergroup\boldxref % case 2, "@arg@" means boldface
+  \else\ifx\next"\aftergroup\italxref % case 4, ""arg"" means boldface
+  \else\ifx\next\<\aftergroup\anglexref % case 3, "\<arg>" means angle brackets
+    \else\aftergroup\normalxref \fi\fi\fi\fi\endgroup} % case 0, "{arg}"
+\def\boldxref@#1@{\def\xreftype{2}\def\text{#1}%
+  \def\next{@\text@}\makexref}
+\def\italxref"#1"{\def\xreftype{4}\def\text{#1}%
+  \def\next{"\text"}\makexref}
+
+\def\pyth+{\mathbin{++}}
+\def\0{\raise.7ex\hbox{$\scriptstyle\#$}}
+\def\to{\mathrel{\ldotp\ldotp}}
+\def\dashto{\mathrel{\hbox{-\thinspace-\kern-.05em}}}
+\def\ddashto{\mathrel{\hbox{-\thinspace-\thinspace-\kern-.05em}}}
+\def\round{\mathop{\rm round}}
+\def\angle{\mathop{\rm angle}}
+\def\rmsqrt{\mathop{\rm sqrt}}
+\def\reverse{\mathop{\rm reverse}}
+\def\curl{\mathop{\rm curl}}
+\def\tension{\mathop{\rm tension}}
+\def\atleast{\mathop{\rm atleast}}
+\def\controls{\mathop{\rm controls}}
+\def\and{\,{\rm and}\,}
+\def\cycle{{\rm cycle}}
+\def\pickup{@pickup@ \thinspace}
+\def\penpos#1{\hbox{\it penpos}_{#1}}
+\def\pentaper#1{\hbox{\it pentaper}_{#1}}
+
+\chardef\hexa=1  % first hex
+\chardef\hexb=2 % top and bot adjusted
+\chardef\hexc=3 % same, bold
+\chardef\hexd=4 % same, confined to box
+\chardef\hexe=5 % penstroked hex
+\chardef\Aa=6 % stick-figure A, golden ratio
+\def\sevenAs{\char7\char8\char9\char10\char11\char12\char13} % same, variants
+\chardef\Az=14 % same, with crooked bar
+\chardef\Ab=15 % \Aa with rectilinear elliptical pen
+\chardef\Ac=16 % same, with the ellipse tilted
+\chardef\beana=17 % kidney bean, default pen
+\chardef\beanb=18 % same, twice as bold
+\chardef\beanc=19 % same, rectilinear elliptical pen
+\chardef\beand=20 % same, with the ellipse tilted
+\chardef\niba=21 % 10x rectilinear ellipse
+\chardef\nibb=22 % same, with the ellipse tilted
+\chardef\nibc=23 % same, 90 degrees titled
+\chardef\IOT=24 % Ionian T
+\chardef\IOS=25 % Ionian S
+\chardef\IOO=26 % Ionian O
+\chardef\IOI=27 % Ionian I
+\chardef\cubea=28 % possible cube
+\chardef\cubeb=29 % impossible cube
+\chardef\bicentennial=30 % star with overlapping strokes
+\chardef\oneu=31 % 1/4 of uuuu ornament
+\chardef\circa=32 % quartercircle
+\chardef\circb=33 % filled quartercircle
+\chardef\circc=34 % rotated quartercircle
+\chardef\circd=35 % cone
+\chardef\circe=36 % concentric circles
+\chardef\circf=37 % concentric diamonds
+\chardef\fouru=38 % uuuu ornament
+\chardef\fourc=39 % same, rotated
+\chardef\seventh='140 % 1/7, to go with cmssqi8
+
+\newdimen\apspix
+\apspix=31448sp % 8 APS pixels = 52413.64sp, and I'm taking 60% of this
+% to crude approximation, there are about 2\apspix per pt
+\newdimen\blankpix \newdimen\Blankpix
+\setbox0=\hbox{\manual P} \blankpix=\wd0 % approximately 1pt blank pixel
+\setbox0=\hbox{\manual R} \Blankpix=\wd0 % approximately 3pt blank pixel
+
+\def\leftheadline{\hbox to \pagewidth{%
+    \vbox to 10pt{}% strut to position the baseline
+    \llap{\tenbf\folio\kern1pc}% folio to left of text
+    \def\MF{{\manual 89:;<=>:}}% slanted 10pt
+    \tenit\rhead\hfil% running head flush left
+    }}
+\def\rightheadline{\hbox to \pagewidth{%
+    \vbox to 10pt{}% strut to position the baseline
+    \def\MF{{\manual 89:;<=>:}}% slanted 10pt
+    \hfil\tenit\rhead\/% running head flush right
+    \rlap{\kern1pc\tenbf\folio}% folio to right of text
+    }}
+\def\ttok#1{\leavevmode\thinspace\hbox{\vrule\vtop{\vbox{\hrule\kern1pt
+        \hbox{\vphantom{\tt(j}\thinspace{\tt#1}\thinspace}}
+      \kern1pt\hrule}\vrule}\thinspace} % token
+
+\newdimen\tinypix \setbox0=\hbox{\sixrm0} \tinypix=5pt
+\newdimen\pixcorr \pixcorr=\tinypix \advance\pixcorr by-\wd0
+\def\pixpat#1#2#3#4{\vcenter{\sixrm\baselineskip=\tinypix
+  \hbox{#1\kern\pixcorr#2}\hbox{#3\kern\pixcorr#4}}}
+
+\font\rand=random

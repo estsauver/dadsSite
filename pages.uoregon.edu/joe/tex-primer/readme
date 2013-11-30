@@ -1,0 +1,34 @@
+% Save file as: README                 Source: FILESERV@SHSU.BITNET  
+README
+
+This directory contains all the source files for the writeup "Using TeX on
+the VAX to Typeset Documents: A Primer." This document is designed to be
+a more gentle introduction to using plain TeX than a user'd get if they just 
+dove right into Knuth's TeXbook. It doesn't cover previewing, use of LaTeX
+or any of the various third-party TeX packages; it is strictly plain vanilla
+TeX and DVIPS all the way. 
+
+If you are going to build this primer on a VAX running VMS, just mget all
+the files, edit MAKE_PRIMER.COM as required to suit your local circumstances,
+and say @MAKE_PRIMER to generate a copy of it.
+
+If you are running TeX on a UNIX system, or on a PC or a Mac or whatever,
+take a look at MAKE_PRIMER.COM to see the steps involved in making the 
+document. There isn't anything happening that you couldn't do "the hard way,"
+i.e., manually, if that's all you have available.
+
+You'll need about 1800 VAX/VMS (512 byte) disk blocks for the raw files; if 
+space is tight you can omit Appendix G and the accompanying PostScript files
+included as a demonstration of using \special's to include PostScript
+graphics files. DISSPLA2.PS, for example, accounts for 637 blocks all by 
+itself.
+
+After processing, you'll probably find that you've used up about 5500 blocks.
+
+Anyhow, that's about it. If you enjoy my little primer and find it useful,
+let me know. If you catch any errors, please also let me know about that!
+
+Happy TeX-ing!
+
+Joe St Sauver (7 Jan 1991)
+joe@oregon.uoregon.edu or joe@oregon

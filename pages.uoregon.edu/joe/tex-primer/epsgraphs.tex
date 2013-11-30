@@ -1,0 +1,46 @@
+% Save file as: EPSGRAPHS.TEX          Source: FILESERV@SHSU.BITNET  
+\nopagenumbers
+\input fontsize.tex
+\input epsf
+\twelvepoint
+\rm
+\noindent
+\centerline{\twlbf Graphics in \TeX}
+\bigskip\bigskip\par\noindent
+\TeX\ can incorporate PostScript files created by applications
+such as Mathematica, CA-DISSPLA, GIF-to-PS converters, and 
+TIFF-to-PS converters. For example:
+\bigskip\par\noindent
+{\twlbf Mathematica (PostScript image created on a NeXT):}
+\bigskip\par\noindent
+\epsfxsize=5in
+\epsffile{eightpi.ps}
+\bigskip\bigskip\par\noindent
+{\twlbf CA-DISSPLA (PostScript image created on the VAX):}
+\bigskip\par\noindent
+\special{psfile=disspla2.ps hscale=50 vscale=50 voffset=350}
+\vfill\eject
+\par\noindent
+{\twlbf GIF Files Converted to PostScript (GIF from WUARCHIVE.WUSTL.EDU):}
+\bigskip\par\noindent
+This image was converted from GIF format to PS by taking the raw GIF image
+into the ViewGif application on a NeXT and then ``printing'' the GIF image 
+to a file. The NeXT Icon application was then used to insure that 
+the resulting file had reasonable length lines, and finally, a PostScript 
+translate instruction was manually added to the PostScript file to achieve 
+the required horizontal placement of the image on the page.
+\bigskip\bigskip\bigskip\par\noindent
+\epsffile{fishyl.eps}
+\bigskip\bigskip\bigskip\par\noindent
+{\twlbf TIFF Files Converted to PostScript (Scanned Images)}
+\bigskip\par\noindent
+These two sample TIFF files (of the author and his wife) were created 
+from photos digitized on an Apple flatbed Scanner in (relatively crude) 
+16 bit greyshade mode, then converted to EPS on a NeXT using the 
+tifftoeps converter written by Eric P. Scott of San Francisco State 
+University. The NeXT Icon application was then used to crop the images 
+and generate the resulting PostScript files.
+\vglue 2.8in
+\special{psfile=BevBarSmall.eps hoffset=42 voffset=10}
+\special{psfile=JoeSmall.eps hoffset=242}
+\vfill\eject

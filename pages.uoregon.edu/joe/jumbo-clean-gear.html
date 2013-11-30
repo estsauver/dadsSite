@@ -1,0 +1,754 @@
+<HTML>
+<HEAD>
+<TITLE>Jumbo Frame Clean Networking Gear</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Keywords" content="jumbo frames, giant frames, large MTU, 9K MTU, gigabit ethernet, ten gigabit ethernet, 10 gigabit, gigabit, 9180, 9000, 4700, 1518, 1500, Cisco, Juniper, Extreme, Foundry, Nortel, Syskonnect">
+<meta name="Description" content="Jumbo Frame Clean Networking Gear">
+</HEAD>
+<BODY>
+<H3>Jumbo Frame Clean Networking Gear</H3>
+<P>
+This page lists gigabit networking gear that is jumbo frame (MTU>=9000 bytes)
+clean, and gigabit networking gear that has been investigated and found NOT
+to be jumbo frame clean.
+<P>
+Corrections or additions may be sent to joe@oregon.uoregon.edu
+<P>
+<HR>
+<P>
+<B>16110 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.intel.com/support/network/adapter/1000/index.htm">Intel
+Pro 1000 Ethernet Adapters</A>
+<P>
+See, for example: <A HREF="http://www.intel.com/support/network/adapter/onlineguide/PRO1000/DOCS/LINUX/e1000.htm">Linux</A>
+</UL>
+<P>
+<B>"16KB" MTU</B>
+<P>
+<UL>
+<LI><A HREF="http://www.syba.com/product/42/04/02/">Syba Gigabit PCI Adapter</A>
+<P>
+<UL>
+"Jumbo frame support up to 16KB"
+</UL>
+</UL>
+<P>
+<B>14336 MTU Ethernet</B>
+<P>
+<UL>
+<LI>Greg Maxwell mentioned that "JetCore based chassis systems (the current
+BigIron/NetIron/FastIron 400/800/etc products) support 14,336 byte jumbos:
+and "The BigIron MG8 (the dense 10gigabit chassis) supports 14,336 byte
+jumbos.
+</UL>
+<P>
+<B>10240 MTU Ethernet</B>
+<P>
+<UL>
+<LI>Cisco 7600 Layer 3 Ethernet Interfaces (gigabit and 10 gigabit ports only as of release 12.1(8a)EX, all LAN ports as of 12.1(8b)EX2)
+<P>
+<LI><A HREF="http://kbserver.netgear.com/kb_web_files/n101539.asp">Select
+Netgear switches running suitable firmware,</A> including:
+<P>
+<UL>
+<LI>Netgear GS748T Smart Switch (Firmware 1.3x or later)
+<LI>Netgear GS116 Unmanaged Switch (Serial number prefix 140)
+</UL>
+</UL>
+<P>
+<B>10194 MTU Ethernet</B>
+<P>
+<UL>
+<LI>Jesse Becker notes that "The <B>Dell 5324</B> switches support jumbo 
+frames.  The documentation claims 9,000 bytes; using ping and other programs 
+(netpipe), I was able to send 10194 byte packets through.  Packets of 
+larger size, however, appear to be silently dropped.  So even though the 
+e1000 driver can handle packets larger than 10194, there's no point, 
+since the switch can't handle them."
+</UL>
+<P>
+<B>9600 MTU Ethernet</B>
+<P>
+<UL>
+<LI>D-Link DGS-108
+<BR>
+<A HREF="http://www.dlink.com/products/resource.asp?pid=449&rid=1721&sec=1">http://www.dlink.com/products/resource.asp?pid=449&rid=1721&sec=1</A>
+<P>
+<LI>D-Link DGS-105
+<BR>
+<A HREF="http://www.dlink.com/products/resource.asp?pid=448&rid=1717&sec=1">http://www.dlink.com/products/resource.asp?pid=448&rid=1717&sec=1</A>
+</UL>
+<P>
+<UL>
+<LI><A HREF="http://www.s2io.com/products/xframe2.html">S2IO Neterion</A>
+</UL>
+<P>
+<B>9500 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://kbserver.netgear.com/kb_web_files/n101539.asp">Selected
+Netgear Switches running suitable firmware</A>, including:
+<P>
+<UL>
+<LI>Netgear GS716T (Firmware 1.1.0_0330 or later)
+<LI>Netgear GS724Tv2 (Firmware 1.0.0 or later)
+</UL>
+<P>
+<UL>
+<LI><A HREF="http://kbserver.netgear.com/release_notes/d102705.asp">Netgear
+GS748T beta firmware</A>
+</UL>
+</UL>
+<P>
+<B>9252 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.force10networks.com/">Force10</A> 
+(per private communication from the Force10 Technical Marketing folks)
+</UL>
+<P>
+<B>9234 MTU (9216+18 bytes of ethernet header/trailer) Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps663/products_tech_note09186a00801350c8.shtml">Cisco Catalyst 6000s</A> 
+See also:
+<A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 6000 Series Switches
+Configuring Jumbo/Giant Frame Support on Catalyst Switches</A> which
+specifically states:
+<P>
+"The Catalyst 6000 series and 7600 Optical Services Router (OSR) platform can 
+support jumbo frame sizes as of release 6.1(1) of CatOS, and 12.1(1)E for 
+Native IOS. However, this is dependent on the type of line cards that are 
+used. There are generally no restrictions in enabling the jumbo frame size 
+feature. [* * *] The default MTU size is 9216 bytes once jumbo frame support 
+has been enabled on the individual port. However, on the following 
+10/100-based line cards, an Application Specific Integrated Circuit (ASIC) 
+limitation requires that the MTU size be limited to 8092 bytes. Specifically, 
+the line cards that are affected are as follows:
+<P>
+<UL>
+WS-X6248-RJ-45 
+<BR>
+WS-X6248A-RJ-45 
+<BR>
+WS-X6248-TEL 
+<BR>
+WS-X6248A-TEL 
+<BR>
+WS-X6348-RJ-45 
+<BR>
+WS-X6348-RJ-45V 
+<BR>
+WS-X6348-RJ-21 
+<P>
+The WS-X6516-GE-TX is also affected at 100 Mbps. At 10/1000 Mbps, up to 
+9216 bytes can be supported. Note, however, that the WS-X6548-RJ-45 line 
+card is not affected, as it uses newer ASICs.
+<P>
+Note: Jumbo Frame support is available on WS-X6101 ATM modules.
+</UL>
+</UL>
+<P>
+<B>9220 MTU (including 4 bytes for a VLAN tag)</B>
+<P>
+<UL>
+<LI><A HREF="ftp://ftp.hp.com/pub/networking/software/59906050-0105b.pdf">HP Procure Series 6400cl and Series 5300xl Switches and Series 3400cl Switches (see Manual pp. 13-15, pdf page 287)</A>
+</UL>
+<P>
+<B>9216 MTU (9198+18 bytes of ethernet header/trailer) Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.antares.com/ethernet/ethernet.htm">Antares Ethernet Adapters</A> for Solaris 7/8/9 on supported hardware, and for Linux (Kernal 2.2 or higher; see also <A HREF="http://www.antares.com/downloads/1054-1055manual.pdf">Installation Guide</A> (with info on recompiling the Linux driver and/or tweaking the Solaris /etc/system file))
+<P>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 8500 Series</A> (running
+software revision 12.1(7)EY and hardware revision 6.0, using two port enhanced
+gigabit ethernet modules C85EGE-2X-16K, C85EGE-2X-64K, or C85EGE-2X-256K [or
+ATM Router Module 2 (C8540-ARM2) -- it supports MTUs through 17976 bytes)
+<P>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 5000 Series Switches</A> with the following exceptions:
+<P>
+<UL>
+"On 10/100 UTP-based line cards, the maximum frame size supported is only 8092 bytes due to an ASIC limitation."
+<P>
+"The nine-port Gigabit Ethernet line card (WS-X5410) does not support the jumbo frame feature due to an ASIC limitation."
+<P>
+"Jumbo frame support is currently not available on ATM modules for the Catalyst 5500 series switches."
+</UL>
+<P>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps663/products_tech_note09186a00801350c8.shtml">Cisco Catalyst 4000/4500 Switches with Supervisor 
+III or Supervisor IV running IOS 12.1(13)EW or later</A>
+<P>
+<UL>
+Note that document specifically mentions: "Jumbo frames are supported only on
+non-blocking Gigabit ports. The following is a list of Gigabit modules and
+their specific ports supporting jumbo frames:
+<UL>
+<P>
+both Supervisor uplink ports on Supervisor III (WS-X4013) and Supervisor IV
+(WS-X4014)
+<BR>
+WS-X4306-GB
+<BR>
+WS-X4232-GB-RJ (ports 1-2 only)
+<BR>
+WS-X4418-GB (ports 1-2 only)
+<BR>
+WS-X4412-2GB-TX (ports 13-14 only)"
+</UL>
+</UL>
+<LI><A HREF="http://kbserver.netgear.com/kb_web_files/n101539.asp">Select Netgear Switches running suitable firmware,</A> including:
+<P>
+<UL>
+<LI>Netgear GSM7212 Managed Switch (Firmware 3.x or later)
+<LI>Netgear GSM7224 Managed Switch (Firmware 3.x or later)
+<LI>Netgear GSM7248 Managed Switch (Firmware 4.x or later)
+<LI>Netgear GSM7312 Managed Switch (Firmware 3.x or later)
+<LI>Netgear GSM7324 Managed Switch (Firmware 3.x or later)
+<LI>Netgear FSM7326P Managed Switch (Firmware 3.x or later)
+<LI>Netgear GS105 Unmanaged Switch (Serial Number prefix 126)
+<LI>Netgear GS108 Unmanaged Switch (Serial Number prefix 127)
+</UL>
+<P>
+<LI><A HREF="http://www.sun.com/products/networking/ethernet/jumbo/">Sun Gigabit Ethernet cards (with suitable drives and ndd setttings)</A>
+<P>
+<UL>
+111883-23 - Solaris 8
+<BR>
+112817-16 - Solaris 9
+<BR>
+112327-17 - Solaris 6 and 7 X-option
+</UL>
+</UL>
+<P>
+<B>9192 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m5-m10/m5-m10-picguide/html/pic-description18.html">Juniper M5-M10 Gigabit PICs (one port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m20/m20-picguide/html/pic-description18.html">Juniper M20 Gigabit PICs (one port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m40e/m40e-picguide/html/pic-description18.html">Juniper M40e Gigabit PICs (one or two port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m160/m160-picguide/html/pic-description19.html">Juniper M160 10-Gigabit PIC</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m160/m160-picguide/html/pic-description18.html">Juniper M160 Gigabit PICs (one or two port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/t320/t320-picguide/html/pic-description6.html">Juniper T320 10-Gigabit PIC</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/t320/t320-picguide/html/pic-description5.html">Juniper T320 Gigabit PICs</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/t640/t640-picguide/html/pic-description4.html">Juniper T640 10-Gigabit PIC</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/t640/t640-picguide/html/pic-description3.html">Juniper T640 Gigabit PICs</A>
+<P>
+<LI><A HREF="http://www.procket.com/">Procket</A>
+<P>
+<UL>
+While Procket's web site doesn't specifically mention supporting jumbo frames,
+information received from Procket's development engineering folks via
+Scott Hardin, Sr. Systems Engineer at Procket, indicates that:
+<P>
+<UL>
+"Max MTU for POS is 9188 and for Gige it is 9178. This is L2 payload so
+it does not include L2 Header and Trailer.
+<P>
+POS does have a 4 byte header so 9192 should be OK if that includes the
+header. Gige has a 14 byte header so 9178 + 14 = 9192.
+<P>
+We have not heard of any interop issues with Juniper on Max MTU, so when
+Juniper states that 9192 is their max MTU, they are referring to payload
++ header whereas we only specify the payload."
+</UL>
+</UL>
+</UL>
+<P>
+<B>9180 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.extremenetworks.com/libraries/prodpdfs/products/summit5i.asp">Extreme Summit 5i Switches</A>
+<P>
+<UL>
+Note: be sure to consider annual service/support costs in evaluating this 
+(or other Extreme Network jumbo capable switches.
+</UL>
+<P>
+<LI><A HREF="http://www.nortelnetworks.com/products/01/alteon/webswitch/prodlit.html">Nortel Alteon 180 Switches</A>
+<P>
+<LI><A HREF="http://www.syskonnect.com/syskonnect/support/driver/d0102_driver.html">Syskonnect D0102 Ethernet Adapter</A>
+<P>
+<LI><A HREF="http://www.syskonnect.com/syskonnect/products/sk-98xx.htm">Syskonnect SK-98XX Ethernet Adapters</A> [See also: <A HREF="http://www.syskonnect.com/syskonnect/support/driver/d0102_driver.html">Syskonnect driver information</A> and <A HREF="http://www.syskonnect.com/syskonnect/news/testresults/rep1.pdf">Test Results</A>]
+</UL>
+<P>
+<B>9166+18=9194</B>
+<P>
+<UL>
+Sten Spans reports that the Powerconnect 5224 will use MTUs
+as high as 9166+18=9194 bytes, although this is not documented in the manual.
+</UL>
+<P>
+<B>9014 MTU Ethernet</B>
+<P>
+<UL>
+Nicholas Prefontaine reports that the "3Com 3C940 adaptor (onboard the 
+Asus P4P800 Deluxe) supports jumbo frames 9014 bytes in size, but it 
+defaults to 1514. It must be set in the driver."
+</UL>
+<P>
+<B>9004</B>
+<P>
+<UL>
+<LI>Greg Maxwell mentioned that the Foundry FES-12GCF (a stackable 12 port
+gige switch) supports jumbos up to 9004 bytes.
+</UL>
+<P>
+<B>9000 MTU Ethernet</B>
+<P>
+<UL>
+<LI>D-Link DGS-1008D
+<BR>
+<A HREF="http://www.dlink.com/products/resource.asp?pid=230&rid=741&sec=1">http://www.dlink.com/products/resource.asp?pid=230&rid=741&sec=1</A>
+<P>
+<LI>D-Link DGS-1005D
+<BR>
+<A HREF="http://www.dlink.com/products/resource.asp?pid=229&rid=738&sec=1">http://www.dlink.com/products/resource.asp?pid=229&rid=738&sec=1</A>
+<P>
+<LI>Martin Kuhne mentioned "Broadcom BCM5703 (64-bit) (3Com 3C996B-T ($65), 
+Dell PowerEdge integrated BCM570x NIC, Compaq NC7770) 9k, verified working"
+<P>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps5023/products_data_sheet09186a0080161371.html">Cisco Catalyst 3750 Series Switches</A>
+<P>
+<UL>
+Simon Leinen of Switch notes that the Cisco datasheet says, "Configurable 
+maximum transmission unit (MTU) of up to 9000 bytes, with a maximum
+Ethernet frame size of 9018 Bytes (Jumbo frames)
+for bridging on Gigabit Ethernet ports, and up to
+1546 bytes for bridging and routing on Fast Ethernet ports."
+</UL>
+<P>
+<LI><A HREF="http://www1.us.dell.com/content/products/productdetails.aspx/pwcnt_2724?c=us&cs=04&l=en&s=bsd">Dell PowerConnect 2716 and 2724</A>
+<P>
+<UL>
+"Jumbo frame support up to 9000 Bytes (2716 &amp 2724 only)."
+</UL>
+<LI><A HREF="http://www.dell.com/us/en/esg/topics/esg_ntwrk_5000_networks_3_pwcnt_5212.htm">Dell PowerConnect 5212</A>
+<P>
+<UL>
+"Supports jumbo frames up to 9000 bytes"
+</UL>
+<P>
+<LI><A HREF="http://www.dlink.com/products/gigabit/dge550t/">D-Link DGE-550T 1000BaseT Adapter</A>
+<P>
+<UL>
+Caution: if you contact support@dlink.com, you may get added to sales related mailing lists without
+your permission.
+</UL>
+<P>
+<LI><A HREF="http://h18000.www1.hp.com/products/quickspecs/10479_na/10479_na.HTML">DEC/Compaq/HP Alphaservers and OpenVMS</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m5-m10/m5-m10-picguide/html/pic-description17.html">Juniper M5-M10 Fast Ethernet PICs (4 port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m20/m20-picguide/html/pic-description17.html">Juniper M20 Fast Ethernet PICs (4 port only)</A>
+<P>
+<LI><A HREF="http://www.smc.com/drivers_downloads/library/8505_08_DS.pdf">SMC
+8505T/8508T</A> (excllent inexpensive (<$200, yes, sub two HUNDRED dollars) 
+1000baseT switch if you don't need SNMP management and can live with an
+external "wall wart" power block)
+<P>
+<UL>
+"Jumbo packet of up to 9K supported"
+</UL>
+<P>
+John Matthews reports that "I tested the SMC 8505T and 8508T switches and in my opinion they are not jumbo frame clean. If more than one 9000 byte jumbo frame is passing through the switch 
+fabric at the same time, the packet is lost. [...] The lower the frame sizes get, the less packet loss.  I believe I had to 
+drop the packet size to between 5000 and 7000 bytes before I stopped seeing packet loss."
+</UL>
+<P>
+<LI>sk98lin driver for Linux
+<P>
+<UL>
+Charles Hill reports that "The sk98lin driver supports the Marvell Yukon, Yukon EC/FE, Yukon 2
+and SysKonnect SK-98xx/SK-95xx compliant Gigabit Ethernet Adapter on
+Linux.  This driver supports jumbo frames up to 9000 bytes.
+<P>
+"The Marvell 8053 is a Yukon 2 adaptor and found on several
+motherboard.  It is a PCIe interface.
+<P>
+<UL>
+http://www.syskonnect.de/syskonnect/support/driver/readme/linux/sk98lin.html
+</UL>
+<P>
+Down to section 7  Large Frame Support for confirmation."
+</UL>
+<P>
+<HR>
+<P>
+<B>Believed to Be Jumbo Capable, But No Exact Value Specified</B>
+<P>
+<UL>
+<LI><A HREF="http://h18000.www1.hp.com/products/quickspecs/11051_div/11051_div.html">Compaq NC7770 PCI-X Gigabit 1000baseT Server Adapter</A>
+<P>
+<UL>
+"Like all Compaq Gigabit server adapters, the NC7770 supports jumbo frames 
+as a way to achieve higher throughput and better CPU utilization when 
+deployed in a network infrastructure that supports them."
+</UL>
+<P>
+<LI><A HREF="http://www.dlink.com/products/adapters/dge550sx/SpecsTable.htm">D-Link DGE550SX Fiber Gigabit Adapter</A>
+<P>
+<UL>
+"Jumbo Frame support"
+</UL>
+<P>
+<UL>
+Caution: if you contact support@dlink.com, you may get added to sales related mailing lists without
+your permission.
+</UL>
+<P>
+<LI><A HREF="http://www.extremenetworks.com/libraries/prodpdfs/products/bd.asp">Extreme Networks Summit Black Diamond</A>
+<P>
+<UL>
+"Switch and route jumbo frames" [no exact MTU given]
+</UL>
+<P>
+<LI><A HREF="http://www.extremenetworks.com/libraries/prodpdfs/products/summit7i.asp">Extreme Networks Summit 7i</A>
+<P>
+<UL>
+"Switch and route jumbo frames" [no exact MTU given]
+</UL>
+<P>
+<LI><A HREF="http://www.extremenetworks.com/libraries/prodpdfs/products/summit48i.asp">Extreme Networks Summit 48i</A>
+<P>
+<UL>
+"Switch and route jumbo frames" [no exact MTU given]
+</UL>
+<P>
+<LI><A HREF="http://www.extremenetworks.com/libraries/prodpdfs/products/summit48si.asp">Extreme Networks Summit 48si</A>
+<P>
+<UL>
+"Switch and route jumbo frames" [no exact MTU given]
+</UL>
+<P>
+<LI><A HREF="http://www.foundrynet.com/products/l23wiringcloset/fastiron/FIx00.html">Foundry FastIron 400 Switches</A>
+<P>
+<LI><A HREF="http://www.riverstonenet.com/products/cards_gigabit.shtml">Riverstone Gigabit Ethernet Module</A>
+<P>
+<UL>
+"The unique capabilities of the Gigabit Ethernet module architecture include
+[* * *] Jumbo Frame support."
+</UL>
+</UL>
+<P>
+<HR>
+<P>
+<H3><B>NOT</B> Jumbo Frame Clean Networking Gear</H3>
+<P>
+<B>8500 Byte MTU</B>
+<P>
+<LI>Cisco Firewall Services Module
+<P>
+<UL>
+<LI>Cisco Firewall Services Module for Cisco Catalyst 6500 and Cisco 
+7600 Series
+<A HREF="http://www.cisco.com/en/US/prod/collateral/modules/ps2706/ps4452/product_data_sheet0900aecd803e69c3.html">http://www.cisco.com/en/US/prod/collateral/modules/ps2706/ps4452/product_data_sheet0900aecd803e69c3.html</A>
+<P>
+<UL>
+Jumbo Ethernet packets (8500 bytes) supported
+</UL>
+<P>
+<LI>Introduction to the Firewall Services Module
+<P>
+<A HREF="http://www.cisco.com/en/US/docs/security/fwsm/fwsm31/configuration/guide/intro_f.html">http://www.cisco.com/en/US/docs/security/fwsm/fwsm31/configuration/guide/intro_f.html</A>
+<P>
+<UL>
+Stateful Inspection Overview
+<BR>
+...
+<BR>
+Note: The first packet for a session cannot be comprised of fragments 
+for a packet that is larger than 8500 Bytes. The session will be 
+established, but only the first 8500 Bytes will be sent out. Subsequent 
+packets for this session are not affected by this limitation.
+</UL>
+</UL>
+<P>
+<B>7500 Byte MTU</B>
+<P>
+<LI><A HREF="http://kbserver.netgear.com/kb_web_files/n101539.asp">Netgear GA311</A>
+<P>
+<B>7168 Byte MTU</B>
+<P>
+<LI><A HREF="https://startech.com/ProductSpecs/ST1000BT32.htm">Startech ST1000BT32</A>
+<P>
+<UL>
+"...offers advanced features like Jumbo Packet support..." (there is some
+confusion as to whether or not this card actually supports 7.5KB decimal,
+7.5KB binary (e.g., 7680), or 7168 bytes -- for now, I'm listing it at
+the lower value unless/until the vendor clarifies/confirms a higher value)
+</UL>
+<P>
+<B>7K</B>
+<P>
+<UL>
+Martin Kuhne notes "Realtek RTL8110S (onboard) or RTL8169S (PCI) 
+(AOpen AOG-501K ($25), LanReady LA-1000+ ($15), Mainboards) up to 7k, 
+verified working."
+</UL>
+<P>
+<B>4500 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m5-m10/m5-m10-picguide/html/pic-description18.html">Juniper M5-M10 Gigabit PICs (four port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m20/m20-picguide/html/pic-description18.html">Juniper M20 Gigabit PICs (four port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m40e/m40e-picguide/html/pi
+c-description18.html">Juniper M40e Gigabit PICs (four port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m160/m160-picguide/html/pic-description18.html">Juniper M160 Gigabit PICs (four port only)</A>
+</UL>
+<P>
+<B>4480 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m40e/m40e-picguide/html/pic-description17.html">Juniper M40e fast ethernet PICS (four and eight port only)</A>
+</UL>
+<P>
+<B>4476 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/univercd/cc/td/doc/product/core/7200vx/portadpt/ether_pa/pa_ge/2696.pdf">Cisco PA-GE (for the 7100 and 7200VXR)</A>
+<P>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/routers/ps359/products_module_installation_guide_chapter09186a008007e5c1.html">Cisco GEIP+ (e.g., for Cisco 7500s)</A>
+</UL>
+<P>
+<B>4470 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/univercd/cc/td/doc/product/software/ios111/cc111/geip.htm">Cisco GEIP (e.g., for Cisco 7500s)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m160/m160-picguide/html/pic-description17.html">Juniper M160 Fast Ethernet (4 and 8 port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/t320/t320-picguide/html/pic-description4.html">Juniper T320 Fast Ethernet</A>
+</UL>
+<P>
+<B>3900 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m40e/m40e-picguide/html/pic-description16.html">Juniper M40e ES (encryption support) PIC</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m160/m160-picguide/html/pic-description16.html">Juniper M160 ES (encryption support) PIC</A>
+</UL>
+<P>
+<B>3000 MTU Ethernet</B>
+<P>
+<LI><A HREF="http://kbserver.netgear.com/kb_web_files/n101539.asp">Netgear GA511</A>
+<P>
+<B>2450 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/warp/public/cc/pd/rt/12000/prodlit/thpge_ds.htm">Cisco 3GE for the GSR</A>
+<P>
+Update: See <A HREF="http://www.cisco.com/en/US/partner/products/sw/iosswrel/ps1829/prod_release_note09186a0080132a8d.html#772405">http://www.cisco.com/en/US/partner/products/sw/iosswrel/ps1829/prod_release_note09186a0080132a8d.html#772405</A> As of IOS 12.0(22)S, the Trident card supports 9180 byte frames on
+ports 0 and 1 (but not on 2). It is recommended that all interfaces on a box having a Trident card in
+it be limited to 8192 or less due to issues related to buffer recarving. [Thanks to Niels den Otter
+for this pointer!]
+</UL>
+<P>
+<B>2025 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_conf
+iguration_example09186a008010edab.shtml">Cisco Catalyst 3550 Series (Gigabit Eth
+ernet versions, prior to 12.1(9)EA1)</A>
+</UL>
+<P>
+<B>2018 MTU Etherent</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 2900XL/3500XL Series Switches</A> as of version 12.0(5.2)XU, except the Catalyst 2900LRE-XL which 
+does not support frame sizes larger than 1536 bytes.
+</UL>
+<P>
+<B>2000 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 3550 Series (Gigabit Ethernet versions, 12.1(9)EA1 and later)</A>
+</UL>
+<P>
+<B>1548 MTU Ethernet ("Baby Jumbos")</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 2950 (following models only)</A>
+<P>
+<UL>
+WS-C2950G-12-EI 
+<BR>
+WS-C2950G-24-EI 
+<BR>
+WS-C2950G-24-EI-DC 
+<BR>
+WS-C2950G-48 
+<BR>
+WS-C2950G-48-EI
+</UL>
+</UL>
+<P>
+<B>1546 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 3550 Series (Fast Ethernet versions):</A>
+<P>
+<UL>
+WS-C3550-24 
+<BR>
+WS-C3550-24-DC-SMI 
+<BR>
+WS-C3550-24-EMI 
+<BR>
+WS-C3550-24-SMI 
+<BR>
+WS-C3550-48-EMI 
+<BR>
+WS-C3550-48-SMI 
+</UL>
+</UL>
+<P>
+<B>1536 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://soltesz.net/sd2008/part3.html">Linksys SD2008 Gigabit Ethernet Switch</A>
+<P>
+<B>1534 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m40e/m40e-picguide/html/pic-description17.html">Juniper M40e Fast Ethernet PICs (12 and 48 port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m160/m160-picguide/html/pic-description17.html">Juniper M160 Fast Ethernet PICs (48 port only)</A>
+</UL>
+<P>
+<B>1532 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m5-m10/m5-m10-picguide/html/pic-description17.html">Juniper M5-M10 Fast Ethernet PICs (8 and 12 port only)</A>
+<P>
+<LI><A HREF="http://www.juniper.net/techpubs/hardware/m20/m20-picguide/html/pic-description17.html">Juniper M20 Fast Ethernet PICs (8 and 12 port only)</A>
+</UL>
+<P>
+<B>1508 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 1900/2820 Series Switches with metal cases</A>
+</UL>
+</UL>
+<P>
+<B>1500 MTU Ethernet</B>
+<P>
+<UL>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps663/products_tech_note09186a00801350c8.shtml">Catalyst 4000 switches with Supervisor I or Supervisor II, Catalyst 2948G, Catalyst 2980G, and Catalyst 4912G</A>
+<P>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 2950 (following models only):</A>
+<P>
+<UL>
+WS-C2950-12 
+<BR>
+WS-C2950-24 
+<BR>
+WS-C2950-48 
+<BR>
+WS-C2950C-24 
+<BR>
+WS-C2950T-24
+</UL>
+<P>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 2948G-L3/4908G-L3 Series Switches</A>
+<P>
+<LI><A HREF="http://www.cisco.com/en/US/products/hw/switches/ps700/products_configuration_example09186a008010edab.shtml">Cisco Catalyst 1900/2820 Series Switches with plastic cases</A>
+</UL>
+<P>
+<HR>
+<P>
+<B>NOT jumbo frame capable (no specific MTU value quoted)</B>
+<P>
+<UL>
+<LI>Martin Kuhne notes that the AirPlus 5-port GbE switch (Tamarack TC5205M 
+chipset) does not support jumbo frames when he tested it, "&amp presumably
+many more noname devices such as 
+http://www.cyberwin.net/showissue.asp?issueid=95")
+<P>
+Martin also notes that "Dell PowerConnect 2608, 2616, 2624 (Marvell Prestera) - 
+no support according to specifications."
+<P>
+<LI>All Dlink ethernet switches (confirmed via mail from dlink.com)
+<P>
+<UL>
+Caution: if you contact support@dlink.com, you may get added to sales related mailing lists without
+your permission.
+</UL>
+</UL>
+<P>
+<HR>
+<P>
+Also of interest: in July 2003, Glen Turner of AARNet 
+(glen.turner+spam@aarnet.edu.au) mentioned:
+<P>
+<I>
+<PRE>
+I went through all the ethernet driver code in the Linux 2.4 kernel.
+
+The following drivers support 9000 MTU packets:
+    tg3       Broadcom gigabit
+    e1000     Intel gigabit
+    acenic    Alteon AceNIC, 3Com 3c985, 3Com 3c985B, Netgear GA620,
+              HP, SGI, DEC.
+
+    amd8111e  Claims support, but only 8K
+    d12k      (DLink) Claims support, but only 8000
+
+Everything else in the stock kernel is 1500.  The tc902x
+driver used by the Antares cards isn't in the stock kernel.
+The drivers which work can also do VLANs at 9000 MTU for
+the encapsulated packets.
+
+For people looking for a GbE card for Linux the "Intel Pro/1000
+Server MT" is currently the best choice of the popular cards.
+The e1000 driver fully supports the hardware features, including
+interrupt combining and large send offload.
+
+People using Broadcom cards have a hard time of it.  The
+manufacturer's bcm5700 driver doesn't work well with the
+kernel.  The tg3 driver doesn't work well with the card.
+Things are improving, but large send offload, etc are
+still some time away.
+</PRE>
+</I>
+<P>
+<LI>Netgear GS105 / GS108
+<BR>
+<A HREF="http://www.netgear.com/products/prod_details.php?prodID=152&view=">http://www.netgear.com/products/prod_details.php?prodID=152&view=</A>
+<P>
+but see also:
+<P>
+<A HREF="http://kbserver.netgear.com/inquira/default.asp?ui_mode=answer&prior_transaction_id=1422542&action_code=5&highlight_info=16777327,212,226&turl=http%3A%2F%2Fkbserver.netgear.com%2Fkb_web_files%2FN101539.asp&answer_id=177363158#__highlight">additional jumbo frame link for the GS108</A>
+<P>
+<LI>Linksys EG005W / EG008W 
+<BR>
+<A HREF="http://www.linksys.com/servlet/Satellite?childpagename=US%2FLayout&packedargs=c%3DL_Product_C2%26cid%3D1115416906341&pagename=Linksys%2FCommon%2FVisitorWrapper">see this link</A> however, please also see
+<P>
+<A HREF="http://www.abxzone.com/forums/showthread.php?p=695192">for a dissenting view</A>
+<P>
+<HR>
+<P>
+See also:
+<P>
+<A HREF="http://darkwing.uoregon.edu/~joe/jumbos/">Practical Issues Associated With 9K MTUs</A>
+<P>
+<A HREF="ttp://vn.grnoc.iu.edu/Internet2/interfaces/interfaces-ll.html">Internert2 Interface MTU Values</A>
+<!--<A HREF="http://www.abilene.iu.edu/JumboMTU.html">Internet2 Jumbo Frame page</A>-->
+<P>
+<A HREF="http://www.ietf.org/rfc/rfc3449.txt">TCP Performance Implications of Network Path Asymmetry (RFC3449) at Section 4.2</A>
+<P>
+<A HREF="http://www.ncne.org/jumbogram/mtu_discovery.php">NCNE MTU Discovery Tester</A>
+</BODY>
+</HTML>

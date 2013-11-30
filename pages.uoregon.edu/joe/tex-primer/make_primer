@@ -1,0 +1,33 @@
+#!/bin/sh -x
+
+ps2pdf cover.ps cover.pdf
+
+tex tex_primer.tex
+dvipdf tex_primer.dvi tex_primer.pdf
+
+tex app-a.tex
+dvipdf app-a.dvi app-a.pdf
+
+tex app-b.tex
+dvipdf app-b.dvi app-b.pdf
+
+tex app-c.tex
+dvipdf app-c.dvi app-c.pdf
+
+tex app-d.tex
+dvipdf app-d.dvi app-d.pdf
+
+tex app-e.tex
+dvipdf app-e.dvi app-e.pdf
+
+tex app-f.tex
+dvipdf app-f.dvi app-f.pdf
+
+tex app-f-a.tex
+dvipdf app-f-a.dvi app-f-a.pdf
+
+tex app-g.tex
+dvipdf app-g.dvi app-g.pdf
+
+tex myindex2.tex
+dvipdf myindex2.dvi myindex2.pdf

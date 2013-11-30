@@ -1,0 +1,3224 @@
+% Save file as: TEX_PRIMER.TEX         Source: FILESERV@SHSU.BITNET  
+\input fontsize.tex
+\input indexit.tex
+\twelvepoint
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\leaderfill{\leaders\hbox to 0.4em{\hss.\hss}\hfill}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\nopagenumbers 
+\count0=-1
+\vglue 2.0truein
+\centerline{\stnbf USING \TeX\ ON THE VAX}
+\bigskip
+\centerline{\stnbf TO TYPESET DOCUMENTS:}
+\bigskip
+\centerline{\stnbf A PRIMER}
+\bigskip\bigskip\bigskip
+\centerline{\twlrm DECEMBER 1990}
+\vfill
+\twlrm
+\settabs 5 \columns 
+\+&&&{Joseph E. St Sauver}\cr
+\+&&&{Assistant Professor/Statistical Programmer}\cr
+\+&&&{Office of University Computing}\cr
+\+&&&{235 Computing Center}\cr
+\+&&&{University Of Oregon}\cr
+\+&&&{Eugene, OR 97403 U.S.A.}\cr
+\medskip
+\+&&&{(503) 346-4394 extension 25}\cr
+\+&&&{(503) 346-4397 (FAX only)}\cr
+\medskip
+\+&&&{Internet: \enspace{\twltt joe@oregon.uoregon.edu}}\cr
+\+&&&{BITNET: \thinspace{\twltt joe@oregon}}\cr
+\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headline={\rm\hfill\folio\voffset=2\baselineskip}
+\parindent = 0pt
+\global\skip\footins=24pt plus 24pt minus 24pt
+\def\footnoterule{\twlrm \vfil \vglue 12pt \hrule width 2truein \vglue 12pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf PREFACE}
+\bigskip\bigskip\par\noindent
+\leftline{\twlbf System Dependencies}
+^^{system dependencies}
+\bigskip\par\noindent
+This document contains some system dependent features; to use it at
+another site, you should obtain a machine readable copy of the \TeX\
+source and modify it appropriately for your system. Obtain a copy 
+of this document and any of the files mentioned herein via
+anonymous FTP from {\twltt ^{DECOY.UOREGON.EDU} (128.223.32.19)} or contact
+the author at the address shown on the title page.
+\bigskip\bigskip\par\noindent
+\leftline{\twlbf ^{Disclaimers}}
+\bigskip\par\noindent
+This document is provided \underbar{as is}, without warranty of any
+kind, either express or implied, respecting the contents of the document,
+including but not limited to implied warranties for the document's 
+quality, performance, merchantability or fitness for any particular
+purpose. Neither the author nor any other party shall be liable to the
+user or any other person or entity with respect to any liability, loss,
+or damage caused or alleged to be caused directly or indirectly by this
+document. Use the information in this document at your own risk.
+\bigskip\bigskip\par\noindent
+\leftline{\twlbf ^{Trademarks}}
+\bigskip\par\noindent
+All trademarks are the property of their respective owners. 
+\bigskip\bigskip\par\noindent
+\leftline{\twlbf ^{Acknowledgments}}
+\bigskip\par\noindent
+To Paul Steinman, who first told me about \TeX\ while we were both working
+for the University of Alaska-Fairbanks Computer Node many years ago: thanks 
+for taking the time to tell me about \TeX{}'s magic!
+\bigskip\par\noindent
+To Donald Knuth and all the others whose talent, hard work, and
+generosity have made \TeX\ the world standard it is today: 
+thanks for producing such a great piece of software.
+\bigskip\bigskip\par\noindent
+\leftline{\twlbf ^{Dedication}}
+\bigskip\par\noindent
+To Jamie Claire or Earl Joseph, as eventually proves appropriate: we were thinking about you and waiting for you anxiously, even before you counted 
+for tax purposes! This document is dedicated to you in the hope that you, 
+your children, and your children's children will all be able to enjoy 
+the full portfolio of freedoms secured by the Bill of Rights, American
+bravery, and the grace of God.
+\bigskip\bigskip\par\noindent
+\leftline{\twlbf ^{Copyright}}
+\bigskip\par\noindent
+\copyright\ Joseph E St Sauver, November 1990, all rights reserved. 
+Permission to reprint for non-profit purposes is granted provided 
+this copyright notice is included and authorship is acknowledged. 
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{CONTENTS}}
+\bigskip\par\noindent
+PREFACE \leaderfill\quad ii
+\bigskip\par\noindent
+CONTENTS \leaderfill\quad iii
+\bigskip\par\noindent
+I. INTRODUCTION
+\medskip\par\hglue 0.5truein
+What is \TeX? \leaderfill\quad 1
+\par\hglue 0.5truein
+Why Should I Bother to Learn to Use \TeX? \leaderfill\quad 1
+\par\hglue 0.5truein
+What Can I Expect of the Rest of This Write-Up? \leaderfill\quad 2
+\bigskip\par\noindent
+II. ENTERING TEXT (OTHER THAN TABLES AND EQUATIONS) IN \TeX
+\medskip\par\hglue 0.5truein
+Text Which is Entered Normally in \TeX\ \leaderfill\quad 3
+\par\hglue 0.5truein
+Special Characters in \TeX\ \leaderfill\quad 4
+\par\hglue 0.5truein
+Structuring The Text You Enter; Making Paragraphs \leaderfill\quad 6
+\par\hglue 0.5truein
+Comments \leaderfill\quad 6
+\par\hglue 0.5truein
+Font Size \leaderfill\quad 7
+\par\hglue 0.5truein
+Font Style \leaderfill\quad 8
+\par\hglue 0.5truein
+Underlining \leaderfill\quad 9
+\par\hglue 0.5truein
+Line Spacing (Double-Spacing, Skipping a Single Line, etc.) \leaderfill\quad 9
+\par\hglue 0.5truein
+Block Quotations \leaderfill\quad 10
+\par\hglue 0.5truein
+Centering Text (For Headings, etc.) \leaderfill\quad 11
+\par\hglue 0.5truein
+Footnotes \leaderfill\quad 12
+\par\hglue 0.5truein
+Headers and Page Numbers \leaderfill\quad 13
+\par\hglue 0.5truein
+Page Size; Margins \leaderfill\quad 14
+\par\hglue 0.5truein
+Leaving Space for Insertions; Forcing Page Breaks \leaderfill\quad 14
+\par\hglue 0.5truein
+Ending Your \TeX\ Document \leaderfill\quad 14
+\bigskip\par\noindent
+III. TYPESETTING TABULAR MATERIAL
+\medskip\par\hglue 0.5truein
+Using Tabs \leaderfill\quad 15
+\par\hglue 0.5truein
+Typesetting Formal Ruled Tables \leaderfill\quad 16
+\par\hglue 1.0truein
+Beginning to Decode the Table-Building Commands \leaderfill\quad 17
+\par\hglue 1.0truein
+Table Template \leaderfill\quad 18
+\par\hglue 1.0truein
+Table Headings \leaderfill\quad 19
+\par\hglue 1.0truein
+Table Body \leaderfill\quad 20
+\bigskip\par\noindent
+IV. TYPESETTING EQUATIONS
+\medskip\par\hglue 0.5truein
+Typesetting Equations is Different From Typesetting Text \leaderfill\quad 21
+\par\hglue 0.5truein
+Embedded vs. Displayed Equations \leaderfill\quad 21
+\par\hglue 0.5truein
+Numbering Equations \leaderfill\quad 22
+\par\hglue 0.5truein
+Aligning and Numbering Multiple Equations \leaderfill\quad 23
+\par\hglue 0.5truein
+Some Basic Information about Entering Equations \leaderfill\quad 24
+\par\hglue 0.5truein
+Greek Letters \leaderfill\quad 25
+\par\hglue 0.5truein
+Script Letters \leaderfill\quad 25
+\par\hglue 0.5truein
+Common Mathematical Operators \leaderfill\quad 26
+\par\hglue 0.5truein
+Symbols for Logic and the Algebra of Sets \leaderfill\quad 26
+\par\hglue 0.5truein
+Subscripts, Superscripts, and Combinations Thereof \leaderfill\quad 27
+\par\hglue 0.5truein
+Math Accents \leaderfill\quad 27
+\par\hglue 0.5truein
+Roman Font Mathematical ``Words'' \leaderfill\quad 28
+\par\hglue 0.5truein
+Limits \leaderfill\quad 29
+\par\hglue 0.5truein
+Radicals: Square Roots, Cube Roots, etc. \leaderfill\quad 29
+\par\hglue 0.5truein
+Making Large Fractions \leaderfill\quad 30
+\par\hglue 0.5truein
+Making Large Grouping Operators \leaderfill\quad 31
+\par\hglue 0.5truein
+Combination Notation \leaderfill\quad 32
+\par\hglue 0.5truein
+Matrices \leaderfill\quad 32
+\par\hglue 0.5truein
+Case Structure \leaderfill\quad 32
+\par\hglue 0.5truein
+Summations \leaderfill\quad 33
+\par\hglue 0.5truein
+Integrals \leaderfill\quad 33
+\par\hglue 0.5truein
+Definitions \leaderfill\quad 34
+\bigskip\par\noindent
+V. \TeX\ ON THE OREGON VAX 8800
+\medskip\par\hglue 0.5truein
+The \TeX\ Execution Cycle \leaderfill\quad 35 
+\par\hglue 0.5truein
+Building Your \TeX\ Document Using An Editor \leaderfill\quad 36
+\par\hglue 0.5truein
+Defining \TeX\ \leaderfill\quad 36
+\par\hglue 0.5truein
+Running \TeX\ \leaderfill\quad 37
+\par\hglue 0.5truein
+Decoding \TeX\ Errors \leaderfill\quad 38
+\par\hglue 0.5truein
+The Most Common \TeX\ Errors \leaderfill\quad 39
+\par\hglue 0.5truein
+Converting Your {\twltt .DVI} File Into PostScript \leaderfill\quad 41
+\par\hglue 0.5truein
+DVIPS Features \leaderfill\quad 42
+\par\hglue 0.5truein
+Printing PostScript Output on the VAX's Xerox 4045/160 \leaderfill\quad 43
+\bigskip\par\noindent
+VI. CONCLUSION
+\medskip\par\hglue 0.5truein
+Where From Here? \leaderfill\quad 44
+\par\hglue 0.5truein
+What If I Get Stuck? \leaderfill\quad 44
+\bigskip\par\noindent
+INDEX
+\bigskip\par\noindent
+APPENDICES:
+\medskip\par\hglue 0.5truein
+A: Complete Sample Text-Oriented \TeX\ Document
+\par\hglue 0.5truein
+B: Complete Sample Technical \TeX\ Document
+\par\hglue 0.5truein
+C: Sample University of Oregon Thesis Pages from the ``Grey Book''
+\par\hglue 0.5truein
+D: Some Sample Pages From a Survey Typeset in \TeX\ 
+\par\hglue 0.5truein
+E: Sample Resume Typeset in Plain \TeX\
+\par\hglue 0.5truein  
+F: Sample \TeX\ Landscape-Mode Overhead Made Using PostScript Fonts
+\par\hglue 0.5truein
+G: Demonstration of the Incorporation of PostScript Graphics
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\headline={\rm\hfill\folio\voffset=2\baselineskip}
+\count0=1
+\centerline{\twlbf I. ^{INTRODUCTION}}
+\bigskip\par\noindent
+\centerline{\twlbf ^{What is \TeX{}?}}
+\bigskip\par\noindent
+\TeX{}\footnote{$^{1}$}{Say ``tecchhh'' (as in the greek letter chi),
+rather than ``tecks.''\par} is a computerized typesetting program created 
+by Stanford's Donald 
+Knuth\footnote{$^{2}$}{Of {\twlit Fundamental Algorithms, 
+Seminumerical Algorithms,} and {\twlit Sorting and Searching} fame.\par}.
+\bigskip\par\noindent 
+\TeX\ is {\twlit not} the same as what-you-see-is-what-you-get 
+(WYSIWYG) desktop publishing systems such as Aldus PageMaker.
+\TeX\ is both more and less than those desktop publishing 
+packages. For instance, \TeX\ doesn't require a major investment in an 
+expensive microcomputer loaded with lots of RAM and supported by a fast 
+hard disk and a high-resolution display --- you can prepare \TeX\ documents 
+on a simple terminal. On the other hand, \TeX\ doesn't show you 
+the final form of your
+document as you prepare it --- you need to first build your document and 
+then process it with \TeX\ and another conversion utility before you 
+actually get to see the fruits of your typesetting efforts. \TeX\ also
+doesn't do a great job of handling integration of text
+and graphics.
+\bigskip\par\noindent
+Similarly, \TeX\ is also {\twlit not} the same as a regular word 
+processing package such as Microsoft Word or Word Perfect, 
+although \TeX\ could be used to produce virtually any document a 
+basic word processor could generate. 
+\bigskip\par\noindent
+The best way to think about \TeX\ is to think of it as it was truly
+meant to be used: \TeX\ is a computerized printing ``press'' 
+intended for typesetting scientific and technical manuscripts
+of virtually any length up to and including entire books.
+\bigskip\par\noindent
+Because Knuth has allowed \TeX\ to be freely distributed, \TeX\ has been 
+ported to machines ranging from PC's to the largest of IBM mainframes. 
+Here at the University of Oregon Computing Center, we run the Northlake 
+Software\footnote{$^{3}$}{Northlake Software, 812 SW Washington, Suite 
+1100, Portland, OR 97205-3215. Telephone: 503-228-3383. Fax: 
+503-228-5662. (Formerly Kellerman and Smith.)} 
+VAX/VMS port of \TeX\ on OREGON, the academic/research computing VAX.
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf Why Should I Bother to Learn to Use \TeX?}
+\bigskip\par\noindent
+\TeX{}'s biggest attraction is that it can beautifully typeset articles or 
+entire books, including complicated mathematical equations. 
+No longer do you need to prepare manuscript copy, send it to be 
+typed (or typeset) by someone who may not have the slightest 
+understanding of what your equations mean, and then tediously 
+attempt to spot and correct errors and resubmit corrected proofs 
+until you finally get copy which is more-or-less correct. With \TeX\ you 
+can produce camera-ready copy (including {\twlit all} of your equations)
+laid out exactly the way you want it, without many of the costs, delays or
+headaches associated with traditional copy preparation processes.
+\bigskip\par\noindent
+If you'd like tangible proof that \TeX\ really {\twlit works} for typesetting
+complex scientific and technical manuscripts, consider the following
+brief list of some outstanding technical books, all of which were all set in 
+\TeX\ (or a variant thereof):
+^^{Books Typeset in TeX}
+\bigskip\par\noindent
+{\parindent=0.5truein
+\narrower
+{\twlit Lisrel 7: A Guide to the Programs and Applications,} 2nd Edition,
+Karl G. J\"oreskog and Dag S\"orbom, SPSS Inc, Chicago, Illinois: 1989
+(typeset using \TeX{}).
+\bigskip\par\noindent
+{\twlit Mathematica: A System for Doing Mathematics by Computer,} Stephen 
+Wolfram, Addision-Wesley Advanced Book Program, Redwood City, California:
+1988 (typeset using \TeX\ and La\TeX{}).
+\bigskip\par\noindent
+{\twlit Fortran Tools
+for VAX/VMS and MS-DOS,} R.K. Jones, John Wiley and Sons,
+New York: 1988 (typeset using La\TeX{}).
+\bigskip\par\noindent
+{\twlit Numerical Recipes: 
+The Art of Scientific Computing,} William H. Press,
+Cambridge University Press, Cambridge: 1986 (typeset using \TeX{}).
+\bigskip\par\noindent
+{\twlit The \TeX{}book,} Donald E. Knuth, Addison Wesley, 
+Reading, Massachusetts, 1986 (typeset in \TeX{}, of course!).
+\bigskip\par\noindent}%
+There are many other examples of excellent \TeX{}-created books, but these 
+are just a few examples which happened to be handy on my own bookshelf.
+\bigskip\par\noindent
+Here at the University of Oregon, \TeX\ will probably be used most 
+extensively by graduate students preparing theses and dissertations, and
+by scientists, mathematicians, and other technical people
+preparing manuscripts containing
+substantial mathematical notation. \TeX\ is also great for typesetting
+professional looking survey instruments and resumes.
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf What Can I Expect of the Rest of This Write-Up?}
+\bigskip\par\noindent
+The following sections of this write-up explain how you can create 
+your own \TeX\ documents, and how you can convert your \TeX\ document 
+into a file suitable for previewing or printing on a laser printer.
+\bigskip\par\noindent
+This write-up {\twlit won't} take you deep into the internal anatomy
+of \TeX{}, nor will it teach you highly efficient but rather obscure
+tricks for working with \TeX{}. The objective of this write-up is
+to teach you the ``nuts and bolts'' of \TeX\ as quickly as possible so
+you can produce the actual documents {\twlit you} need to make with
+minimal delay.
+\bigskip\par\noindent
+As a result, in some cases you'll be shown a way to do something without a
+whole lot of explanation or discussion; that format of presentation 
+has been adopted to avoid obscuring essential concepts with extraneous
+detail. There may be times when I've gone too far toward the minimalist
+position, and when that's the case, I urge you to let 
+me know: suggestions for the improvement of future versions 
+of this write-up are always appreciated.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf II. ENTERING TEXT
+(OTHER THAN TABLES AND EQUATIONS) IN \TeX}
+^^{Entering Text}
+\bigskip\par\noindent
+Every \TeX\ document consists of two parts: actual text, and 
+\TeX\ formatting commands.
+\bigskip\par\noindent
+Most actual text can be entered ``as-is,'' although there are 
+some characters which need to be expressed 
+specially (either because a particular character isn't
+available on your keyboard, or because \TeX\ has designated those
+characters for special purposes).
+\bigskip\par\noindent
+The following section will explain the conventions you need to 
+understand in order to be able to enter your document's text in 
+\TeX{}'s most popular font, ^{Computer Modern Roman}. Most of the
+other fonts you can use with \TeX\ should work in about the same
+way, but you may notice some minor differences. 
+Thus, until you become more familiar with \TeX{}, you should
+probably stick to using the Computer Modern Roman font described
+herein.
+\bigskip\par\noindent
+\centerline{\twlbf Text Which Is Entered Normally in \TeX\ }
+\bigskip\par\noindent
+Normal text consists of regular letters, numbers, punctuation,
+and whitespace,  all of which are entered ``as-is:''
+\bigskip\par\noindent
+$\bullet$ Lowercase alphabetic letters: 
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt a b c d e f g h i j k l m n o p q r s t u v w x y z}
+\bigskip\par\noindent
+$\bullet$ Uppercase alphabetic letters: 
+\par\noindent\bigskip\hglue 0.5truein
+{\twltt A B C D E F G H I J K L M N O P Q R S T U V W X Y Z}
+\bigskip\par\noindent
+$\bullet$ The arabic numerals: 
+\par\noindent\bigskip\hglue 0.5truein
+{\twltt 0 1 2 3 4 5 6 7 8 9}
+\bigskip\par\noindent
+$\bullet$ Most ^{punctuation}: 
+\par\noindent\bigskip\hglue 0.5truein
+{\twltt . , ? ! : ; ( ) [ ] ` ' - * / + = @}
+\bigskip\par\noindent
+$\bullet$ ``^{White-space}'' (^{spaces}, ^{tabs}, and 
+^{carriage-returns}). 
+\bigskip\par\noindent
+\TeX\ will freely condense
+or expand white space to suit its typographical preferences,
+although there are exceptions to this rule. For instance, 
+you can enter a ``^{control space}''
+(by saying $\backslash${\twltt \char `\ }), which \TeX\ {\twlit 
+will} honor unconditionally as being a ``real'' space which is
+not to be adjusted. Insert a tiny space by saying 
+{\twltt ^{$\backslash$thinspace}}.
+Larger spaces can be forced into text with
+{\twltt ^{$\backslash$enspace}} or {\twltt ^{$\backslash$quad}}
+or {\twltt ^{$\backslash$qquad}}.
+Generally, however, simply hit the space bar to put space between
+two words. 
+\bigskip\par\noindent
+One other note: if you're entering an exceptionally long line
+and want to break that text into two separate lines but {\twlbf don't}
+want \TeX\ to treat the carriage return at the end of the first
+line as being equivalent to a space, put a
+{\twltt \%} sign at the end of the first line. \TeX\ will then
+concatenate (or ``abut'') the two lines without any visible
+break.
+^^{concatenating lines}
+^^{abutting lines}
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Special Characters} in \TeX\ }
+\bigskip\par\noindent
+Not all characters can be so easily entered in \TeX{}. Some text
+must receive special treatment if you want it to come out 
+looking right when typeset in \TeX{}. For example:
+\bigskip\bigskip\par\noindent
+$\bullet$  Most typists are accustomed to using a 
+conventional ``androgynous'' ^{double quote mark} ({\twltt "}) at 
+both the start and end of a quotation. \TeX{} is a different beast.
+Like most typesetting programs, \TeX\ uses different
+marks to open and close quotations: on the left side, use  
+two successive backslant accent marks ({\twltt `{}`}), 
+thereby producing the correct
+opening quote mark (``); on the right side of the quotation, use 
+two successive single quote marks ({\twltt '{}'}), 
+resulting in a proper closing ^{quote mark}
+('').\footnote{$^{4}$}{If you absolutely must have
+an ^{androgynous double quote mark}, enter
+{\twltt $\{\backslash$twltt\ {\twltt "}$\}$}\par}
+\bigskip\bigskip\par\noindent
+$\bullet$ You should also know how to enter the three different types of
+^{dashes} available in TeX: 
+the ^{hyphen} (used to form compound words), the
+^{en-dash} (used to indicate ranges of items), 
+and the ^{em-dash} (used to
+signal pauses in discourse)
+\bigskip\par\noindent\hglue 0.5truein
+-\qquad\qquad\enspace\enspace -- \qquad\qquad ---
+\bigskip\par\noindent
+which are obtained by entering one, two or three dashes in succession:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt
+$-$
+\qquad\quad\
+$-${}$-$
+\qquad\quad
+$-${}$-${}$-${}
+}
+\bigskip\bigskip\par\noindent
+$\bullet$ You should also know how to make an ^{ellipsis}
+properly in \TeX{}.
+A properly created \TeX\ ellipsis should look like:
+\bigskip\par\noindent\hglue 0.5truein
+The tension was $\ldots$ palpable.
+\bigskip\par\noindent
+Obtain such an ellipsis by saying:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt The tension was \${}$\backslash${}ldots\${} palpable.}
+\bigskip\bigskip\par\noindent
+$\bullet$ Other special characters are the
+^{dollar sign}, ^{pound sign}, ^{percent sign}, ^{ampersand sign},
+^{underscore}, ^{vertical bar}, ^{less than sign}, ^{greater than sign}, 
+and pound sterling sign:
+\par\noindent\bigskip\hglue 0.5truein
+{\twltt \$ \qquad \# \qquad \% \qquad \&
+\qquad \_ \qquad\quad $\mid$  
+\quad \qquad\enspace $<$ \qquad $>$ \quad \qquad {\it \$}}
+\bigskip\par\noindent
+which you can create by saying: 
+\par\noindent\bigskip\hglue 0.5truein
+{\twltt 
+$\backslash$\$\qquad
+$\backslash$\#\qquad
+$\backslash$\%\qquad
+$\backslash$\&\qquad
+$\backslash$\_\qquad
+\${}$\backslash$mid\$\qquad
+\${}$<${}\${}\qquad
+\${}$>${}\${}\qquad
+$\{$$\backslash${\twltt it\ }$\backslash${}\${}$\}$}
+\bigskip\bigskip\par\noindent
+$\bullet$ Additional marks which need to be specially constructed 
+include the ^{caret} (or ``^{hat}''), ^{tilde}
+(or ``^{wave}''), ^{left curly brace}, ^{right curly brace}, 
+and ^{backslash}, all of which have special uses in \TeX{}:
+\par\noindent\bigskip\hglue 0.5truein
+\enspace {\^{ } \qquad\qquad \~{ } \qquad\qquad $\{$
+\quad\qquad $\}$ \quad\qquad\qquad $\backslash$}
+\bigskip\par\noindent
+Get those characters by saying:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt
+$\backslash{}$% =\              ---- (caret)
+\^{ }% =^
+$\{$% ={
+\ % =space
+$\}$% =}
+\qquad
+%
+$\backslash{}$% =\              ---- (tilde)
+\~{ }% =~
+$\{$% ={
+\ % =space
+$\}$% =}
+\qquad
+%
+$\$${}% =$            ---- (left curly brace)
+$\backslash{}$% =\
+$\{$% ={
+$\$${}% =$
+\qquad 
+%
+$\$${}% =$            ---- (right curley brace)
+$\backslash{}$% =\
+$\}$% =}
+$\$${}% =$
+\qquad
+%
+$\$${}% =$              ---- (backslash)
+$\backslash{}$% =\
+backslash% = backslash (text)
+$\$${}% =$
+\qquad}
+%
+\bigskip\bigskip\par\noindent
+$\bullet$ You can also get many other special symbols, including
+a ^{dagger}, ^{double dagger}, ^{copyright symbol}, 
+^{paragraph symbol}, 
+^{section symbol}, and 
+^^{spanish punctuation}
+``spanish'' punctuation symbols:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \enspace \dag \qquad\qquad \ddag \qquad\qquad\quad \copyright 
+\qquad\qquad\qquad \P \quad\qquad \S \qquad\enspace !` \quad\quad ?`}
+\bigskip\par\noindent
+Make them in your document by entering:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt
+$\backslash${}dag
+\qquad
+$\backslash${}ddag
+\qquad
+$\backslash${}copyright
+\qquad
+$\backslash${}P
+\qquad
+$\backslash${}S
+\qquad
+!{}`
+\quad\enspace
+!{}?
+}
+\bigskip\bigskip\par\noindent
+$\bullet$ \TeX{}'s support for foreign languages goes far beyond its 
+ability to make upside-down exclamation points and question marks. Unlike
+many American document processing systems which do a
+pathetic job of handling the special characters common in foreign
+languages, \TeX\ handles special ^{foreign characters} easily:
+\bigskip\par\noindent\hglue 0.5truein
+{\enspace 
+\aa \qquad\enspace \AA \qquad\enspace
+\ae \qquad\enspace \AE \qquad \l \qquad \L \qquad\enspace
+\o \qquad \O \qquad \oe \qquad \OE \qquad \ss
+}
+\bigskip\par\noindent
+Obtain these ^{special foreign characters} (in Computer Modern Roman 
+fonts) by saying:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt
+$\backslash${}aa \quad 
+$\backslash${}AA \quad
+$\backslash${}ae \quad
+$\backslash${}AE \quad
+$\backslash${}l  \quad
+$\backslash${}L  \quad
+$\backslash${}o  \quad
+$\backslash${}O  \quad
+$\backslash${}oe \quad
+$\backslash${}OE \quad
+$\backslash${}ss
+}
+\bigskip\bigskip\par\noindent
+$\bullet$ \TeX\ can handle ^{special foreign accents}, too. 
+^{Superior accents} include:
+\bigskip\par\noindent\hglue 0.5truein
+{\quad \`{o} \qquad\enspace\enspace \'{o} \qquad\enspace\enspace
+\^{o} \qquad\enspace \"{o} \qquad\enspace\enspace \~{o} 
+\qquad\enspace \={o} \qquad\enspace\enspace
+\.{o} \qquad\enspace\enspace \u{o} \qquad\enspace
+\v{o} \qquad\enspace\enspace \H{o}}
+\bigskip\par\noindent
+Obtain them by writing:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt 
+$\backslash$`$\{$o$\}$\quad
+$\backslash$'$\{$o$\}$\quad
+$\backslash$\^{ }$\{$o$\}$\quad
+$\backslash$"$\{$o$\}$\quad
+$\backslash$\~{ }$\{$o$\}$\quad
+$\backslash$=$\{$o$\}$\quad
+$\backslash${.}$\{$o$\}$\quad
+$\backslash$u$\{$o$\}$\quad
+$\backslash$v$\{$o$\}$\quad
+$\backslash$H$\{$o$\}$\quad
+}
+\bigskip\bigskip\par\noindent
+^^{Inferior accents}
+$\bullet$ Inferior and special ^{multi-letter tied accents} include:
+\bigskip\par\noindent\hglue 0.5truein
+{\enspace 
+\c{o} \qquad\enspace\enspace
+\d{o} \qquad\enspace\enspace  
+\b{o} \qquad\enspace\enspace \t{oo}} 
+\bigskip\par\noindent
+obtained by saying:
+\bigskip\par\noindent\hglue 0.5truein
+{$\backslash$c$\{$o$\}$\quad 
+$\backslash$d$\{$o$\}$\quad 
+$\backslash$b$\{$o$\}$\quad
+$\backslash$t$\{$oo$\}$}
+\bigskip\bigskip\par\noindent
+You now know how to enter all the symbols which appear on a standard
+computer terminal's keyboard, as well as selected other text symbols.
+There are many other symbols available in \TeX\ which you'll normally
+need only when setting mathematical equations. We'll talk about them 
+later in this write-up. 
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf Structuring The Text You Enter; ^{Making Paragraphs}}
+\bigskip\par\noindent
+Let's now talk about how you should structure the text you're entering.
+Generally speaking, you have a lot of leeway in this area.
+\bigskip\par\noindent
+Most often, people will elect to enter their text ``normally'' (in
+paragraph-shaped pieces), with a blank line between ^{paragraphs}.
+Some people, however, prefer to use a ``sentence-by-sentence'' 
+format, starting each new sentence on a new line (again leaving 
+a blank line between paragraphs). 
+\bigskip\par\noindent
+If you prefer, you can 
+begin paragraphs with the command {\twltt $\backslash$par} 
+instead of signalling the beginning of each new paragraph with a blank line.
+\bigskip\par\noindent
+^^{indentation}
+You don't need to manually tab or space to indent the first line of
+each paragraph since \TeX\ will automatically indent the beginning of each
+paragraph for you.\footnote{$^{5}$}{If you prefer a 
+^{block-style format} with un-indented paragraphs and an extra space between 
+paragraphs, (i.e., like the style I elected to use in this 
+document), you can replace the blank line between paragraphs with 
+{\twltt $\backslash$bigskip$\backslash$par$\backslash$noindent} instead.
+\bigskip\par\noindent 
+You could also set the 
+{\twltt $\backslash$parindent} paragraph indentation parameter
+to zero, but that can have additional unexpected side effects since
+the {\twltt $\backslash$parindent} dimension is used in a number
+of different places for diverse purposes. 
+Therefore, we recommend you manually suppress 
+indentation on a paragraph-by-paragraph basis until you become 
+somewhat proficient in the use of \TeX{}.\par}
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Comments}}
+\bigskip\par\noindent
+One habit you may want to acquire is insertion of comments throughout
+your document to set off various sections of text or to remind yourself
+what a particularly obscure \TeX\ command does. To insert a comment in
+a \TeX\ document, simply type a ^{percent sign} and then enter your comment.
+The percent sign, and anything which comes after it on
+the same line, will be completely
+ignored by \TeX{} when it processes your document. For example:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \% Remember to add disclaimers here before final printing!}
+\bigskip\par\noindent
+Comments in \TeX\ can be entered on their own line (thus making it easy for you
+to spot those comments when you look through your raw \TeX\ file), or 
+you can enter \TeX\ comments at the end of a line containing
+other \TeX\ commands, whichever you prefer.
+\bigskip\par\noindent
+^^{Missing text in a document}
+Note: if a piece of your document is mysteriously missing when you
+print it out, look for a ``real'' percent sign in your text which may
+have gotten interpreted (incorrectly) as a comment.
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Font Size}}
+\bigskip\par\noindent
+\TeX\ gives you the ability to work with a variety of sizes and styles of 
+type within a single document. To automatically define a full set of
+Computer Modern Roman fonts, say:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$input ^{fontsize.tex}}
+\bigskip\par\noindent
+near the top of your document.\footnote{$^{6}$}{If you'd like to see
+the contents of that font definition command file, say:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$ TYPE/PAGE TEX\_INPUTS:FONTSIZE.TEX}
+\bigskip\par\noindent
+Note to \TeX\ users on other machines: a copy of this font definition file
+is available for retrieval via anonymous FTP from DECOY.UOREGON.EDU
+(128.223.32.19) in pub/tex/samples
+\bigskip\par\noindent}
+\bigskip\par\noindent
+You can then declare a ^{default font size family} for your document by
+saying:
+\bigskip\par\noindent\hglue 0.5truein
+{\twlbf Font size declaration} \qquad {\twlbf Sample}
+\medskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$eightpoint\ \ \ \ \ } \qquad\qquad 
+{\eightpoint This is eight point type.}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$ninepoint\ \ \ \ \ \ } \qquad\qquad
+{\ninepoint This is nine point type.}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$tenpoint\ \ \ \ \ \ \ } \qquad\qquad
+{\tenpoint This is ten point type.}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$elevenpoint\ \ \ \ } \qquad\qquad
+{\elevenpoint This is eleven point type.}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$twelvepoint\ \ \ \ } \qquad\qquad 
+{\twelvepoint This is twelve point type.}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$fourteenpoint\ \ } \qquad\qquad
+{\fourteenpoint This is fourteen point type.}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$seventeenpoint\ } \qquad\qquad
+{\seventeenpoint This is seventeen point type.}
+\bigskip\par\noindent
+as appropriate. Usually, you'll want to use 
+{\twltt $\backslash$twelvepoint} for most of the copy you'll prepare.
+\bigskip\par\noindent
+If you're not a typesetter or journalism major, you may not be familiar with 
+using ``^{points}'' as a unit of measure. There are 72.27 points to an inch, 
+but you are probably better off conceptualizing twelve points as being the 
+``bigness'' of the text you're reading right now. 
+\bigskip\par\noindent
+Ten and eleven point fonts are 
+also commonly used, although they may look ``small'' to a reader who's 
+accustomed to pica or elite typewritten text.
+\bigskip\par\noindent
+\vbox{
+The ^{Computer Modern (``CM'') font family} consists of:
+\bigskip\par\noindent
+\settabs 7\columns
+\+{\bf Generally}&{\bf 12pt}&{\bf 11pt}&{\bf 10pt}&{\bf Name}&&{\bf  Sample}\cr
+\medskip\par\noindent
+\+{\tt $\backslash$rm}&{\tt $\backslash$twlrm}&{\tt $\backslash$elvrm}&
+{\tt $\backslash$tenrm}&Roman&&{\twlrm AaBbCc}\cr
+\+{\tt $\backslash$bf}&{\tt $\backslash$twlbf}&{\tt $\backslash$elvbf}&
+{\tt $\backslash$tenbf}&Roman Bold Extended&&{\twlbf AaBbCc}\cr
+\+{\tt $\backslash$it}&{\tt $\backslash$twlit}&{\tt $\backslash$elvit}&
+{\tt $\backslash$tenit}&Roman Text Italic&&{\twlit AaBbCc}\cr
+\+{\tt $\backslash$tt}&{\tt $\backslash$twltt}&{\tt $\backslash$elvtt}&
+{\tt $\backslash$tentt}&Roman Typewriter Text&&{\twltt AaBbCc}\cr
+\+{\tt $\backslash$sl}&{\tt $\backslash$twlsl}&{\tt $\backslash$elvsl}&
+{\tt $\backslash$tensl}&Roman Slanted Roman&&{\twlsl AaBbCc}\cr
+\+{\tt $\backslash$mit}&{\tt $\backslash$twli}&{\tt $\backslash$elvi}&
+{\tt $\backslash$teni}&Roman Math Italic&&{\twli AaBbCc}\cr
+\+&{\tt $\backslash$twlex}&{\tt $\backslash$elvex}&
+{\tt $\backslash$tenex}&Roman Math Extension&&{\twltt n/a}\cr
+\+{\tt $\backslash$cal}&{\tt $\backslash$twlsy}&{\tt $\backslash$elvsy}&
+{\tt $\backslash$tensy}&Roman Math Symbols&&{\twlsy A\ B\ C}\cr}
+\bigskip\par\noindent
+The majority of this document has been set in Computer Modern Roman 12 
+point, with the examples set in CMR Typewriter Text 12 point and 
+emphasized text set in CMR Bold Extended 12 point and
+CMR Text Italic 12 point. Finally, the titles on the cover page have 
+been set in CMR Bold Extended 17 point ({\twltt $\backslash$stnbf}) .
+\bigskip\par\noindent
+While the fonts we've just described
+are probably the only fonts you'll ever need for most documents, 
+there are many other fonts which are also available for your use on the VAX.
+If you'd like to see all the fonts currently installed on the VAX, 
+use the commands:
+\par\noindent\bigskip\hglue 0.5truein
+{\twltt \$\ DIR TEX\_FONTS:*.*}
+\par\noindent\bigskip
+For more information about these fonts, see Appendix F of 
+{\twlit The \TeX{}book}, or see Volume 3 of Knuth's {\twlit 
+Computers and Typesetting.}
+\bigskip\par\noindent
+One more important point about declaring a default font size: when you 
+say {\twltt $\backslash$twelvepoint} (or {\twltt $\backslash$tenpoint} or
+whatever), by doing so you are choosing a default font size,
+but you are {\twlbf also} setting {\twlit the default spacing between lines!}
+^^{line spacing}
+If your document's line spacing looks too ``loose'' or too ``tight'', 
+check to make sure that the default font size you specified corresponds
+to the font size of the majority of the copy you're setting!
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Font Style}}
+\bigskip\par\noindent
+Now that you've got your default font size defined, 
+you're ready to tell \TeX\ what
+parts of your document should be set in each font. 
+To declare a ``default'' font style to be used until you specify 
+otherwise, simply enter that
+font's name near the top of your document, before you begin entering
+document text.  Thus, to use Computer Modern 
+Roman fonts (at the current default size) as your default font, you'd enter:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$rm}
+\bigskip\par\noindent
+All the text set from that point forward will be typeset in Computer Modern
+Roman at the default font size you've declared.
+If you want to set just a few words of text in another font style (such as an
+^{italic} or ^{bold}
+face font), use curly braces to create a ``^{group}'' limiting
+the effect of the font change to the desired section of text:
+\bigskip\par\noindent
+{\parindent=0.5truein\narrower{\twltt
+When one is writing, there are times when one needs
+\par\noindent
+$\{${}$\backslash$bf interesting$\}$ 
+examples, or at least some which
+\par\noindent
+are $\{${}$\backslash$it moderately relevant$\}$.}\smallskip\par}
+\bigskip\par\noindent
+This should yield output which looks like:
+\bigskip\par\noindent
+{\parindent=0.5truein\narrower
+When one is writing, there are times when one needs 
+{\twlbf interesting} examples, or at least some which are 
+{\twlit moderately relevant.}\bigskip\par\noindent}
+If you accidentally omit the closing curly brace for a group,
+you'll probably end up with pages and pages of text set in the
+wrong font, together with an error message from \TeX\ 
+stating that you have a ``{\twltt{}$\backslash$^{end at level one}}'', or 
+something equally non-explanatory. That's your cue to go back and insert the
+closing curly brace you missed.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Underlining}}
+\bigskip\par\noindent
+Underlining is seldom seen in typeset material, because it is a pain
+to typeset (using mechanical type), because underlining is typically
+replaced with italics in typeset matter as a matter of convention, and
+because underlining can interfere with descenders on some letters (see,
+for example, the letter ``g'' in the example below). 
+\bigskip\par\noindent 
+Nonetheless, we realize that there are some circumstances 
+(such as during the preparation of a dissertation)
+when you have no choice: when you're writing a dissertation you simply 
+have to underline some things. \TeX\ can handle that requirement:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt I don't need no stinking 
+$\backslash$^{underbar}$\{$badge$\}$, Mee--ster!}
+\bigskip\par\noindent
+This results in output which looks like:
+\bigskip\par\noindent\hglue 0.5truein
+I don't need no stinking \underbar{badge}, Mee-ster!
+\bigskip\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Line Spacing} 
+(^{Double-Spacing}, ^{Skipping A Single 
+Line}, etc.)}
+\bigskip\par\noindent
+To double space text in \TeX{}, issue the command:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$baselineskip$=$2$\backslash$normalbaselineskip}
+\bigskip\par\noindent
+Text set by \TeX\ in double-spaced form looks like:
+\medskip\par\noindent
+{\parindent=0.5truein\narrower{
+\baselineskip=2\baselineskip
+The use of a double spaced format can do much to make the 
+inconsequential appear weighty, and the weighty, ponderous. 
+It also is convenient when you need to correct those
+errors introduced by your colleagues.
+\bigskip\bigskip\par\noindent}}
+\baselineskip=\normalbaselineskip
+Return to normal spacing by saying:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$^{baselineskip}=$\backslash$^{normalbaselineskip}}
+\bigskip\bigskip\bigskip\par\noindent
+To insert just one ``extra'' blank line at a particular
+spot in your document, enter: 
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$^{bigskip}}
+\bigskip\par\noindent
+To get just an extra {\twlit half}-line of space say:
+{\twltt$\backslash$^{medskip}}
+\bigskip\par\noindent
+To get just an extra {\twlit quarter}-line of extra space say:
+{\twltt $\backslash$^{smallskip}}
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Block Quotations}}
+\bigskip\par\noindent
+If you are quoting lengthy passages from a work, you'll normally want
+to indent left and right 
+and single space the quotation in block format. To do that 
+in \TeX\ you'd say:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\{${}$\backslash$narrower\ $\{${\twlit{}quotation text goes here}$\}$%
+\ $\backslash$bigskip$\backslash$par$\}$}
+\bigskip\par\noindent
+Some notes on this process of handling block quotations: 
+\bigskip\par\noindent
+(1) You {\twlbf must}
+end the paragraph before you exit the group containing the 
+{\twltt $\backslash$^{narrower}} command; if you fail to 
+do so, the paragraph will revert to its normal width as
+if you hadn't entered a {\twltt $\backslash$narrower} command
+at all. (That is why the 
+{\twltt $\backslash$bigskip$\backslash$par} command is
+contained within the curly braces.)
+\bigskip\par\noindent 
+(2) The block quotation will be indented by the current value of the
+{\twltt $\backslash$parindent} parameter. If your default 
+{\twltt $\backslash$parindent} is too large or too small for your
+requirements, you may need to manually reset it as part of the 
+{\twltt $\backslash$narrower} command. For example, to indent 1" try:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\{${}$\backslash$parindent=1.0in
+$\backslash$narrower\ $\{${\twlit{}quotation text goes here}$\}$\  
+$\backslash$bigskip$\backslash$par{}$\}$}
+\bigskip\par\noindent
+(3) Finally, if you are double spacing the rest of your document, you'll
+need to explicitly force the block quotation to be single spaced.
+Try something like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\{${}$\backslash$parindent=1.0in
+$\backslash$narrower\ $\backslash$baselineskip=$\backslash$normalbaselineskip
+\par\noindent\hglue 0.5truein
+$\{${\twlit{}quotation text goes here}$\}$
+$\backslash$bigskip$\backslash$par{}$\}$}
+\bigskip\par\noindent
+For example, here's a small sample block quotation:
+\bigskip\par\noindent
+{\parindent=0.5truein\narrower
+{\twltt$\{${}$\backslash$parindent=0.5in
+$\backslash$narrower
+$\backslash$baselineskip=$\backslash$normalbaselineskip
+\par\noindent
+{$\{$The terrible thing about our time is precisely the ease with
+\par\noindent
+which theories can be put into practice. The more perfect, the
+\par\noindent
+more idealistic the theories, the more dreadful is their
+\par\noindent
+realization. We are at last beginning to rediscover what 
+\par\noindent
+perhaps men knew better in very ancient times, in primitive
+\par\noindent
+times before utopias were thought of: that liberty is bound up
+\par\noindent
+with imperfection, and that limitations, imperfections, errors
+\par\noindent
+are not only unavoidable but salutary. Merton$\}$%
+$\backslash$bigskip$\backslash$par{}$\}$}
+\bigskip\par\noindent}}
+When processed by \TeX{}, that block quotation would look like:
+\bigskip\par\noindent
+{\parindent=0.5in
+\baselineskip=\normalbaselineskip
+\narrower
+{The terrible thing about our time is precisely 
+the ease with which theories can be put into 
+practice. The more perfect, the more idealistic the 
+theories, the more dreadful is their realization.  
+We are at last beginning to rediscover what perhaps 
+men knew better in very ancient times, in primitive  
+times before utopias were thought of: that liberty 
+is bound up with imperfection, and that limitations, 
+imperfections, errors are not only unavoidable
+but salutary. Merton}
+\bigskip\par}
+Under some circumstances, you may only want to indent one side of the
+block or the other, but not both. When that's the case, use
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\{${}$\backslash$leftskip=1.0in 
+\par\noindent\hglue 0.5truein
+$\{$Here is some text to be indented from the left margin.$\}$
+\par\noindent\hglue 0.5truein
+$\backslash$bigskip$\backslash$par$\}$} 
+\bigskip\par\noindent
+or 
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\{${}$\backslash$rightskip=1.0in 
+\par\noindent\hglue 0.5truein
+$\{$Here is some text to be indented from the right margin.$\}$
+\par\noindent\hglue 0.5truein
+$\backslash$bigskip$\backslash$par$\}$} 
+\bigskip\par\noindent
+You can also indent a single line simply by inserting some horizontal glue:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$par$\backslash$noindent$\backslash$hglue 1.0in
+\par\noindent\hglue 0.5truein
+Here's some text to be indented an inch.
+\par\noindent\hglue 0.5truein
+$\backslash$par$\backslash$noindent}
+\bigskip\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Centering Text} (For Headings, etc.)}
+\bigskip\par\noindent
+There are times when you'd like to center some text on the page
+for headings. To do this in \TeX{}, use the command:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$centerline$\{$text to be centered goes here$\}$}
+\bigskip\par\noindent
+To set a single line flush left, or a single line flush
+right, use the commands:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$leftline$\{$text to be set ^{flush left} goes here$\}$}
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$rightline$\{$text to be set ^{flush right} goes here$\}$}
+\bigskip\par\noindent
+Note that you can achieve the same effects using more primitive
+commands by saying:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$par $\backslash$^{hfill} $\{$text to be centered goes 
+here$\}$ $\backslash$hfill $\backslash$par}
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$par $\{$text to be set flush left goes here$\}$ $\backslash$hfill $\backslash$par}
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$par
+$\backslash$hfill $\{$text to be set flush right goes here$\}$ $\backslash$par}
+\bigskip\par\noindent
+This more primitive approach, using {\twltt $\backslash$hfill} commands, will
+particularly come in handy later when you begin to work with headers and
+footers, and under other circumstances when the more elegant {\twltt
+$\backslash$centerline} or {\twltt $\backslash$leftline} or 
+{\twltt $\backslash$rightline} approaches are infeasible.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Footnotes}}
+\bigskip\par\noindent
+To create a footnote in \TeX{}, use a command such as the following:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt Another fascinating condiment is the pink
+\par\noindent\hglue 0.5truein
+peppercorn.$\backslash$footnote$\{${}\${}\^{}$\{$13$\}${}\${}$\}${}$\{$See, % 
+for example, William Poundstone, 
+\par\noindent\hglue 0.5truein
+$\backslash$it$\{$Big Secrets,$\}$ 
+Quill, New York, 1983, pages 26-27.$\backslash$par$\}$}
+\par\noindent\bigskip
+Some notes about footnotes:
+\bigskip\par\noindent
+(1) Footnotes are not automatically numbered as they're created. 
+Rather, you must manually assign a number (or symbol) to each 
+footnote you make. If you rearrange your footnotes, or insert
+new footnotes, you'll also need to manually adjust the numbers of existing
+footnotes.\footnote{$^{7}$}{See the solution to problem 15.12 in 
+Appendix A of Knuth's {\twlit The \TeX{}book} for one way of 
+overcoming the limitations associated with manually numbered footnotes.}
+\bigskip\par\noindent
+(2) By default, \TeX\ builds its footnotes at the bottom of the page
+in a rather ugly format. 
+If you'd like to fix the footnote production mechanism so your footnotes 
+come out looking like the ones used in this write-up, instead, 
+put the following commands at the top of your document:
+{\twltt 
+\bigskip\par\noindent\hglue 0.5truein
+$\backslash$parindent=0pt
+$\backslash$global$\backslash$skip$\backslash$footins=24pt plus 24pt minus 24pt
+\par\noindent\hglue 0.5truein
+$\backslash$def$\backslash$footnoterule$\{${}$\backslash$vfil 
+$\backslash$vglue 12pt $\backslash$hrule width 2in 
+$\backslash$vglue 12pt$\}$}
+\bigskip\par\noindent
+Note that this footnote fix {\twlbf does} tinker with the {\twltt 
+$\backslash$parindent} parameter which is used for a whole host of 
+other purposes! Therefore, determine that you truly can't abide the
+default footnote format before you decide to employ the fix shown above.
+\bigskip\par\noindent
+(3) If you must have ^{endnotes} (rather than footnotes), simply insert 
+your footnote reference number in the right place, but don't actually use the 
+{\twltt $\backslash$footnote} command. Enter the body of your endnote 
+at the {\twlbf end} of your document, including the corresponding reference number.
+For example:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt Another fascinating condiment is the pink
+%\par\noindent\hglue 0.5truein
+peppercorn.\${}\^{}$\{$13$\}${}\$
+\bigskip\par\noindent\hglue 0.5truein
+* \quad * \quad *
+\bigskip\par\noindent\hglue 0.5truein
+$\backslash$vfill$\backslash$eject
+\par\noindent\hglue 0.5truein
+$\backslash$centerline$\{${}$\backslash$bf ENDNOTES$\}$
+\bigskip\par\noindent\hglue 0.5truein
+* \quad * \quad *
+\bigskip\par\noindent\hglue 0.5truein
+$\backslash$bigskip$\backslash$par$\backslash$noindent
+\par\noindent\hglue 0.5truein
+13. See, for example, William Poundstone, 
+$\backslash$it$\{$Big Secrets,$\}$
+\par\noindent\hglue 0.5truein
+Quill, New York, 1983, pages 26-27.
+\par\noindent\hglue 0.5truein
+$\backslash$bigskip$\backslash$par$\backslash$noindent}
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Headers} and ^{Page Numbers}}
+\bigskip\bigskip\par\noindent
+\TeX\ will automatically number each page (including the first page)
+at the bottom center of the page. However, you can suppress all page
+numbers by including the following near the top of your document:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$^{nopagenumbers}}
+\bigskip\par\noindent
+Many people, however, {\twlbf do} like to have the pages of their document numbered.
+Typically, the preferred location for those page numbers is the upper right
+hand corner of the page.
+\bigskip\par\noindent
+One way to get page numbers 
+in the upper right hand corner of the page
+in \TeX\ is to create an appropriate 
+{\twltt $\backslash$headline}. For example, to simply put the
+page number in the top right corner of each page, enter (near the top
+of your document):
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$headline=$\{${}$\backslash$rm{}$\backslash$hfill%
+$\backslash$folio$\backslash$voffset=2$\backslash$normalbaselineskip$\}$}
+\bigskip\par\noindent
+In the preceding command, {\twltt $\backslash$rm} insures
+that our header will be printed in
+a normal Roman font, {\twltt $\backslash$folio} is \TeX{}'s symbolic
+name for the current page number, and the {\twltt $\backslash$hfill}
+will force the page number all the way to the right. By
+setting {\twltt $\backslash$voffset} to 
+{\twltt 2$\backslash$normalbaselineskip},
+we insure that a blank line is left between the page number and the
+page's text.
+\bigskip\par\noindent
+If you want a running section heading as well as a title, 
+enter something like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt 
+$\backslash$headline=$\{${}$\backslash$rm Summary $\backslash$hfill%
+$\backslash$folio$\backslash$voffset=2$\backslash$normalbaselineskip$\}$}
+\bigskip\par\noindent
+Note that whatever heading happens to be defined when \TeX\ comes to the
+{\twlbf end} of a page is the heading that page will receive. 
+The critical
+thing is what's defined when the page is {\twlbf finished}, not what's
+defined when the page is {\twlbf begun}!
+\bigskip\par\noindent
+A similar policy holds for page numbering. The value of the page number
+counter ({\twltt $\backslash$count0}) at the {\twlbf end} of the page
+determines the page number of that page, {\twlbf not} the value the page
+number counter may have started at. To change the ^{page counter}, say: 
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$count0={\twlit{}newpagenumber}} 
+\bigskip\par\noindent 
+somewhere on the page you want renumbered.
+\bigskip\par\noindent
+If you need ^{lowercase roman numeral page numbers}
+^^{roman numeral page numbering} 
+^^{prefatory matter page numbering}
+(as you might for
+prefatory matter), set {\twltt $\backslash$count0} to a negative
+value. One way to negate {\twltt $\backslash$count0} is by using the
+command:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt
+$\backslash$ifnum$\backslash$count0$>$0$\backslash$multiply$\backslash$count0
+by -1$\backslash$fi}
+\bigskip\par\noindent
+Alternatively, assuming you know the exact page number at which you want to begin lowercase roman numeral page numbers, you could simply say:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$count0=-{\twlit{}newpagenumber}} 
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Page Size}; ^{Margins}}
+\bigskip\par\noindent
+^^{default page size}
+To set the size of your \TeX\ document, use commands like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$^{hsize}=7in}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$^{vsize}=9in}
+\bigskip\par\noindent
+near the top of your document. That will set the size of the text that \TeX\
+creates to be seven inches wide and nine inches high, for example.
+\bigskip\par\noindent
+By default, \TeX\ starts out indenting 1''
+from the left hand side of the page, and 1'' down from the top of the
+page. If you wanted to increase the left margin by 0.5'', 
+and you wanted to decrease the top margin by 0.25'', 
+for example, you'd enter:
+^^{default margins}
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$hoffset=0.5in}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$voffset=-0.25in}
+\bigskip\par\noindent
+You set the right hand (and bottom) margins implicitly when
+you set the size of your \TeX\ document and the width of the 
+left and top margins.
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Leaving Space for Insertions}; 
+^{Forcing Page Breaks}}
+^^{Insertions}
+^^{Page Breaks}
+^^{Ejecting a Page}
+^^{Top of Page}
+\bigskip\par\noindent
+There will be times when you want to take explicit control over the 
+way \TeX\ spaces paragraphs on the printed page. That is, you might 
+want to pop to the top of a new page before beginning a new section, 
+or you might want to leave a couple of inches of blank space so that
+you have room to tip in a photograph or other illustration.
+\bigskip\par\noindent
+To finish the current page and go to top of a new page, enter:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$vfill$\backslash$eject}
+\bigskip\par\noindent
+If all you want to do is reserve a couple of inches of blank space
+for an illustration, try:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$vglue\ 3.0in$\backslash$par$\backslash$noindent}
+\bigskip\par\noindent
+Be sensitive to the possibility that the three (or however many inches)
+of space you request in this way may be provided to you partially on 
+one page, and partially on the following page if there isn't enough
+room on the current page. If you need to insure you'll get a single 
+undivided block of space of the size required, say:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$^{vbox}$\{${}$\backslash$vglue 
+3.0in$\backslash$par$\backslash$noindent$\}$}
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf Ending Your \TeX\ Document}
+^^{Ending Your TeX Document}
+\bigskip\par\noindent
+Signal the end of your \TeX\ document by entering:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$vfill$\backslash$eject$\backslash$end}
+\bigskip\par\noindent
+as the very last line of your \TeX\ command file.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf III. ^{TYPESETTING TABULAR MATERIAL}}
+\bigskip
+\centerline{\twlbf ^{Using Tabs}}
+\bigskip\par\noindent
+There may be times when you want to use ``tabs'' in \TeX{}, just as
+you might on a typewriter. The first step in using tabs in \TeX\ 
+is to set your ``tabstops.'' While there are many ways to do this,
+the two most generally useful approaches to doing this are the
+evenly-spaced tab stop setting procedure, and the specific-spacing
+tab stop setting procedure.
+\bigskip\par\noindent
+For example, to create eight ^{evenly spaced tab stops}, you'd enter:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$settabs 8$\backslash$columns}
+\bigskip\par\noindent
+If you need to create ^{unevenly spaced tab stops}, try something like
+the following:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$settabs$\backslash$+%
+$\backslash$hglue 1.75in\&%
+$\backslash$hglue 0.4in\&%
+$\backslash$hglue 1.4in\&%
+$\backslash$hglue 1.0in$\backslash$cr}
+\bigskip\par\noindent
+There's a third way of setting tab stops which you may like even 
+more than either of the above two approachs. Essentially, \TeX\ 
+can automatically determine the right width for each column of 
+your copy based on the effective width of the widest element
+to be put in each column. For example, let's assume you wanted to
+set up a little summary table describing some common stocks: 
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$settabs$\backslash$+%
+Ticker Symbol$\backslash$qquad\&%
+Turgekowski Steamship Service$\backslash$qquad\&
+\par\noindent\hglue 0.5truein
+999,999$\backslash$qquad\&%
+$\backslash$\$9,999.99$\backslash$qquad\&%
+$\backslash$\$9,999.99$\backslash$qquad\&%
+$\backslash$\$9,999.99$\backslash$cr}
+\bigskip\par\noindent
+Note that we've defined the width of the first column by writing its
+heading (and a trailing {\twltt $\backslash$qquad} worth of space)
+because that is the widest element which will be present in that column.
+For the second column, the longest element will be one particularly long
+name of an actual firm, together with a little additional space.
+The remaining columns, which will be used to report stock trading volume
+and high, low, and closing stock prices, were all created using dummy
+``worst-case'' numeric values (plus a little extra space).
+\bigskip\par\noindent
+Regardless of the tab-setting approach you elect to employ, once you've
+created your tab stops, you can easily set type at those tab spots by
+saying something like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$+Blah\&Foo\&Phft\&\&Thdd$\backslash$cr
+\par\noindent\hglue 0.5truein
+$\backslash$+ABC\&DEFGH\&IJ\&KLMNOP$\backslash$cr}
+\bigskip\par\noindent
+I.E., each tabbed line begins with a {\twltt $\backslash$+} and ends with a
+{\twltt $\backslash$cr}. Between those delimiters, you indicate 
+you want to go to the next tab stop by inserting an ampersand 
+({\twltt \&}). Insert two successive ampersands to skip a column. Note that
+you do not need to ``use'' all tabstops on each tabbed line before ending
+that line --- you can end
+a tabbed line with {\twltt $\backslash$cr} after using only one (or even
+{\twlbf none}) of the tabstops which you've defined.
+\bigskip\par\noindent
+If you ever need to un-define your tabstops, enter:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$cleartabs}
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Typesetting Formal Ruled Tables}}
+^^{Formal Ruled Tables}
+^^{Ruled Tables}
+^^{Tables}
+\bigskip\par\noindent
+\TeX\ can also set more complicated ``formal'' ruled tables. However,
+before you decide to try doing this, a warning: setting tables
+in \TeX\ can be rather tricky.
+Consider this example:
+\bigskip\par\noindent
+{\vbox{\offinterlineskip
+\halign{
+\hglue 0.5in\strut\vrule#&
+\twlbf\hfil\quad#\quad\hfil&
+\vrule#&
+\twlbf\hfil\quad#\quad\hfil&
+\vrule#&
+\hfil\quad#\quad\hfil&
+\vrule#&
+\hfil\quad#\quad\hfil&
+\vrule#\cr
+% template ends; now set the headings
+\multispan{9}\hglue 0.5in\vrule\hrulefill\vrule\cr
+&&\omit&&\omit&&\omit&&\cr
+\multispan{9}\hglue 0.5in\vrule\hfill\twlbf SOME SERVICE PISTOLS\hfill\vrule\cr
+&&\omit&&\omit&&\omit&&\cr
+\multispan{9}\hglue 0.5in\vrule\hrulefill\vrule\cr
+&&&&&&&&\cr
+&\twlbf Manufacturer&&\twlbf Model&&\twlbf Caliber&&\twlbf Capacity&\cr
+&&&&&&&&\cr
+% headings end; now set the body of the table
+\multispan{9}\hglue 0.5in\vrule\hrulefill\vrule\cr
+&&&&&&&&\cr
+&Glock&&17&&9mm Para&&19&\cr
+&Sig-Sauer&&P226&&9mm Para&&15&\cr
+&Smith\&Wesson&&5926&&9mm Para&&15&\cr
+&&&&&&&&\cr
+&Glock&&21&&.45 ACP&&13&\cr
+&Sig-Sauer&&P220&&.45 ACP&&7&\cr
+&Smith\&Wesson&&4506&&.45 ACP&&8&\cr
+&&&&&&&&\cr
+\multispan{9}\hglue 0.5in\vrule\hrulefill\vrule\cr
+}}}
+\bigskip\par\noindent
+The actual \TeX\ commands used to create that table look like:
+%%%%%%%%%%%%%%%%%%%%%%%%%% table text begins here %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt 
+$\{$$\backslash$vbox$\{${}$\backslash$offinterlineskip$\backslash$halign$\{$
+\par\noindent\hglue 0.5truein
+$\backslash$hglue 0.5in$\backslash$strut$\backslash$vrule\#\&
+\par\noindent\hglue 0.5truein
+$\backslash$bf$\backslash$hfil$\backslash$quad\#$\backslash$quad$\backslash$hfil\&%
+$\backslash$vrule\#\&
+\par\noindent\hglue 0.5truein
+$\backslash$bf$\backslash$hfil$\backslash$quad\#$\backslash$quad$\backslash$hfil\&%
+$\backslash$vrule\#\&
+\par\noindent\hglue 0.5truein
+$\backslash$hfil$\backslash$quad\#$\backslash$quad$\backslash$hfil\&%
+$\backslash$vrule\#\&
+\par\noindent\hglue 0.5truein
+$\backslash$hfil$\backslash$quad\#$\backslash$quad$\backslash$hfil\&%
+$\backslash$vrule\#$\backslash$cr
+\par\noindent\hglue 0.5truein
+\% template ends; now set the headings
+\par\noindent\hglue 0.5truein
+$\backslash$multispan$\{$9$\}${}$\backslash$hglue 0.5in$\backslash$vrule$\backslash$hrulefill$\backslash$vrule$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&\&$\backslash$omit\&\&$\backslash$omit\&\&$\backslash$omit\&\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+$\backslash$multispan$\{$9$\}${}$\backslash$hglue 0.5in$\backslash$vrule$\backslash$hfill$\backslash$bf SOME SERVICE PISTOLS
+\par\noindent\hglue 0.5truein
+$\backslash$hfill$\backslash$vrule$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&\&$\backslash$omit\&\&$\backslash$omit\&\&$\backslash$omit\&\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+$\backslash$multispan$\{$9$\}${}$\backslash$hglue 0.5in$\backslash$vrule$\backslash$hrulefill$\backslash$vrule$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&\&\&\&\&\&\&\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&$\backslash$bf Manufacturer\&\&$\backslash$bf Model\&\&
+\par\noindent\hglue 0.5truein
+$\backslash$bf Caliber\&\&$\backslash$bf Capacity\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&\&\&\&\&\&\&\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\% headings end; now set the body of the table
+\par\noindent\hglue 0.5truein
+$\backslash$multispan$\{$9$\}${}$\backslash$hglue 0.5in$\backslash$vrule$\backslash$hrulefill$\backslash$vrule$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&\&\&\&\&\&\&\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Glock\&\&17\&\&9mm Para\&\&19\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Sig-Sauer\&\&P226\&\&9mm Para\&\&15\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Smith$\backslash$\&Wesson\&\&5926\&\&9mm Para\&\&15\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&\&\&\&\&\&\&\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Glock\&\&21\&\&.45 ACP\&\&13\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Sig-Sauer\&\&P220\&\&.45 ACP\&\&7\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Smith$\backslash$\&Wesson\&\&4506\&\&.45 ACP\&\&8\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&\&\&\&\&\&\&\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+$\backslash$multispan$\{$9$\}${}$\backslash$hglue 0.5in$\backslash$vrule$\backslash$hrulefill$\backslash$vrule$\backslash$cr
+\par\noindent\hglue 0.5truein
+$\}\}\}$
+}
+\bigskip\par\noindent
+The {\twltt $\backslash$halign} command used to set that table differs
+from the tabbed environment described in the previous section 
+in three important ways.
+^^{Differences Between Tabbing and Formal Tables} 
+One difference between the two table construction approaches 
+is that \TeX\ itself determines the required width of each 
+column in the {\twltt $\backslash$halign} approach without the need for 
+you to manually intervene in an effort to guess the widest element present 
+in each column. 
+A second difference, which happens to be a 
+disadvantage of the {\twltt $\backslash$halign} approach,
+is that {\twltt $\backslash$halign} doesn't yield constant-width 
+columns on a multiple table basis unless you employ some ``tricks''; 
+the {\twltt $\backslash$+} tabbing approach is much better 
+than {\twltt $\backslash$halign}
+when you need to generate a whole series of tables with each table having 
+the same width columns. 
+The third difference between the two methodologies
+is that tabbed tables are processed line-by-line, and thus 
+don't make \TeX\ work
+very hard; {\twltt $\backslash$halign} tables, on the other hand, have to be
+examined in their entirety by \TeX\ 
+before it can decide how to process them.
+Naturally, this can be quite computationally expensive for large tables!
+Experience will gradually help you learn to pick the right table-building
+tool.
+\bigskip\bigskip\par\noindent
+\leftline{\twlbf Beginning to Decode the Table-Building Commands}
+\bigskip\par\noindent
+^^{Decoding The Table Building Commands}
+But what do all the {\twltt $\backslash$halign} table building commands mean? 
+\bigskip\par\noindent
+Begin by conceptualizing the table as nine
+columns. Four of the columns are ``real'' columns containing
+manufacturer, model, caliber, and capacity information. The other
+five columns are ``columns'' in name only: they are actually used
+solely to hold the the vertical rules (lines) separating the real columns
+of data.
+\bigskip\par\noindent
+The first line of \TeX\ commands used to produce our table looks like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\{$$\backslash$vbox$\{${}$\backslash$offinterlineskip$\backslash$halign$\{$}
+\bigskip\par\noindent
+In that line of commands:
+\bigskip\par\noindent
+{\leftskip=0.5truein{The {\twltt $\backslash$vbox}
+makes sure the entire table is treated as an indivisible 
+organic entity, thereby insuring that the table isn't accidentally split
+across two pages.
+\bigskip\par\noindent
+The {\twltt $\backslash$offerinterlineskip}
+prohibits \TeX\ from automatically vertically skipping {\twltt $\backslash$baselineskip} 
+every time it begins a new line. It is important to keep 
+\TeX\ from doing this when 
+you are setting tables which include ``lines'' consisting solely 
+of thin horizontal rules, as our table does.
+\bigskip\par\noindent
+Finally, the {\twltt $\backslash$halign} actually starts 
+our horizontally aligned \TeX\ table.
+\par\noindent}}
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\leftline{\twlbf ^{Table Template}}
+\bigskip\par\noindent
+The next five lines of commands, which look like:
+{\twltt
+\bigskip\par\noindent\hglue 0.5truein
+$\backslash$hglue 0.5in$\backslash$strut$\backslash$vrule\#\&%
+\par\noindent\hglue 0.5truein
+$\backslash$bf$\backslash$hfil$\backslash$quad\#$\backslash$%
+quad$\backslash$hfil\&$\backslash$vrule\#\&%
+\par\noindent\hglue 0.5truein
+$\backslash$bf$\backslash$hfil$\backslash$quad\#$\backslash$%
+quad$\backslash$hfil\&$\backslash$vrule\#\&%
+\par\noindent\hglue 0.5truein
+$\backslash$hfil$\backslash$quad\#$\backslash$quad$\backslash$%
+hfil\&$\backslash$vrule\#\&%
+\par\noindent\hglue 0.5truein
+$\backslash$hfil$\backslash$quad\#$\backslash$quad$\backslash$%
+hfil\&$\backslash$vrule\#$\backslash$cr}
+\bigskip\par\noindent
+define the {\twlbf default format} for the nine columns
+comprising each line of the table. 
+\bigskip\par\noindent
+The declared default format for the first column extends 
+from the start of the commands
+up to the 1st ampersand; the format for the second column goes from the 1st
+ampersand to the 2nd ampersand; the format for the third column goes
+from the 2nd to the 3rd; etc. 
+\bigskip\par\noindent
+Specifically, in our case, the leftmost
+column (and thus the entire table) will be (by default):
+\bigskip\par\noindent\hglue 0.5truein
+Indented {\twltt 0.5}'' from the left margin ({\twltt $\backslash$hglue 0.5in}), and be of
+\bigskip\par\noindent\hglue 0.5truein
+``Normal'' height ({\twltt $\backslash$strut}).
+\bigskip\par\noindent
+The leftmost column is also defined to contain
+%\bigskip\par\noindent\hglue 0.5truein
+a thin vertical line ({\twltt $\backslash$vrule}). 
+\bigskip\par\noindent
+The pound sign ({\twltt \#}) in that line 
+represents the spot where the ``contents'' 
+of a column should be added when we begin processing 
+the body of the table.\footnote{$^{8}$}{In the case 
+of the columns reserved for vertical rules,
+we'll never be adding any additional columnular material, but \TeX\ nonetheless
+demands that we include a pound sign for each column as a matter of form.
+\bigskip\par\noindent}
+\bigskip\par\noindent
+The second column of the table 
+is our first ``real'' column. The text in that column will 
+be set in twelve point bold face type ({\twltt $\backslash$bf}), 
+and centered (notice the two {\twltt $\backslash$hfil}s), with a 
+minimum of one {\twltt $\backslash$quad} worth of space on each side 
+of the text we'll eventually supply.\footnote{$^{9}$}{Omission
+of the {\twltt $\backslash$quad}s would result in the lines of the table 
+directly abutting the edges of the widest entry in each column --- an 
+aesthetically undesirable occurrence.}
+\bigskip\par\noindent
+The third column of the template consists solely of a 
+{\twltt $\backslash$vrule}
+and a ``dummy'' pound sign provided exclusively to placate \TeX{}.
+\bigskip\par\noindent
+The remaining six column definitions are similar to those already discussed.
+Note, though, that the last (ninth) column ends with a {\twltt $\backslash$cr},
+not another ampersand. 
+\bigskip\par\noindent
+We're now done defining the template \TeX\ needed for the body of our table.
+\bigskip\bigskip\par\noindent
+\leftline{\twlbf ^{Table Headings}}
+\bigskip\par\noindent
+The first non-template/``output-producing'' table line looks like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$multispan$\{$9$\}${}$\backslash$hglue 0.5in$\backslash$vrule$\backslash$hrulefill$\backslash$vrule$\backslash$cr}
+\bigskip\par\noindent
+It is designed to create the top horizontal line of the table.
+\bigskip\par\noindent
+The {\twltt $\backslash$multispan$\{$9$\}$} command tells \TeX\ that we
+want to enter some stuff which will cross (or span) nine columns of the table.
+The rest of that command says ``skip a half inch horizontally, then 
+put in a thin vertical rule, then fill the rest of the line with a thin horizontal
+rule, putting in another thin vertical rule at the right hand margin. 
+End this line.'' 
+\bigskip\par\noindent
+The {\twltt $\backslash$multispan} command automatically
+cancels the commands present in the default table template, including 
+the {\twltt $\backslash$strut} (and all the other good stuff) so that 
+the first  ``line'' of our table will actually be no taller than
+the height of our thin rules. 
+\bigskip\par\noindent
+The next line of commands:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \&\&$\backslash$omit\&\&$\backslash$omit\&\&$\backslash$omit\&\&$\backslash$cr}
+\bigskip\par\noindent
+is designed to put a little space between the top horizontal line
+and the title of the table. Although no text is specified for the first two 
+columns of the table, \TeX\ does still obey the format specified for those two
+columns. Hence, this line of the table is indented a half 
+inch, has a vertical rule, and is the height of a normal 
+line (remember the 
+{\twltt $\backslash$strut}?). 
+\par\noindent\bigskip
+So what do we do to tell \TeX\ {\twlbf not} to insert any default 
+``stuff'' from the template into a particular column? Enter 
+{\twltt $\backslash$omit}\ \ We specify 
+{\twltt $\backslash$omit} for our third column of this line so 
+that we don't get an unwanted vertical rule 
+dropping right in the middle of our column-spanning table 
+title. 
+\bigskip\par\noindent
+The rest of this line of table-building commands operates in a 
+similar fashion.
+\bigskip\par\noindent
+The next two lines, which looks like:
+{\twltt \bigskip\par\noindent\hglue 0.5truein
+$\backslash$multispan$\{$9$\}${}$\backslash$hglue 0.5in$\backslash$vrule$\backslash$hfill$\backslash$bf SOME SERVICE PISTOLS
+\par\noindent\hglue 0.5truein
+$\backslash$hfill$\backslash$vrule$\backslash$cr}
+\bigskip\par\noindent
+should be easy for you to decode now that we've explained the earlier 
+table building commands -- there really isn't anything new here which you
+haven't seen before, except that you should
+notice that the commands to create a single line of table
+output can be freely continued across multiple lines; \TeX\ knows a line of
+table matter is finished only if and when it sees a {\twltt $\backslash$cr}
+command.
+\bigskip\par\noindent
+In fact, you now know enough to decipher {\twlbf all} the rest of the 
+table construction commands used to make our sample table.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\leftline{\twlbf ^{Table Body}}
+\bigskip\par\noindent
+One point which is easy to overlook: while you may bleed, sweat, and cry
+while setting up a table's template and titles, the actual 
+body of most tables is a {\twlit snap} if you set the template up correctly.
+Thus, because so much of the table is handled automatically for you by
+the template, the bigger a table is, the easier it is
+to set it {\twlit once you get past} the template and title
+material. For example, notice how easy it is to set 
+the main part of our sample table:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt
+\&\&\&\&\&\&\&\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Glock\&\&17\&\&9mm Para\&\&19\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Sig-Sauer\&\&P226\&\&9mm Para\&\&15\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Smith$\backslash$\&Wesson\&\&5926\&\&9mm Para\&\&15\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&\&\&\&\&\&\&\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Glock\&\&21\&\&.45 ACP\&\&13\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Sig-Sauer\&\&P220\&\&.45 ACP\&\&7\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&Smith$\backslash$\&Wesson\&\&4506\&\&.45 ACP\&\&8\&$\backslash$cr
+\par\noindent\hglue 0.5truein
+\&\&\&\&\&\&\&\&$\backslash$cr
+}
+\bigskip\par\noindent
+Pretty straightforward, isn't it? Notice that you can even include actual
+ampersands as text in your table by entering {\twltt $\backslash$\&}
+for each ``real'' {\twltt \&}. 
+\bigskip\par\noindent
+As you become proficient at \TeX{}, you'll find that typesetting tables
+isn't as difficult as you might have thought it was!
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf IV. ^{TYPESETTING EQUATIONS}}
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf Typesetting Equations is Different From Typesetting Text}
+\bigskip\par\noindent
+^^{equation spacing}
+Equations generally require special handling to come out looking ``right'' 
+when printed. For example, mathematical variables are generally set in
+italics (rather than roman fonts), operators (i.e., symbols such as plus
+signs, minus signs, etc.) require special spacing, and a whole host of
+other conventions need to be observed if the user is to end up with 
+normal-looking mathematical copy.
+\bigskip\par\noindent
+Fortunately, \TeX\ is pre-programmed to automatically ``do the 
+right thing'' when setting mathematical copy: you don't need to struggle
+to get sweet-looking equations in \TeX. 
+\bigskip\par\noindent
+The remainder of this section will explain to you how to set the majority
+of the mathematical copy an average \TeX\ user will need to 
+set.\footnote{$^{10}$}{If you
+are setting particularly esoteric or complicated equations, you'll probably
+also want to closely study Chapters 16--19 of {\twlit The \TeX book} for
+more detailed information about setting mathematical copy.}
+\bigskip\par\noindent
+We'll now consider the general context of how \TeX\ senses we're
+setting mathematical copy, and then we'll
+``zoom in'' to look at how we can generate various mathematical
+symbols.
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Embedded vs. Displayed Equations}}
+^^{Displayed Equations}
+\bigskip\par\noindent
+Equations can be constructed two different ways in \TeX{}. Short, simple
+equations are typically embedded right in the flow of narrative text, while
+larger, more complex equations are usually indented and set as 
+``displayed'' equations, separated from any adjacent text.
+\bigskip\par\noindent
+To signal \TeX\ that we're beginning to set an embedded equation,
+begin the equation with a single dollar sign.
+To signal the end of the embedded equation, use another dollar sign. For
+example:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt Pythagoras' triangular equality \$c\^{}2=a\^{}2+b\^{}2\$ 
+allows us to \${}$\backslash$ldots\$}
+\bigskip\par\noindent
+When processed by \TeX{}, your output would then look like:
+\bigskip\par\noindent\hglue 0.5truein
+Pythagoras' triangular equality $c^2=a^2+b^2$ allows us to $\dots$
+\bigskip\par\noindent
+When you want to set a displayed equation, begin the equation
+with {\twlbf two} successive dollar signs
+(instead of only one), and be sure to also end the  
+equation with two dollar signs:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt Working the equation through, we arrive at the Sturm-Liouville}
+\par\noindent\hglue 0.5truein
+{\twltt expression:}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$medskip$\backslash$par$\backslash$noindent}
+{\twltt \$\$[r(x)y']+[q(x)+$\backslash$lambda\ p(x)]y=0\$\$}
+\par\noindent\hglue 0.5truein
+{\twltt Bessel, Legendre, and other equations can all be written in this form.}
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\par\noindent
+Processed, that looks like:
+\bigskip\par\noindent\hglue 0.5truein
+Working that equation through, we arrive at the Sturm-Liouville expression:
+\medskip\par\noindent
+$$[r(x)y']+[q(x)+\lambda p(x)]y=0$$
+\par\noindent\hglue 0.5truein
+Bessel, Legendre, and other equations can all be written in this form.
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Numbering Equations}}
+\bigskip\par\noindent
+If you are preparing a complicated document with many equations, you will
+almost certainly want to number your equations so that you can easily and
+unambiguously refer to a particular equation in your narrative discussion.
+\bigskip\par\noindent
+The way to do that in \TeX\ is to build your displayed equation the way you
+normally would, but then add:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$eqno({\twlit equationnumber})}
+\bigskip\par\noindent
+just before you enter the closing double dollar signs. For example:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt Working the equation through, we arrive at the }
+\par\noindent\hglue 0.5truein
+{\twltt Sturm-Liouville expression:}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$medskip$\backslash$par$\backslash$noindent}
+\par\noindent\hglue 0.5truein
+{\twltt \$\$[r(x)y']+[q(x)+$\backslash$lambda\ p(x)]y=0$\backslash$eqno(8)\$\$}
+\par\noindent\hglue 0.5truein
+{\twltt Bessel, Legendre, and other equations can all be written in this form.}
+\bigskip\par\noindent
+Processed, the numbered version of our sample display equation looks like:
+\bigskip\par\noindent\hglue 0.5truein
+Working that equation through, we arrive at the Sturm-Liouville expression:
+\medskip\par\noindent
+$$[r(x)y']+[q(x)+\lambda p(x)]y=0\eqno(8)$$
+\par\noindent\hglue 0.5truein
+Bessel, Legendre, and other equations can all be written in this form.
+\bigskip\bigskip\par\noindent
+If you'd rather have your equation numbers on the left, instead of on the
+right, substitute {\twltt $\backslash$leqno} for {\twltt $\backslash$eqno}.
+Even if you want left hand equation numbers, you should still
+insert the {\twltt $\backslash$leqno} immediately before the two dollar
+signs {\twlbf ending} your displayed equation. Do {\twlbf not} move the {\twltt
+$\backslash$leqno} so that it is just after the {\twlbf opening} double dollar
+signs, or you'll generate an error.
+\bigskip\par\noindent
+There's another way to number equations, and that is as
+part of aligning multiple equations in a single display. Just
+coincidentally, that's the topic of our next section.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Aligning and Numbering Multiple Equations}}
+\bigskip\par\noindent
+When you are preparing a particular mathematical display 
+which contains more than one equation, you will usually want 
+to align those equations by their 
+equal signs (or some other reasonable visual ``balance'' point).
+\bigskip\par\noindent
+When you are doing that sort of ^{multiple equation alignment}, there
+are two ways you can number your equations. You can number the block
+of equations as a unit, or you can number all (or some) of the
+equations in the block individually. 
+\bigskip\par\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$\bullet$
+^^{Numbering a block of equations}
+If you want to number a block of equations {\twlbf as a unit}, you'd 
+say something like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt Consider the functions:}
+\par\noindent\hglue 0.5truein
+{\twltt \$\$$\backslash$eqalign$\{${}$\backslash$phi\_1=$\{${}$\backslash$rm arg$\}$(w+1)\&=$\backslash$arctan (v / [u+1])$\backslash$cr}
+\par\noindent\hglue 0.5truein
+\qquad\qquad\quad\enspace\thinspace{\twltt $\backslash$phi\_2=$\{$%
+$\backslash$rm arg$\}$(w-1)\&=$\backslash$arctan
+(v / [u-1])$\backslash$cr%
+$\}$%
+\par\noindent\hglue 0.5truein
+\quad$\backslash$eqno(21)\$\$}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$medskip$\backslash$par$\backslash$noindent}
+\par\noindent\hglue 0.5truein
+{\twltt We wish to solve these equations by \${}$\backslash$ldots\$}
+\bigskip\par\noindent
+Processed, that looks like:
+\bigskip\par\noindent\hglue 0.5truein
+Consider the functions:
+\par\noindent\hglue 0.5truein
+$$\eqalign{\phi_1={\rm arg}(w+1)&=\arctan (v / [u+1])\cr
+           \phi_2={\rm arg}(w-1)&=\arctan (v / [u-1])\cr}\eqno(21)$$
+\medskip\par\noindent\hglue 0.5truein
+We wish to solve these equations by $\ldots$
+\bigskip\bigskip\par\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+$\bullet$ If you wanted to number {\twlbf every equation}
+in the display you just built, you'd say, instead:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt Consider the functions:}
+\par\noindent\hglue 0.5truein
+{\twltt \$\$$\backslash$eqalignno$\{${}$\backslash$phi\_1=$\{${}$\backslash$rm arg$\}$(w+1)\&=$\backslash$arctan (v / [u+1])\&(45)$\backslash$cr}
+\par\noindent\hglue 0.5truein
+\qquad\qquad\quad\enspace\thinspace{\twltt \ \ $\backslash$phi\_2=$\{$%
+$\backslash$rm arg$\}$(w-1)\&=$\backslash$arctan
+(v / [u-1])\&(46)$\backslash$cr%
+$\}$}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$medskip$\backslash$par$\backslash$noindent}
+\par\noindent\hglue 0.5truein
+{\twltt We wish to solve these equations by \${}$\backslash$ldots\$}
+\bigskip\par\noindent
+Processed, the separately numbered {\twltt $\backslash$eqalignno} approach
+generates output which looks like:
+\bigskip\par\noindent\hglue 0.5truein
+Consider the functions:
+\par\noindent\hglue 0.5truein
+$$\eqalignno{\phi_1={\rm arg}(w+1)&=\arctan (v / [u+1])&(45)\cr
+           \phi_2={\rm arg}(w-1)&=\arctan (v / [u-1])&(46)\cr}$$
+\bigskip\par\noindent\hglue 0.5truein
+We wish to solve these equations by $\ldots$
+\bigskip\par\noindent
+Notice that this second approach uses {\twltt $\backslash$eqalign{\twlbf 
+\underbar{no}}}
+instead of simply {\twltt $\backslash$eqalign}, and notice that our equation
+numbers are included immediately before the {\twltt $\backslash$cr} which ends
+each line, separated from the actual equation itself by an ampersand ({\twltt
+\&}).
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf Some ^{Basic Information About Entering Equations}}
+\bigskip\par\noindent
+But, you say, it is all fine and good to be able to know the
+difference between embedded and displayed equations, and to know
+how to number and align equations,
+but how do I actually write the damn things in the first place!{}?
+Ah! Yes! I guess we should talk about that, eh?
+\bigskip\par\noindent
+Regardless of whether you are entering an embedded equation, or an equation
+which will be displayed, there are some basic things you need to know about
+entering equations in \TeX:
+\bigskip\par\noindent
+$\bullet$ \TeX\ generally ignores spaces
+in equations. Thus, the following are equivalent to \TeX\ and will
+come out typeset exactly the same:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$\$ a\ +\ b\ +\ c\ \ =\ \ d\ \$\$}
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$\$a+b+c=d\$\$}
+\bigskip\par\noindent
+$\bullet$ To force \TeX\ to pay attention to spaces
+in your equations, use the following:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$! \qquad ^{negative thin space} (-1/6 $\backslash$quad)}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$, \qquad\ ^{thin space} (+1/6 $\backslash$quad)}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$> \qquad\ ^{medium space} (+2/9 $\backslash$quad)}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$; \qquad\ ^{thick space} (+5/18 $\backslash$quad)}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$quad \ \ one ^{quad} -- approximately the size of a 
+capital "M"}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$qquad \ a ^{double quad}}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$\char `\ \qquad\ \ a ^{control space}
+\bigskip\par\noindent}
+$\bullet$ In general, math mode text is set in 
+italics. To force \TeX\ to set a few words of text in a normal 
+roman font while in math mode, you can put the text in a 
+^^{roman font words in math mode}
+{\twltt $\backslash$rm} group:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$\$22/7 
+$\{${}$\backslash$rm$\backslash$\ is $\backslash$ an  
+$\backslash$\ approximation $\backslash$\ for $\backslash$\ $\}$
+$\backslash$pi\$\$}
+\bigskip\par\noindent
+which yields output that looks like:
+\bigskip\par\noindent
+$$22/7 {\rm \ is \ an \ approximation \ for \ } \pi$$
+\bigskip\par\noindent
+But notice what a pain that is to set! 
+\bigskip\par\noindent
+By far your best move is to avoid setting {\twlbf displayed}
+equations which include lots of ``regular'' text. 
+Use {\twlbf embedded} equations instead, and just drop
+into math mode when you need to on a ``phrase-by-phrase'' basis. For
+example, look how much cleaner the following re-casting of our example
+becomes:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$22/7\$ is an approximation for \${}$\backslash$pi\$}
+\bigskip\par\noindent
+Processed, that looks like:
+\bigskip\par\noindent\hglue 0.5truein
+$22/7$ is an approximation for $\pi$
+\bigskip\par\noindent
+\TeX\ also contains pre-defined roman font text strings for common
+mathematical ``words'' such as sin, cos, tan, lim, etc. See below
+for more information.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Greek Letters}}
+\bigskip\par\noindent
+$\bullet$ To enter {\twlbf lowercase} greek letters 
+in math mode (i.e., between \$ $\ldots$ \$ or \$\$ $\ldots$ \$\$), use:
+\bigskip\par\noindent
+\settabs 6\columns
+%%%%%%%%%
+\+$\alpha$&$\beta$&$\gamma$&$\delta$&$\epsilon$&$\varepsilon$\cr
+\medskip\par\noindent
+\+$\backslash$alpha&$\backslash$beta&
+$\backslash$gamma&$\backslash$delta&
+$\backslash$epsilon&$\backslash$varepsilon\cr
+\bigskip\par\noindent
+%%%%%%%%%
+\+$\zeta$&$\eta$&$\theta$&$\vartheta$&$\iota$&$\kappa$\cr
+\medskip\par\noindent
+\+$\backslash$zeta&
+$\backslash$eta&$\backslash$theta&$\backslash$vartheta&
+$\backslash$iota&$\backslash$kappa\cr
+\bigskip\par\noindent
+%%%%%%%%%%
+\+$\lambda$&$\mu$&$\nu$&$\xi$&$o$&$\pi$\cr
+\medskip\par\noindent
+\+$\backslash$lambda&$\backslash$mu&$\backslash$nu&%
+$\backslash$xi&o&$\backslash$pi\cr
+\bigskip\par\noindent
+%%%%%%%%%%
+\+$\varpi$&$\rho$&$\varrho$&$\sigma$&$\varsigma$&$\tau$\cr
+\medskip\par\noindent
+\+$\backslash$varpi&$\backslash$rho&$\backslash$varrho&%
+$\backslash$sigma&$\backslash$varsigma&$\backslash$tau\cr
+\bigskip\par\noindent
+%%%%%%%%%%
+\+$\upsilon$&$\phi$&$\varphi$&$\chi$&$\psi$&$\omega$\cr
+\medskip\par\noindent
+\+$\backslash$upsilon&$\backslash$phi&$\backslash$varphi&
+$\backslash$chi&$\backslash$psi&$\backslash$omega\cr
+\bigskip\bigskip\par\noindent
+%%%%%%%%%%%
+$\bullet$ To enter {\twlbf uppercase} greek letters 
+in math mode (i.e., between \$ $\ldots$ \$ or \$\$ $\ldots$ \$\$), use:
+\bigskip\par\noindent
+\settabs 6\columns
+\+$\Gamma$&$\Delta$&$\Theta$&$\Lambda$&$\Xi$&$\Pi$\cr
+\medskip\par\noindent
+\+$\backslash$Gamma&$\backslash$Delta&
+$\backslash$Theta&$\backslash$Lambda&$\backslash$Xi&$\backslash$Pi\cr
+\bigskip\par\noindent
+%%%%%%%%%%%%
+\+$\Sigma$&$\Upsilon$&$\Phi$&$\Psi$&$\Omega$\cr
+\medskip\par\noindent
+\+$\backslash$Sigma&$\backslash$Upsilon&
+$\backslash$Phi&$\backslash$Psi&$\backslash$Omega\cr
+\bigskip\par\noindent
+Only those uppercase greek letters shown above are available in \TeX{};
+those not defined are indistinguishable from their roman counterparts.
+Thus, for example, {\twltt $\backslash$Alpha} is undefined, and will
+generate an error if you attempt to include that undefined symbol in
+your document. Simply substitute {\twltt $\{${}$\backslash$rm A$\}$}
+instead at the point where you need a capital alpha. For italic 
+uppercase greek letters, try: {\twltt \${}$\{${}$\backslash$mit
+$\backslash$Phi$\}$}\$.
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Script Letters}}
+\bigskip\par\noindent
+Sometimes you'll need to enter a capital ``script'' letter while in
+math mode (i.e., , between \$ $\ldots$ \$ or \$\$ $\ldots$ \$\$). Use
+the calligraphic style for that purpose (lowercase isn't available):
+\bigskip\par\noindent\hglue 0.5truein
+\+&${\cal ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\cr
+\medskip\par\noindent\hglue 0.5truein
+\+&$\{${}$\backslash$cal ABCDEFGHIJKLMNOPQRSTUVWXYZ$\}${}\cr
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf Common ^{Mathematical Operators}}
+\bigskip\par\noindent
+You also need to be able to set common mathematical symbols. For example,
+while in math mode (i.e., , between \$ $\ldots$ \$ or \$\$ $\ldots$ \$\$) 
+some of the symbols you can use include:
+%%%%%%%%%%%%%%%%%%
+\bigskip\par\noindent
+\+$+$&$-$&$=$&$\not=$&$<$&$>$\cr
+\medskip\par\noindent
+{\twltt \+{}+&-&=&$\backslash$not=&<&>\cr}
+%%%%%%%%%%%%%%%%%%%
+\bigskip\bigskip\par\noindent
+\+$\le$&$\ge$&$\ll$&$\gg$&$\approx$&$\equiv$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$le&$\backslash$ge&$<<$&$>>$&%
+$\backslash$approx&$\backslash$equiv\cr}
+%%%%%%%%%%%%%%%%%%%
+\bigskip\bigskip\par\noindent
+\+(&)&[&]&$\{$&$\}$\cr
+\medskip\par\noindent
+{\twltt \+(&)&[&]&$\backslash${}$\{$&$\backslash${}$\}$\cr}
+%%%%%%%%%%%%%%%%%%%%
+\bigskip\bigskip\par\noindent
+\+$\langle$&$\rangle$&%
+$\colon$&$\cdot$&$\cdots$&$\ldots$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$langle&$\backslash$rangle&%
+$\backslash$colon&$\backslash$cdot&$\backslash$cdots&%
+$\backslash$ldots\cr}
+%%%%%%%%%%%%%%%%%%%%%
+\bigskip\bigskip\par\noindent
+\+$\vert$&$\Vert$&$\backslash$&$\lceil$&$\lfloor$&$\nabla$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$vert&$\backslash$Vert&$\backslash$backslash&%
+$\backslash$lceil&$\backslash$lfloor&$\backslash$nabla\cr}
+%%%%%%%%%%%%%%%%%%%%%
+\bigskip\bigskip\par\noindent
+\+$\partial$&$\infty$&$\forall$&$\exists$&$\circ$&$\bullet$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$partial&$\backslash$infty&$\backslash$forall&
+$\backslash$exists&$\backslash$circ&$\backslash$bullet\cr}
+%%%%%%%%%%%%%%%%%%%
+\bigskip\bigskip\par\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf Symbols for ^{Logic} and the ^{Algebra of Sets}}
+\bigskip\par\noindent
+\+$\in$&$\notin$&$\cap$&$\cup$&$\vee$&$\wedge$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$in&$\backslash$notin&$\backslash$cap&%
+$\backslash$cup&$\backslash$vee&$\backslash$wedge\cr}
+\bigskip\bigskip\par\noindent
+\+$\subset$&$\supset$&$\subseteq$&$\supseteq$&$\oplus$&$\otimes$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$subset&$\backslash$supset&
+$\backslash$subseteq&$\backslash$supseteq&%
+$\backslash$oplus&$\backslash$otimes\cr}
+\bigskip\bigskip\par\noindent
+\+$\sim$&$\ast$&$\emptyset$&$\rightarrow$&$\leftarrow$&$\leftrightarrow$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$sim&$\backslash$ast&$\backslash$emptyset&%
+$\backslash$rightarrow&$\backslash$leftarrow&%
+$\backslash$leftrightarrow\cr}
+\bigskip\bigskip\par\noindent
+For more information on available mathematical symbols, see Appendix F of
+{\twlit The \TeX{}book}.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Subscripts}, ^{Superscripts}, and Combinations Thereof}
+\bigskip\par\noindent
+While in math mode, make subscripts using an underscore and 
+make superscripts using a ^{caret} (or ``^{hat}''). For example:
+\bigskip\par\noindent
+\+Subscript: &&&
+{\twltt \$X\_{}$\{$14$\}${}\$}&& $X_{14}$\cr
+\bigskip\par\noindent
+\+Superscript: &&&
+{\twltt \$X\^{}$\{$3$\}${}\$}&& $X^{3}$\cr
+\bigskip\par\noindent
+\+Combined subscript and superscript: &&&
+{\twltt \$X\_{}$\{$6$\}${}\^{}$\{$8$\}${}\$}&& $X_{6}^{8}$\cr
+\bigskip\par\noindent
+\+Even odder combinations, too: &&&
+{\twltt \${}\_$\{$4$\}${}X\^{}$\{$a\^{}b$\}$}&&$_{4}X^{a^b}$\cr
+\bigskip\par\noindent
+\+&&&
+{\twltt \${}\^{}$\{$2$\}${}\_$\{$3$\}${}X\_{}$\{$5$\}${}\^{}$\{$1$\}${}\$}%
+&&$^{2}_{3}X_{5}^{1}$\cr
+\bigskip\bigskip\par\noindent
+Note that you may use (and you may {\twlit need to} use) curly braces
+to indicate exactly what material is to be raised or lowered; if a particularly
+baroque expression is ambiguous, \TeX\ will complain.
+\bigskip\par\noindent
+Also note that you can override the automatic reduction in ^{size of
+subscripts and superscripts}. Do so by including a 
+{\twltt $\backslash$textstyle}
+within the subscript or superscript curly braces:
+\bigskip\par\noindent
+\+&{\twltt \$X\^{}%
+$\{${}%
+$\{${}$\backslash$textstyle Y$\}${}\^{}%
+$\{${}$\backslash$textstyle Z$\}${}$\}$%
+{}\$}%
+&&&&$X^{{\textstyle Y}^{\textstyle Z}}$\cr
+\bigskip\bigskip\par\noindent
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Math Accents}}
+\bigskip\par\noindent
+While in math mode, get accented variables\footnote{$^{11}$}{Note that
+mathematical typesetting conventions require you to use a special
+``dotless'' i and ``dotless'' j when accenting those characters. 
+^^{dotless characters}
+Get those
+characters by saying {\twltt $\backslash$imath} to get a dotless $\imath$ 
+or by saying {\twltt $\backslash$jmath} to get a dotless $\jmath$ where 
+needed in math mode.}
+by saying:
+\bigskip\par\noindent
+\+$x'$&$x''$&$\bar x$&$\hat x$&$\vec x$&$\dot x$\cr
+\medskip\par\noindent
+{\twltt \+x{}'&x{}'{}'&$\backslash$bar x&$\backslash$hat x&
+$\backslash$vec x&$\backslash$dot x\cr}
+\bigskip\bigskip\par\noindent
+\+$\ddot x$&$\check x$&$\breve x$&$\grave x$&$\acute x$&$\tilde x$\cr
+{\twltt \+$\backslash$ddot x&$\backslash$check x&$\backslash$breve x&
+$\backslash$grave x&$\backslash$acute x&$\backslash$tilde x\cr}
+\bigskip\bigskip\par\noindent
+\bigskip\bigskip\par\noindent
+\settabs 4\columns
+^^{Wide math accents}
+``Wider'' accents are also available:
+\bigskip\par\noindent
+\+$\overline {abcde}$&$\underline {abcde}$&$\widehat {abcde}$&
+$\widetilde {abcde}$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$overline $\{$abcde$\}$&
+$\backslash$underline $\{$abcde$\}$&
+$\backslash$widehat $\{$abcde$\}$&
+$\backslash$widetilde $\{$abcde$\}$\cr}
+\settabs 6\columns
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Roman Font Mathematical ``Words''}}
+\bigskip\bigskip\par\noindent
+\TeX\ includes a number of predefined roman font math-mode ``words'':
+\bigskip\bigskip\par\noindent
+$\bullet$ {\twlbf Trigonometric Functions:}
+\bigskip\par\noindent
+%%%%%%%%%%%%%%
+\+$\sin$&$\cos$&$\tan$&$\csc$&$\sec$&$\cot$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$sin&$\backslash$cos&$\backslash$tan&%
+$\backslash$csc&$\backslash$sec&$\backslash$cot\cr}
+\bigskip\par\noindent
+%%%%%%%%%%%%%%%
+\+$\arcsin$&$\arccos$&$\arctan$&$\sinh$&$\cosh$&$\tanh$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$arcsin&$\backslash$arccos&$\backslash$arctan&
+$\backslash$sinh&$\backslash$cosh&%
+$\backslash$tanh&\cr}
+\bigskip\par\noindent
+%%%%%%%%%%%%%%%
+\+$\coth$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$coth\cr}
+\bigskip\bigskip\par\noindent
+%%%%%%%%%%%%%%%%
+Those ^{trigonometric functions} not shown in the above list (including
+the remaining inverse trigonometric functions, the remaining hyperbolic
+functions, the inverse hyperbolics, exsec, covers, vers, hav, cis, etc.),
+need to be manually entered as roman text while you're in math
+mode since \TeX\ considers them too obscure to merit pre-defined
+symbols.
+\bigskip\bigskip\par\noindent
+$\bullet${\twlbf Other Functions:}
+\bigskip\par\noindent
+The following list of other functions is something of a hodge-podge,
+consisting of the other roman font mathematical ``words'' predefined in
+plain \TeX{}:
+%%%%%%%%%%%%%%%%%
+\bigskip\par\noindent
+\+$\min$&$\max$&$\ln$&$\log$&$\lg$&$\exp$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$min&$\backslash$max&$\backslash$ln&%
+$\backslash$log&$\backslash$lg&$\backslash$exp\cr}
+\bigskip\par\noindent
+%%%%%%%%%%%%%%%%%%
+\+$\gcd$&$\inf$&$\sup$&$\lim$&$\liminf$&$\limsup$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$gcd&$\backslash$inf&$\backslash$sup&$\backslash$lim&%
+$\backslash$liminf&$\backslash$limsup\cr}
+\bigskip\par\noindent
+%%%%%%%%%%%%%%%%%%%
+\+$\dim$&$\det$&$\arg$&$\deg$&$\hom$&$\ker$&\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$dim&$\backslash$det&$\backslash$arg&%
+$\backslash$deg&$\backslash$hom&$\backslash$ker\cr}
+\bigskip\par\noindent
+%%%%%%%%%%%%%%%%%%%%
+\+$\Pr$&$\bmod$&$\!\!\!\!\!\!\pmod{16}$\cr
+\medskip\par\noindent
+{\twltt \+$\backslash$Pr&$\backslash$bmod&$\backslash$pmod$\{$16$\}$\cr}
+\bigskip\bigskip\par\noindent
+$\bullet$
+If the mathematical ``word'' you find yourself needing isn't listed, you can
+always extend the above list to meet your circumstances. For example:
+\bigskip\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$def$\backslash$lcd$\{${}$\backslash$mathop$\{${}%
+$\backslash$rm lcd$\}${}$\backslash$nolimits$\}$}
+\bigskip\par\noindent
+^^{Making New Roman Font Math Symbols}
+would define a new symbol {\twltt $\backslash$lcd} as a convenience for those
+who commonly write about least common denominators.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Limits}}
+\bigskip\par\noindent
+One example of using a ``named'' mathematical function is writing a limit:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$\${}$\{${}$\backslash$bf u$\}${}'(t)=$\backslash$lim\_$\{${}%
+$\backslash$Delta t$\backslash$rightarrow 0$\}$}
+\par\noindent\hglue 0.5truein
+{\twltt \qquad$\{\{\{\backslash$bf u$\}$ (t+$\backslash$Delta t) 
+- $\{\backslash$bf u$\}$(t)$\}$ 
+$\backslash$over $\{${}$\backslash$Delta 
+t$\}\}${}\$\$}
+\bigskip\par\noindent
+You'll get output from those commands that looks like:
+\bigskip\par\noindent
+$${\bf u}'(t)=\lim_{\Delta t\rightarrow 0} 
+{{{\bf u} (t+\Delta t) - {\bf u}(t)} \over {\Delta t}}$$
+\bigskip\par\noindent
+Note that the ``named'' mathematical function can have a subscript just
+the way any ``regular'' symbol can, but that \TeX\ is smart enough to 
+center the limit under this particular
+named function rather than simply dropping the subscript below the base 
+line at the end of the symbol. This decision
+--- to drop the subscript down in place, or to drop the subscript
+down and then pull it back to center it --- is controlled by the {\twltt 
+$\backslash$limits} or {\twltt $\backslash$nolimits} attribute chosen 
+when that symbol was defined. (You may have noticed that little feature 
+in our ``{\twltt $\backslash$lcd}'' example in the preceding section. Now
+you know $\ldots$ the {\twlit rest} of the story!)
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Radicals}: ^{Square Roots}, ^{Cube Roots}, etc.}
+\bigskip\par\noindent
+$\bullet$
+To get a square root as part of a math mode expression, try something like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$sqrt$\{$x+y$\}$} \qquad to get: \qquad
+$\sqrt{x+y}$
+\bigskip\par\noindent
+$\bullet$ \TeX{}'s {\twltt $\backslash$sqrt} will attempt to be ``smart'' 
+and match the radical height to the height of the arguments given:
+{\twltt $\backslash$sqrt} will make a bigger radical 
+for ``tall'' arguments (such as those containing capital letters) 
+than it would for arguments comprised solely of ``short'' 
+lower-case letters. 
+\bigskip\par\noindent
+However, there may be times when you {\twlit don't want} \TeX\ to 
+tailor each {\twltt $\backslash$sqrt} radical individually; at times
+it may be cleaner to have all the {\twltt $\backslash$sqrt} radicals
+be of the same height. When that's the case, include a {\twltt 
+$\backslash$mathstrut} as part of each radical in your equation:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$sqrt$\{${}$\backslash$mathstrut x+y$\}$ +
+        $\backslash$sqrt$\{${}$\backslash$mathstrut Z$\}$}
+\bigskip\par\noindent
+All of your radicals will then be the same height:
+\bigskip\par\noindent\hglue 0.5truein
+$\sqrt{\mathstrut x+y} + \sqrt{\mathstrut Z}$
+\bigskip\bigskip\par\noindent
+$\bullet$ To get any arbitrary root (cube root, quartic root, etc.), 
+while in math mode try:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$root 4 $\backslash$of X}
+\bigskip\par\noindent
+You'll then get output which looks like:
+\bigskip\par\noindent\hglue 0.5truein
+$\root 4 \of X$
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Making Large Fractions}}
+^^{Large Fractions}
+^^{Fractions}
+\bigskip\par\noindent
+To generate a ``large'' fraction while in math mode, use the 
+{\twltt $\backslash$over} command:
+\bigskip\par\noindent\hglue 0.5truein
+\$\${}$\{$x+y $\backslash$over a+b$\}${}\$\$
+\bigskip\par\noindent
+That generates output which looks like:
+\bigskip\par\noindent\hglue 0.5truein
+$${x+y \over a+b}$$
+\bigskip\bigskip\par\noindent
+$\bullet$ If you need to generate ``fractions upon fractions'', you can quickly
+end up with something which looks like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$\${}$\{${}$\{$x+y $\backslash$over a+b$\}${} $\backslash$over
+$\{$x+a $\backslash$over y+b$\}${}$\}${}\$\$}
+\bigskip\par\noindent
+and, even worse, the output from that ``fraction upon fraction'' form
+tends to be hard to read, ambiguous and wasteful of space in the printed page:
+$${{x+y \over a+b} \over {x+a \over y+b}}$$
+\medskip\bigskip\par\noindent
+$\bullet$ To disambiguate the ``fraction upon fraction'' form, you can employ a
+bold division line:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$\${}$\{${}$\{$x+y $\backslash$over a+b$\}${} $\backslash$above 1pt
+$\{$x+a $\backslash$over y+b$\}${}$\}${}\$\$}
+\bigskip\par\noindent
+That yields the following non-ambiguous expression:
+\bigskip\par\noindent\hglue 0.5truein
+$${{x+y \over a+b}\above 1pt {x+a \over y+b}}$$
+\medskip\par\noindent
+Even though that ``fraction upon fraction'' format is now unambiguous, it is
+still hard to read and still is wasteful of space on the printed page.
+\bigskip\bigskip\par\noindent
+$\bullet$ You are far better off writing ``fractions upon fractions'' 
+horizontally, with an enlarged slash. See the following section on 
+enlarged grouping operators for more information.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Making Large Grouping Operators}}
+\bigskip\par\noindent
+When you begin working with large and complicated displayed equations, a
+number of ^{large grouping operators} will become important to you. 
+These are:
+\bigskip\par\noindent\hglue 0.5truein
+$\bullet$ Large ^{parentheses}, ^{braces}, and ^{brackets},
+\par\noindent\hglue 0.5truein
+$\bullet$ Large vertical (``absolute value'') bars, and
+^^{absolute value bars}
+^^{vertical bars} 
+\par\noindent\hglue 0.5truein
+$\bullet$ Large forward and backward slashes.
+^^{forward slashes}
+^^{backward slashes}
+\bigskip\bigskip\par\noindent
+Five different sizes of those operators can be requested:
+\bigskip\par\noindent\hglue 0.5truein
+$\bullet$ Normal size
+\par\noindent\hglue 0.5truein
+$\bullet$ {\twltt $\backslash$big}, {\twltt $\backslash$bigl} 
+and {\twltt $\backslash$bigr} --- a hair bigger than normal
+\par\noindent\hglue 0.5truein
+$\bullet$ {\twltt $\backslash$Big}, {\twltt $\backslash$Bigl} 
+and {\twltt $\backslash$Bigr} --- 1.5 times the {\twltt 
+$\backslash$big} size operators
+\par\noindent\hglue 0.5truein
+$\bullet$ {\twltt $\backslash$bigg}, {\twltt $\backslash$biggl} 
+and {\twltt $\backslash$biggr} ---
+2.0 times the {\twltt $\backslash$big} size operators
+\par\noindent\hglue 0.5truein
+$\bullet$ {\twltt $\backslash$Bigg}, {\twltt $\backslash$Biggl} 
+and {\twltt $\backslash$Biggr} ---
+2.5 times the {\twltt $\backslash$big} size operators
+\bigskip\par\noindent
+Thus, for example, you might write something like:
+\bigskip\par\noindent\hglue 0.5truein
+\$\$w=$\backslash$biggl($\{$a+b $\backslash$over d+e$\}${}$\backslash$biggr) 
+$\backslash$bigg/ $\backslash$biggl($\{$f+g+h $\backslash$over i+j$\}${}$\backslash$biggr)\$\$
+\bigskip\par\noindent
+In order to obtain output that looks like:
+\bigskip\par\noindent
+$$w=\biggl({a+b \over d+e}\biggr) \bigg/ \biggl({f+g+h \over i+j}\biggr)$$
+\bigskip\par\noindent
+You'll notice that I used {\twltt $\backslash$bigg\underbar{l}(} for the 
+left hand side parentheses, {\twltt $\backslash$bigg\underbar{r})} for the 
+right hand side parentheses, and plain {\twltt $\backslash$bigg} for the
+center division sign. 
+\TeX\ handles spacing around the big grouping operators differently 
+depending on which ``side'' the operator is on.
+Unless you have a compelling reason to the contrary, you should generally
+use {\twltt $\backslash$biggl} for left hand side operators, {\twltt
+$\backslash$biggr} for right hand side operators, and {\twltt $\backslash$big}
+for those operators which cannot really be called either left hand side or 
+right hand side.
+\bigskip\par\noindent
+To give you an idea of what the various symbols look like at the five
+available sizes, here's a little sampler: 
+\settabs 4\columns
+\bigskip\bigskip\par\noindent
+\+\hfill $\Biggl( \biggl( \Bigl( \bigl( \,(X)\, \bigr) \Bigr) \biggr) 
+\Biggr)$ \hfill & \hfill
+$\Biggl[ \biggl[ \Bigl[ \bigl[ \,[X]\, \bigr] \Bigr] \biggr] \Biggr]$ \hfill &
+\hfill $\Biggl\{ \biggl\{ \Bigl\{ \bigl\{ \, \{X\} \, \bigr\} 
+\Bigr\} \biggr\} \Biggr\} $ \hfill & 
+\quad \hfill 
+$\Biggl\langle \biggl\langle \Bigl\langle \bigl\langle \, 
+\langle X \rangle \,
+\bigr\rangle \Bigr\rangle \biggr\rangle \Biggr\rangle$ \hfill \cr
+\bigskip\par\noindent
+\+ \hfill $\Biggl\vert \biggl\vert \Bigl\vert \bigl\vert \,\vert X 
+\vert\, \bigr\vert 
+\Bigr\vert \biggr\vert \Biggr\vert$ \hfill & \hfill 
+$\Biggl\Vert \biggl\Vert \Bigl\Vert \bigl\Vert \Vert X \Vert \bigr\Vert 
+\Bigr\Vert \biggr\Vert \Biggr\Vert$ \hfill & \hfill
+$\Biggl/ \biggl/ \Bigl/ \bigl/ / X / \bigr/ \Bigr/ \biggr/ \Biggr/ $ \hfill &
+\hfill $\Biggl\backslash \biggl\backslash \Bigl\backslash \bigl\backslash 
+\,\backslash X \backslash\, \bigr\backslash \Bigr\backslash \biggr\backslash 
+\Biggr\backslash$ \hfill \cr
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Combination Notation}}
+\bigskip\par\noindent
+To denote combinations in \TeX{}, use \TeX{}'s {\twltt $\backslash$choose}
+notation:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \${}$\{$n $\backslash$choose r$\}$\$}
+\qquad
+will print as:
+\qquad
+{\twltt ${n \choose r}$}
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Matrices}}
+\bigskip\par\noindent
+To typeset a matrix, enter something like:
+\bigskip\par\noindent
+{\twltt \$\${}$\{${}$\backslash$bf X$\}$ = 
+$\backslash$left($\backslash$matrix$\{$}
+\par\noindent
+{\twltt \enspace\quad\qquad\qquad\qquad\qquad\qquad\qquad X\_$\{$11$\}$\&%
+X\_$\{$12$\}$\&X\_$\{$13%
+$\}$\&$\backslash$ldots\&X\_$\{$1j$\}${}$\backslash$cr}
+\par\noindent
+{\twltt \enspace\quad\qquad\qquad\qquad\qquad\qquad\qquad 
+X\_$\{$21$\}$\&X\_$\{$22$\}$\&%
+X\_$\{$23$\}$\&%
+$\backslash$ldots\&X\_$\{$2j$\}${}$\backslash$cr}
+\par\noindent
+{\twltt \enspace\quad\qquad\qquad\qquad\qquad\qquad\qquad
+ $\backslash$vdots\&$\backslash$vdots\&%
+$\backslash$vdots\&$\backslash$ddots\&%
+$\backslash$vdots$\backslash$cr}
+\par\noindent
+{\twltt \enspace\quad\qquad\qquad\qquad\qquad\qquad\qquad 
+X\_$\{$i1$\}$\&X\_$\{$i2$\}$\&%
+X\_$\{$i3$\}$\&%
+$\backslash$ldots\&X\_$\{$ij$\}${}$\backslash$cr}
+\par\noindent
+{\twltt \qquad\qquad\qquad$\}${}$\backslash$right)$\backslash$eqno(4)\$\$}
+\bigskip\par\noindent
+Processed by \TeX{}, that looks like:
+\bigskip\par\noindent
+$$ {\bf X} = \left( \matrix{X_{11}&X_{12}&X_{13}&\ldots&X_{1j}\cr
+                           X_{21}&X_{22}&X_{23}&\ldots&X_{2j}\cr
+                           \vdots&\vdots&\vdots&\ddots&\vdots\cr
+                           X_{i1}&X_{i2}&X_{i3}&\ldots&X_{ij}\cr} 
+                    \right)\eqno(4)$$
+\bigskip\par\noindent
+Note that you can use symbols other than parentheses to set off your matrix;
+common alternatives include large square brackets and large 
+bars (for denoting determinants).
+\bigskip\bigskip\par\noindent 
+\centerline{\twlbf ^{Case Structure}}
+\bigskip\par\noindent
+Sometimes you need a ``case'' structure to represent choices and outcomes; 
+for example, maybe you're trying to show quantities and price breaks:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$\${}$\{${}$\backslash$rm your$\backslash$ price$\}$ $=$}
+\par\noindent\hglue 0.5truein
+{\twltt \enspace\quad$\backslash$cases$\{${}$\backslash$\$10.00/$\{${}$\backslash$rm 
+unit$\}$\& for 1,000 or more units$\backslash$cr}
+\par\noindent\hglue 0.5truein
+{\twltt \enspace\enspace
+\qquad\qquad$\backslash${}\$12.50/$\{${}$\backslash$rm unit$\}$\& 
+for 500 to 999
+units$\backslash$cr}
+\par\noindent\hglue 0.5truein
+{\twltt \enspace\enspace\qquad\qquad$\backslash${}\$15.00/$\{${}$\backslash$rm
+unit$\}$\& for 1 to 499
+units$\backslash$cr$\}${}$\backslash$eqno(16)\$\$}
+\bigskip\par\noindent
+That produces output which looks like:
+\par\noindent\hglue 0.5truein
+$${\rm your\ price} = 
+   \cases{\$10.00/{\rm unit}& for 1,000 or more units\cr
+          \$12.50/{\rm unit}& for 500 to 999 units\cr
+          \$15.00/{\rm unit}& for 1 to 499 units\cr}\eqno(16)$$
+\bigskip\par\noindent
+Note that the material to the left of the equal sign, and the material to the
+left of the ampersand sign, is automatically typeset in math mode. 
+The material to the right of the ampersand sign is automatically typeset
+in non-math mode.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Summations}}
+^^{sigmas}
+\bigskip\par\noindent
+To generate large summation displays, use \TeX\ commands like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt The Maclaurin power series can be written:}
+\par\noindent\hglue 0.5truein
+{\twltt \$\$ e\^{}$\{$x$\}$ =
+$\backslash$sum\_$\{$m=0$\}$\^{}$\{${}%
+$\backslash$infty$\}${} $\{$x\^{}$\{$m$\}$ $\backslash$over m!$\}$ =}
+\par\noindent\hglue 0.5truein
+{\twltt 1+x+%
+$\{${}$\{$x\^{}$\{$2$\}${}$\}$ $\backslash$over 2!$\}$ +
+$\{${}$\{$x\^{}$\{$3$\}${}$\}$ $\backslash$over 3!$\}$ +
+$\backslash$cdots
+\$\$}
+\par\noindent\hglue 0.5truein
+{\twltt $\backslash$medskip$\backslash$par$\backslash$noindent}
+\bigskip\par\noindent
+That yields output which looks like:
+\bigskip\par\noindent\hglue 0.5truein
+The Maclaurin power series can be written:
+$$ e^{x}=\sum_{m=0}^{\infty} {x^{m} \over m!} =
+1+x+{{x^{2}} \over 2!} + {{x^{3}} \over 3!} + \cdots$$
+\bigskip\par\noindent
+$\bullet$ Summation limits are actually nothing special --- in fact, to
+\TeX\ they are simply a subscript and a superscript. (Did you notice
+the underscore and caret?)
+\bigskip\par\noindent
+$\bullet$ Normally, expressions containing summations are large and
+complicated and thus end up displayed (i.e., set between 
+double dollar signs). If 
+you find yourself with summations in embedded (single dollar sign)
+equations, you need to be aware that the capital sigma will be smaller
+than in displayed form, and the summation limits will be
+moved so they follow the summation rather than appearing above and
+below the summation. For example, by changing our double dollar signs
+to single dollar signs, our Maclaurin example becomes transformed into:
+\bigskip\par\noindent
+The Maclaurin power series can be written:
+$ e^{x}=\sum_{m=0}^{\infty} {x^{m} \over m!} =
+1+x+{{x^{2}} \over 2!} + {{x^{3}} \over 3!} + \cdots $
+\bigskip\par\noindent
+Make a determined effort to set summations in displayed form only.
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{Integrals}}
+\bigskip\bigskip\par\noindent
+Integrals are quite similar to summations. Consider the following:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$\${}$\backslash$int\_$\{$a$\}$\^{}$\{$b$\}$%
+f(x)$\backslash$,dx=F(b)-F(a)\$\$}
+\bigskip\par\noindent
+That comes out looking like:
+\bigskip\par\noindent\hglue 0.5truein
+$$\int_{a}^{b}f(x)\,dx=F(b)-F(a)$$
+\bigskip\par\noindent
+Just as in summations, integration limits are simply sub and superscripts;
+the {\twltt $\backslash$,} which follows the {\twltt f(x)} 
+simply adds a little space between the function and its differential.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Definitions}}
+^^{Redefining TeX Commands}
+^^{Defining TeX Commands}
+^^{Command Abbreviations}
+\bigskip\par\noindent
+By now you may have formed the impression that using
+\TeX\ means using impossibly verbose commands to accomplish even the simplest
+of tasks.
+\bigskip\par\noindent
+For example, consider getting
+double spaced copy. Right now you get it by saying:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$baselineskip=2$\backslash$normalbaselineskip}
+\bigskip\par\noindent
+Thirty-four characters is a lot to type every time you want
+to begin double spacing. 
+\bigskip\par\noindent
+$\bullet$ Fortunately, \TeX{}'s author allows you to
+extend or customize \TeX\ by defining your 
+own shorthand commands for frequently employed (but excessively lengthy) 
+``native'' \TeX\ instructions. Thus, for instance, we can create a new
+\TeX\ command called {\twltt $\backslash$DS} which we'll use as a convenient
+way of requesting double spaced copy in \TeX{}:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$def%
+$\backslash$DS$\{${}$\backslash$baselineskip=2$\backslash$normalbaselineskip%
+{}$\}$}
+\bigskip\par\noindent
+Clearly, it is much easier to type {\twltt $\backslash$DS} when we want 
+double spaced copy than it is to type 
+{\twltt $\backslash$baselineskip=2$\backslash$normalbaselineskip}, 
+don't you think?
+\bigskip\par\noindent
+Notice that I elected to use a shorthand name for my new command consisting
+solely of upper case letters; by doing so, I've practically insured
+that my new command won't conflict or interfere with any existing \TeX\ 
+commands\footnote{$^{12}$}{Virtually all commands automatically
+defined in plain \TeX\ are lowercase or mixed case only, and since \TeX\ 
+distinguishes between upper and lowercase letters in parsing command names,
+our uppercase-only command names should generally not cause any trouble.}.  
+\bigskip\par\noindent
+$\bullet$
+\TeX\ macros can also take substitutable parameters (or ``macro variables'').
+For example, maybe you'd like to have a more general line space setting
+macro. In that case, you could define a new command by saying something like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$def$\backslash$SP\#1$\{${}$\backslash$baselineskip=%
+\#1$\backslash$normalbaselineskip$\}$}
+\bigskip\par\noindent
+You could then get triple-spaced copy by saying {\twltt $\backslash$SP 3}
+or quad-spaced copy by saying \break {\twltt $\backslash$SP 4}.
+\bigskip\par\noindent
+$\bullet$ 
+If you end up creating a lot of these definitions, collect them all into a
+file called {\twltt macro.tex}\ \ You can then automatically include those
+definitions in each of your documents by saying:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt $\backslash$input macro.tex}
+\bigskip\par\noindent
+near the top of each of your \TeX\ documents.
+\bigskip\par\noindent
+$\bullet$ There is a {\twlit lot} more you can do with macros in \TeX{}, 
+and a lot more you should {\twlit know}
+about \TeX\ macros before you attempt to get too
+tricky using them. Aspiring \TeX\ hackers should thoroughly study Chapter
+20 of {\twlit The \TeX{}book} for more information before jumping right into
+defining a whole pile of macros.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf V. ^{TEX ON THE OREGON VAX 8800}}
+\bigskip\par\noindent
+Up to now, we've been talking about \TeX\ in general --- we
+haven't really tied ourselves to any particular machine. What we've told you
+should work just as well on a PC running \TeX\ as on a NeXT running \TeX\ as 
+on a VAX running \TeX{}.
+\bigskip\par\noindent
+Now, though, it is time to get down to the peculiarities of \TeX{}ing 
+on the OREGON VAX. 
+\bigskip\par\noindent
+\centerline{\twlbf The \TeX\ Execution Cycle} ^^{The TeX Execution Cycle}
+\bigskip\par\noindent
+The general process you'll be using is as follows:
+\bigskip\bigskip\par\noindent
+\hglue 1.0truein 
+\vbox{\offinterlineskip 
+\halign{\hfil #&#&#&#&#&# \hfil\cr
+&\vrule&\hrulefill&\vrule&\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule& \quad \hfill {\twltt \$ @TEX\_SYSTEM:TEX\_LOGIN} \quad\hfill&\vrule&
+\qquad&(Define \TeX\ commands for your runs)\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule&\hrulefill&\vrule&\cr
+%%%%%
+&&\hfil\strut\hfil&&\cr
+&&\hfil\strut\hfil&&\cr
+%%%%%
+&\vrule&\hrulefill&\vrule&\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule& \quad \hfill {\twltt \$ ED SAMPLE.TEX} \quad\hfill&\vrule&&
+(Make your document)\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule&\hrulefill&\vrule&\cr
+%%%%%
+&&\hfil\strut\vrule\hfil&&\cr
+&&\hfil\strut\vrule\hfil&&\cr
+%%%%%
+&\vrule&\hrulefill&\vrule&\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule& \quad \hfill {\twltt \$ TEX SAMPLE} \quad\hfill&\vrule&&
+(\TeX\ it)\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule&\hrulefill&\vrule&\cr
+%%%%%
+&&\hfil\strut\vrule\hfil&&\cr
+&&\hfil\strut\vrule\hfil&&\cr
+%%%%%
+&\vrule&\hrulefill&\vrule&\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule& \quad \hfill {\twltt $<$preview .DVI file$>$} \quad\hfill&\vrule&&
+(Not covered in this handout)\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule&\hrulefill&\vrule&\cr
+%%%%%
+&&\hfil\strut\vrule\hfil&&\cr
+&&\hfil\strut\vrule\hfil&&\cr
+%%%%%
+&\vrule&\hrulefill&\vrule&\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule& \quad \hfill {\twltt \$ DVIPS SAMPLE} \quad\hfill&\vrule&&
+(Make the {\twltt .DVI} file into PostScript)\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule&\hrulefill&\vrule&\cr
+%%%%%
+&&\hfil\strut\vrule\hfil&&\cr
+&&\hfil\strut\vrule\hfil&&\cr
+%%%%%
+&\vrule&\hrulefill&\vrule&\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule& \quad \hfill {\twltt \$ PSP SAMPLE.PS} \quad\hfill&\vrule&&
+(Print it on the laser printer)\cr
+&\vrule&\strut&\vrule&\cr
+&\vrule&\hrulefill&\vrule&\cr
+%%%%%
+}}
+\bigskip\bigskip\par\noindent
+We'll now look at each of those steps, in 
+order.\footnote{$^{13}$}{$\ldots$
+except for previewing! For information on
+^{previewing your document on screen}, 
+please see the separate write-up {\twlit
+Previewing Your \TeX\ {\twltt .DVI} File On-Screen}}.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf Building Your \TeX\ Document Using an Editor}
+^^{Building Your TeX Document}
+^^{Editing Your TeX Document}
+\bigskip\par\noindent
+$\bullet$ Your first task is to actually build your \TeX\ document.
+You can use any of the regular VAX text editors to do this; 
+EDT, EVE and EMACS will all work fine, for instance. As an example:
+\bigskip\par\noindent
+\leftline{\qquad \twltt \$ ED SAMPLE.TEX}
+\leftline{\qquad \twltt *C}
+\leftline{\qquad \twltt $\backslash$twelvepoint}
+\leftline{\qquad \twltt $\backslash$centerline$\{${}$\backslash$bf 
+Introduction$\}$}
+\leftline{\qquad \twltt $\backslash$bigskip}
+\leftline{\qquad \twltt It is well established that the primary 
+principle of all Architecture}
+\leftline{\qquad \twltt is balance. Without balance, $<$blah blah blah$>$}
+\leftline{\qquad \twltt $<$CTRL-Z$>$}
+\leftline{\qquad \twltt *EX}
+\bigskip\par\noindent
+^^{Uploading Your TeX Document From a Micro}
+$\bullet$ Some users may prefer to build 
+their \TeX\ documents using a microcomputer word
+processor or text editor, uploading their file to 
+the VAX once it has been prepared. That's
+fine, too; just remember to hit return at the end 
+of each line of text as you enter it (or save 
+your \TeX\ document as ``text with line breaks'').
+\bigskip\par\noindent
+Upload your \TeX\ document just as you would any other text
+file; raw \TeX\ documents consist solely of regular printable 
+characters so there is no need to do a ``binary'' file transfer
+when uploading a \TeX\ document prepared on a microcomputer.
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf Defining \TeX}
+^^{Defining TeX}
+\bigskip\par\noindent
+Because a relatively small 
+percentage of all VAX users will initially be using \TeX{}, the commands
+needed to run \TeX\ are not automatically defined at login time.
+Instead, in order to be able to use \TeX{}, you need to enter the command:
+\bigskip\par\noindent
+\leftline{\qquad \twltt \$ @TEX\_SYSTEM:TEX\_LOGIN}
+\bigskip\par\noindent
+at the dollar sign. The \TeX\ commands obtained by executing that command
+will remain available for the duration of your current session, but will
+be lost when you log off.
+\bigskip\par\noindent
+Therefore, 
+if you plan to do a lot of work with \TeX{}, you'll want to add the above
+DCL command to your account's {\twltt LOGIN.COM} file so you don't need to 
+manually re-request \TeX{}'s commands every time you login to do some
+computerized typesetting. (Be sure to actually type in
+the dollar sign at the start of this (or any) command you add to 
+your {\twltt LOGIN.COM} file!)
+^^{LOGIN.COM file}
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf Running \TeX}
+^^{Running TeX}
+\bigskip\par\noindent
+Once you've got your \TeX\ document entered and \TeX{}'s 
+commands defined, you're then ready to process your 
+document into a device independent ({\twltt .DVI}) 
+file by saying:
+\bigskip\par\noindent
+\leftline{\qquad \twltt \$ TEX filename}
+\bigskip\par\noindent
+For example, to run \TeX\ on the raw \TeX\ document SAMPLE.TEX, you'd enter:
+\bigskip\par\noindent
+\leftline{\qquad \twltt \$ TEX SAMPLE}
+\bigskip\par\noindent
+^^{Default file extension}
+Note that you don't have to bother giving the file extension 
+of your \TeX\ document file ({\twltt SAMPLE\underbar{.TEX}}) because 
+\TeX\ will assume the file name ends in \hbox{\twltt{}.TEX} if you omit the
+file extension from the file name. To take advantage of that feature, 
+and to help you keep your files organized, you are 
+strongly encouraged to have all your \TeX\ document filenames
+end in {\twltt .TEX} unless you have a particularly good rationale 
+for doing otherwise.
+\bigskip\par\noindent
+Anyhow, when you run your document through
+\TeX\ your screen should look something like:
+^^{TeX-ing Your Document}
+\bigskip\par\noindent
+\leftline{\qquad \twltt \$ TEX SAMPLE}
+\leftline{\qquad \twltt This is TeX, NLS VMS Version 2.991a (preloaded format=plain 89.10.26)}
+\leftline{\qquad \twltt (DISK\$USER8:[JSMITH]SAMPLE.TEX;3 (TEX\_TEXROOT:[INPUTS]FONTSIZE.TEX;2) [1]}
+\leftline{\qquad \twltt [2] [3] [4] [5]} 
+\leftline{\qquad \twltt Output written on DISK\$USER8:[JSMITH]SAMPLE.DVI;3 
+(5 pages, 9648 bytes).}
+\leftline{\qquad \twltt Transcript written on 
+DISK\$USER8:[JSMITH]SAMPLE.LIS;3.}
+\bigskip\par\noindent
+\TeX\ is telling you
+that you are running Version 2.991a of the Northlake Software port of 
+\TeX\ for VMS, using the normal default \TeX\ format (``{\twltt plain}'')
+prepared in October of 1989.
+\bigskip\par\noindent
+\TeX\ then announces that it is beginning to read and process
+a document called {\twltt SAMPLE.TEX}. While processing that file, 
+it reads in another file called {\twltt FONTSIZE.TEX} (which we 
+know contains \TeX\ commands defining the various fontsizes we might want
+to use).
+\bigskip\par\noindent 
+\TeX\ then begins to build and output pages one at a time: as each page
+is output, \TeX\ writes the number of that page inside square brackets
+on your terminal.
+\bigskip\par\noindent
+When \TeX\ finishes processing your document, it provides a summary
+explaining how many pages it has created, the size of the 
+device independent output file ({\twltt SAMPLE.DVI}), and the 
+name of the transcript file ({\twltt SAMPLE.LIS}) 
+which contains details about any problems \TeX\ had while processing 
+your document.   
+\bigskip\par\noindent
+If you have encountered no errors, you're now ready to convert the output
+{\twltt .DVI} file into PostScript for printing on a laser printer.
+\bigskip\par\noindent
+In many cases, however, you'll have at least a couple of \TeX\ 
+run time errors to resolve. When you encounter errors, see the next 
+section for error deciphering assistance. 
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf Decoding \TeX\ Errors}
+^^{Decoding TeX Errors}
+\bigskip\par\noindent
+When \TeX\ has a problem with your document, it will report an error 
+message which will probably look roughly like the following:
+\bigskip\par\noindent
+\leftline{\twltt \$ TEX MYPAPER}
+\leftline{\twltt This is TeX, NLS VMS Version 2.991a (preloaded format=plain 89.10.26)}
+\leftline{\twltt (DISK\$USER8:[JSMITH]MYPAPER.TEX;2}
+\leftline{\twltt ! Undefined control sequence.}
+\leftline{\twltt{}l.18 ...small file. Here is some text which 
+is $\{${}$\backslash$bg}
+\leftline{
+\twltt{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~emphasized.$\}$}
+\leftline{\twltt ?}
+\bigskip\par\noindent
+This error message isn't actually too bad, as error messages go. But what
+does it mean?
+\bigskip\par\noindent
+$\bullet$
+First of all, \TeX\ is telling you that you are trying to use a 
+\TeX\ command which doesn't exist ({\twltt ^{Undefined control sequence}}). 
+\bigskip\par\noindent
+$\bullet$ Next, \TeX\ tells you the line on which the problem exists 
+({\twltt l.18}), and even shows you the point at which the problem was 
+detected (\TeX\ marks the point where a problem was detected by dropping 
+down to a new line without doing a carriage return). 
+\bigskip\par\noindent
+In our case, the user entered {\twltt $\backslash$bg} where we can assume
+they probably meant to enter {\twltt $\backslash$bf} for ``boldface.'' Fine.
+We now know what caused our error. But what do we do
+when we're looking at the question mark \TeX\ has issued? 
+\bigskip\par\noindent
+Your best move as a beginner is to type an {\twltt X} and 
+hit return to exit \TeX{}. 
+You can then edit your file and fix the line with the problem, and 
+rerun \TeX\ on your corrected file.\footnote{$^{14}$}{If you are 
+feeling more adventurous, you can type a question mark in response to
+\TeX{}'s question mark; \TeX\ will then outline your other 
+options for dealing with the reported error.} [Remember that under VMS
+you can readily roll back to earlier commands by hitting one or more
+$<$CTRL$>$-B's at the dollar sign --- this command ``history'' feature
+is very convenient when you repeatedly edit-and-rerun-TEX on a document
+during the document development process.
+^^{VMS command history feature}
+\bigskip\par\noindent
+Now we'll explain the most common \TeX\ errors you're likely to encounter. 
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf The Most Common \TeX\ Errors}
+\bigskip\par\noindent
+^^{Most Common TeX Errors}
+In addition to the {\twlbf Undefined control sequence error} we 
+just discussed, there are a number of other \TeX\ errors which are also 
+commonly encountered. (At least the errors listed below are the sort
+of errors {\twlit I} typically see --- {\twlit you} may tend to generate an
+entirely different set of errors depending upon your mental processes,
+\TeX\ habits, and keyboarding expertise). Anyhow, the errors {\twlit I} 
+see most often are:
+\bigskip\par\noindent
+^^{Overfull hbox}
+$\bullet$ {\twlbf Overfull $\backslash$hbox}\quad This error message is
+saying that \TeX\ is wrestling with a line of text which is too wide for
+the document, and which it cannot break into acceptable width lines (either
+by splitting the line at whitespace, or by hyphenating a word near the end of
+the line and breaking the line there).
+\bigskip\par\noindent
+If you get this error, begin by inspecting the text that's making \TeX\ gag. 
+Do you have a particularly long and hard-to-hyphenate word near the end of 
+the line? \TeX\ may be encountering trouble breaking that 
+word.\footnote{$^{15}$}{You may need to give \TeX\ a hand by explaining
+where it can safely hyphenate unusual words. Add a {\twltt $\backslash$-}
+to tell \TeX\ where it can break a tough word if it needs to do so. 
+Don't bother providing this sort of advice unless \TeX\ demonstrates a 
+need for it --- \TeX\ normally does a fantastic job of breaking words at 
+an appropriate point on its own.}
+Have you incorrectly used un-breakable ties ({\twltt \~{}}) instead of 
+regular spaces for all or most regular interword spaces? Did you explicitly 
+create a too-large unbreakable {\twltt $\backslash$hbox}? 
+Did you make a huge table that \TeX\ just can't fit on the page? 
+Maybe you've made a monster equation? Can you force a break with 
+{\twltt $\backslash$break} somewhere near the end of the line to resolve
+this problem? 
+\bigskip\par\noindent
+If inspection of the raw \TeX\ command file fails to give you insight into
+what makes the line appear too long, ignore the {\twltt Overfull 
+$\backslash$hbox} message and proceed to {\twltt DVIPS} and {\twltt PSP}
+the document, error and all. 
+\TeX\ will mark the overfull {\twltt $\backslash$hbox}
+with a solid right bar near the right hand side of the page. If after
+looking at the printed output you still can't
+see what the problem is, come see me and I'll try to help you 
+resolve the problem.
+\bigskip\par\noindent
+^^{Underfull vbox}
+$\bullet$ {\twlbf Underfull $\backslash$vbox}\quad This error message usually
+arises when \TeX\ has too few lines to fill out a page. Most 
+commonly, this is caused by issuing a {\twltt $\backslash$eject} without
+a preceding {\twltt $\backslash$vfill} to pad out the rest of the page.
+\bigskip\par\noindent
+^^{end occurred inside a group at level ...}
+$\bullet$ {\twlbf $\backslash$end occurred inside a group at level $<$X$>$}
+\quad You missed one or more closing braces somewhere. 
+Don't be surprised if pages and pages of your document (instead of just 
+the couple of words you may have intended) are typeset in italics, or 
+are boldfaced, or are underlined. Go back and insert the missing curly 
+braces to eliminate this error.
+\bigskip\par\noindent
+^^{Too many $\}$'s}
+$\bullet$ {\twlbf Too many $\}$'s} \quad Now you've got 
+{\twlbf too many} right hand curly braces! The number of right hand curly 
+braces should match the number of left hand curly braces. 
+\bigskip\par\noindent
+You may just need to remove a redundant right hand curly brace;
+on the other hand, you may need to snoop around and make sure 
+you aren't short a necessary or important left hand curly brace! 
+\bigskip\par\noindent
+^^{Missing \$ inserted}
+$\bullet$ {\twlbf Missing \$ inserted} \quad Usually this means that you've:
+(a) attempted to use a math-mode-only symbol (such as 
+{\twltt $\backslash$backslash}) while you weren't in math mode, 
+(b) you missed a dollar sign at the beginning or end of an equation, or
+(c) you entered {\twltt \$} instead of {\twltt $\backslash$\$} when you
+actually wanted a dollar sign to appear in your text.
+\bigskip\par\noindent
+If you want to use a math-mode-only symbol such as 
+{\twltt $\backslash$backslash} while entering regular text, 
+remember to encapsulate the code for that symbol within an opening and 
+a closing dollar sign.
+\bigskip\par\noindent
+$\bullet$ {\twlbf ^{Missing number, treated as zero}} \quad 
+\TeX\ expected a number
+(most often as part of a dimension), which you didn't provide. Insert an
+appropriate numeric value to eliminate this error.
+\bigskip\par\noindent
+$\bullet$ {\twlbf ^{Misplaced alignment tab character} \&} \quad 
+\TeX\ has detected
+an ampersand, which is normally used by \TeX\ as a tab character or as an 
+alignment point within a stack of equations, in a context where that didn't
+make sense. Were you working on setting up a table or aligning equations? 
+\bigskip\par\noindent
+If not, you probably just wanted to have an ampersand actually appear in 
+your text. Change the \ \ {\twltt \&} \ \ into 
+a \ \ {\twltt $\backslash$\&} \ \ to make the ampersand actually show up
+in your document.
+\bigskip\par\noindent
+$\bullet$ {\twlbf ^{Double subscript}} \quad
+You have a ``subscript upon a subscript'' (such as {\twltt a\_b\_c})
+which is ambiguous. \TeX\ needs to know if you meant:
+\medskip\par\noindent\hglue 0.5truein
+{\twltt a\_$\{$b\_c$\}$}
+\medskip\par\noindent
+or
+\medskip\par\noindent\hglue 0.5truein
+{\twltt $\{$a\_b$\}$\_c}
+\medskip\par\noindent
+since \TeX\ treats those two cases somewhat differently when typesetting them.
+Insert left and right curly braces to clearly show just what is getting
+subscripted in your expression.
+\bigskip\par\noindent
+$\bullet$ {\twlbf ^{Ambiguous; you need another $\{$} and $\}$.} \quad 
+This is another error you'll see if you tend to be parsimonious with curly
+braces. Most often you'll see this error when you're creating a compound 
+fraction and you've entered an ambiguous expression like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$ a $\backslash$over b $\backslash$over c \$}
+\bigskip\par\noindent
+Enter curly braces to clarify ``what you want to have above what''. For
+example:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \${}$\{${}a $\backslash$over b$\}$ $\backslash$over c \$}
+\bigskip\par\noindent
+Remember, however, that ``fractions upon fractions'' are generally a bad
+idea, and you should rewrite the expression to eliminate them if at all
+possible.
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf ^{Converting Your .DVI File Into PostScript}}
+\bigskip\par\noindent
+After \TeX\ processes your {\twltt .TEX} file without error, you'll have a
+{\twlit device independent}
+({\twltt .DVI}) intermediate file which you can then 
+process into a final {\twlit device specific}
+file for printing on a laser printer.
+\bigskip\par\noindent
+{\twltt .DVI} files can be processed into device specific output files
+suitable for printing on any of a number of different printers. For example,
+there are {\twltt .DVI} converters, or ``filters,'' 
+for PostScript laser printers,
+HP LaserJet printers, certain bit-mapped CRT's, etc.  In this 
+write-up we're only going to explain how you can write output for PostScript
+printers (such as the Computing Center's ^{Xerox 4045/160}) using the {\twltt
+^{DVIPS}} (DVI-to-PostScript) driver written by 
+Tomas Rokicki.\footnote{$^{16}$}{If you're using a machine other than
+OREGON, you can obtain a copy of {\twltt DVIPS} via anonymous FTP from 
+{\twltt NEON.STANFORD.EDU}; look in directory {\twltt pub}.
+Users at sites without network access can write Tomas Rokicki, Radical 
+Eye Software, Box 2081, Stanford, CA 94039 for information on obtaining a
+commercial distribution of DVIPS.}
+\bigskip\par\noindent
+Essentially, once \TeX\ finally processes your document without complaint,
+the procedure for 
+converting your {\twltt .DVI} file into PostScript is simple.
+All you have to do is say:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$ DVIPS filename}
+\bigskip\par\noindent
+For example, if your original \TeX\ document file was named 
+{\twltt SAMPLE.TEX}, and \TeX\ processed that file into {\twltt SAMPLE.DVI},
+you can then convert it into PostScript by saying:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$ DVIPS SAMPLE}
+\bigskip\par\noindent
+After executing that command you should see something which looks like:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$ DVIPS SAMPLE}
+\par\noindent\hglue 0.5truein
+{\twltt This is dvips, version 5.392 (C) 1986-90 Radical Eye Software}
+\par\noindent\hglue 0.5truein
+{\twltt ' TeX output 1990.11.15:1443' -$>$ SAMPLE.PS}
+\par\noindent\hglue 0.5truein
+{\twltt [tex.pro]. [1] [2] [3] [4] [5]}
+\par\noindent\hglue 0.5truein
+{\twltt \$}
+\bigskip\par\noindent
+{\twltt SAMPLE.PS} is the output file containing your document 
+in final PostScript form, ready to print on a PostScript laser printer. 
+\bigskip\par\noindent
+^^{Printing Only Certain Pages of a Document}
+$\bullet$ There may be times when you only want to print certain pages of
+your document. For instance, you may not have touched the first twenty-four
+pages of your document, but you need a copy of all pages from there on. To
+get a copy of all pages from 25 through the end of your document, you'd say:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$ DVIPS -p25 SAMPLE}
+\vfill\eject
+To get only pages 17 through 28, inclusive, try:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$ DVIPS -p17 -l28 SAMPLE}
+\bigskip\par\noindent
+(The second command line argument in the above example begins with the
+letter ``el,'' not the number ``one''!)
+\bigskip\par\noindent
+To get only the first 8 pages of SAMPLE.DVI, use:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$ DVIPS -n8 SAMPLE}
+\bigskip\bigskip\par\noindent
+^^{Case of DVIPS command line arguments}
+$\bullet$ NOTE: If you are familar with DVIPS from another 
+system, you may be surprised
+to notice that DVIPS on the VAX automatically lowercases any command 
+line arguments you provide. This is a feature (or a bug) caused by compiling
+DVIPS using VAX/VMS C, which happily trashes the case of all the command line
+arguments it touches. If you need to preserve the case of uppercase (or 
+mixed case) command line argument strings, you'll need to enclose those 
+command line argument strings inside double quotation marks. 
+\bigskip\bigskip\par\noindent
+\centerline{\twlbf ^{DVIPS Features}}
+\bigskip\par\noindent
+$\bullet$ DVIPS (\underbar{\twlbf NOT} \TeX{}) can generate special 
+PostScript effects, such as ^{overprint screens}. 
+For example, each of the appendices to this
+guide was set with a large overprinted Helvetica-Bold letter,
+denoting the current appendix. For an 
+example of how this was done, look at the \TeX\ source file for
+the appendices.
+\bigskip\par\noindent
+Note that these special effects are strictly a function of {\twltt DVIPS};
+it is virtually certain that almost any
+other DVI-to-$<$whatever$>$ translator won't be able
+to handle generation of these special effects! Think twice before you 
+decide you need to have this sort of special effect included in  
+your document, since their use will limit its portability.
+\bigskip\par\noindent
+^^{fonts}
+$\bullet$ Another {\twltt DVIPS}-specific feature is use of ^{PostScript fonts} 
+instead of, or in addition to, the normal Computer Modern Roman fonts. 
+For an example of a document which does this, see
+Appendix F. Note that like the use of special effects (such as overprinting),
+use of PostScript fonts may limit your ability to use {\twltt DVI}
+translators other than {\twltt DVIPS}.
+\bigskip\par\noindent
+^^{graphics}
+$\bullet$ A final {\twltt DVIPS}-specific feature is inclusion of 
+^{PostScript graphics} directly as part of your \TeX\ document.
+See Appendix G for an example of this.
+Be aware that PostScript graphic files tend to be quite large, and use
+of this feature may limit the portability of your document to other DVI 
+translators. You may also need to hack on the actual PostScript file you
+want to include to get it into ``includable'' form. 
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf Printing PostScript Output on the VAX's ^{Xerox 4045/160}}
+\bigskip\par\noindent
+$\bullet$ After you've run your document through {\twltt TEX} and {\twltt
+DVIPS}, you'll have a {\twltt .PS} (PostScript) file which can be 
+printed on a PostScript laser printer. 
+\bigskip\par\noindent
+^^{Printing Your PostScript Output}
+^^{PSP}
+To print the file {\twltt SAMPLE.PS} on 
+the the Xerox 4045/160 PostScript-compatible printer
+connected to the OREGON VAX, enter the command:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$\ PRINT/QUE=SYS\$LASER/SETUP=POSTSCRIPT\ \ SAMPLE.PS}
+\bigskip\par\noindent
+Your PostScript file will then be queued to print.
+\bigskip\bigskip\par\noindent
+$\bullet$ Because the above print command is an easy one to fumble, the
+Computing Center has defined a special ``PostScript Print'' command that's
+a little easier to type. Specifically, instead of having to enter the 
+complicated {\twltt PRINT} command shown above to print the file SAMPLE.PS,
+you can simply say:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt \$\ PSP\ \ SAMPLE.PS}
+\bigskip\par\noindent
+Why has the Computing Center gone to the trouble of creating a special command
+just to prevent possible user problems in entering that {\twltt PRINT} command?
+Well, if a user omits either the required {\twltt /QUE} or the required 
+{\twltt /SETUP} string, the raw PostScript commands in the user's file will 
+be printed as page upon page of seeming gibberish instead of being 
+properly interpreted by the printer. This results in a frustrating waste of 
+printer resources we'd like to help you avoid if possible.
+\bigskip\par\noindent
+One small caution about using the PSP command: note that the {\twltt PSP}
+command won't automatically pick up any special {\twltt /NOTE} qualifiers 
+you may have added to your regular PRINT command (such as those which you 
+may have added to route your printer output to a special output box). If you
+can't find your PostScript output in your normal printer output box when
+you're using the {\twltt PSP} command, be
+sure to check out front in the general printer output pick up area, too.
+\bigskip\bigskip\par\noindent
+$\bullet$ One more point you should be aware of:
+be {\bf sure} to explicitly include the {\tt .PS} file extension
+when you name the PostScript file you want to print! If you accidentally 
+omit the {\tt .PS} file extension, VMS will (incorrectly) assume that you 
+actually want to print {\tt filename.{}\underbar{LIS}} instead of 
+{\tt filename.{}\underbar{PS}},and you won't get any output whatsoever
+(except the print job header page). 
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centerline{\twlbf VI. CONCLUSION}
+\bigskip\par\noindent
+\leftline{\twlbf ^{Where from Here?}}
+\bigskip\par\noindent
+You now know enough about \TeX\ to be able to handle most typesetting projects.
+You should be able to prepare typical text-oriented documents, some basic 
+tables, and most commonly-seen types of equations. You have become, in effect,
+a journeyman \TeX{}nician.
+\bigskip\par\noindent
+^^{TeX Books}
+However, this doesn't mean that you are done learning about \TeX{}. On the 
+contrary, now that you understand the basics of using \TeX\ from reading this
+write-up, you should feel ready to dig into Knuth's {\twlit \TeX{}book} in
+earnest. There are a lot of subtle \TeX\ topics which have gotten cursory 
+coverage (at best) in this write-up, but which {\twlit The \TeX{}book} covers
+in much greater detail and from a properly grounded context. You {\twlit 
+really} want to obtain a copy of the {\twlit \TeX{}book} and read it in 
+detail, even going so far as to work each of the little exercises
+provided. 
+\bigskip\par\noindent
+In addition, you may enjoy reading {\twlit \TeX\ For The
+Impatient}\footnote{$^{17}$}{Paul W.
+Abrahams, et. al., {\twlit \TeX\ For The Impatient}, Addison-Wesley, 
+Reading, MA: 1990, 357 pps.}. Like this write-up, {\twlit \TeX\ For the
+Impatient} offers a less technical discussion of \TeX\ than Knuth's
+{\twlit \TeX{}Book}. 
+\bigskip\par\noindent
+Also think about picking up a copy of the original write-up
+that comes with Tom Rokicki's {\twltt DVIPS} program: it has some interesting
+details about DVIPS which we haven't covered in this write-up. Copies
+are available at a nominal cost from the Computing Center Documents Room.
+\bigskip\bigskip\par\noindent
+\leftline{\twlbf ^{What If I Get Stuck?}}
+\bigskip\par\noindent
+Feel free to come visit if you need help with a \TeX\ problem.
+I'll be glad to try to help, and your visit will help me see what topics 
+need expanded coverage in the next revision of this write-up.
+\bigskip\par\noindent
+You may also want to begin following {\twltt ^{comp.text.tex}} in 
+{\twltt NEWS}. That newsgroup gives you access to some of the best \TeX\
+experts in the country for those times when you are {\twlit really} stuck
+and no one can help you locally. However, {\twlbf PLEASE} 
+exhaust local resources {\twlbf FIRST} before you post a question to 
+the newsgroup --- you really don't want to bother thousands of people
+nationwide with a question you could easily get answered locally by asking
+me, or by looking in this handout, or by looking in {\twlit The \TeX{}book}.
+\bigskip\par\noindent
+Another general resource you should be aware of is the \TeX\ Users 
+Group, P.O. Box 9506, Providence, Rhode Island 
+02940; phone 401-751-7760; FAX 401-751-1071.
+When you join ^{TUG} for \$35.00\ (\$25.00 for students) you get a whole 
+host of benefits, including a subscription to TUGboat 
+(the \TeX\ User Group's
+newsletter), information on \TeX\ training, \TeX\ meetings, a 
+directory of other TUG members, access to software, etc.
+^^{TeX Users Group}
+\vfill\eject\end

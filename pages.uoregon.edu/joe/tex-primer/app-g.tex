@@ -1,0 +1,65 @@
+% Save file as: APP-G.TEX              Source: FILESERV@SHSU.BITNET  
+\input fontsize.tex
+\input g.tex
+\nopagenumbers
+\headline={\hfill}
+\twelvepoint
+\centerline{\twlbf APPENDIX G: Incorporation of PostScript Graphics}
+\bigskip\par\noindent
+So far you've heard no mention of graphics in conjunction with \TeX{} --- 
+this is because \TeX\ itself makes no explicit provision for their 
+inclusion!
+\bigskip\par\noindent
+\TeX\ {\twlit does,} however, provide a ``{\twltt{}$\backslash$special}''
+command which implements ``user-exits'' (or ``hooks'') which can be 
+exploited by an intelligent DVI-to-$<$whatever$>$ postprocessor to extend
+\TeX{}. One such extension provided by the DVI-to-PostScript converter
+{\twltt DVIPS} is inclusion of PostScript graphics files.
+\bigskip\par\noindent
+NOTE: Do not embark upon including PostScript files in your \TeX\ document 
+lightly; including graphics this way is a big decision for a 
+couple of reasons:
+\bigskip\par\noindent
+(1) The quality of the PostScript code produced by applications can
+vary immensely. Some nominal ``PostScript'' output can be so ill-formed 
+you'll find yourself wondering how {\twlit any} PostScript device has 
+every been able to interpret and print it. This ``low-grade'' PostScript
+may cause all sorts of headaches when you try to include it in your
+document.
+\bigskip\par\noindent
+(2) If you do elect to include PostScript graphics in your \TeX\ document,
+you'll find that virtually no DVI previewer will be able to show you your 
+graphic inclusions on screen during the output previewing process; you'll
+need to use a PostScript previewer (like NeXT's Preview application) 
+if you need to look at your output on screen before actually printing it.
+\bigskip\par\noindent
+(3) Inclusion of PostScript graphics in your document excludes, virtually
+by definition, all DVI-to-$<$whatever$>$ converters other than DVIPS. Are
+you {\twlit sure} you'll never need to do output to a non-PostScript output
+device, such as an HP LaserJet printer?
+\bigskip\par\noindent
+(4) Even small illustrations tend to generate huge PostScript files.
+Do you have the disk space you'll need to work with the images you'll be
+generating?
+\bigskip\par\noindent
+Nonetheless, if in spite of all these potential problems you decide that 
+you really {\twlit do} want to include PostScript graphics in your document, 
+take a look at the code which was used to generate this appendix, and be
+sure to give yourself {\twlit lots} of extra time to overcome any problems
+you may encounter in working with this feature.
+\bigskip\par\noindent
+A machine readable copy of the raw \TeX\ commands used 
+is available to OREGON VAX users as:
+\bigskip\par\noindent\hglue 0.5truein
+{\twltt TEX\$DISK:[TEX.SAMPLES]EPSGRAPHS.TEX}
+\bigskip\par\noindent
+On other systems get a copy of that file via anonymous FTP. 
+\bigskip\par\noindent
+FTP to {\twltt DECOY.UOREGON.EDU (128.223.32.19)} and see directory 
+{\twltt pub/tex/samples}.
+\bigskip\par\noindent
+\vfill\eject
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input epsgraphs.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end
